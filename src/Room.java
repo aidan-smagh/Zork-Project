@@ -24,15 +24,26 @@ public class Room{
     }
 
     String describe(){
+
+        if(GameState.instance().hasBeenVisited(this)){
+        //if(GameState.hasbeenVisited(this){
         //return this.name+ " " +this.desc;
+        
+       return this.name;
+        } 
+        else{
+
         String roomInfo = this.name + "\n" + this.desc;
+        
         for(Exit exit : exits){
     
             roomInfo += "\n" + exit.describe();
       }
+      GameState.instance().visit(this);
     
       return roomInfo;
     }
+   }
 
 
     public Room leaveby(String dir){
@@ -55,27 +66,24 @@ public class Room{
     
       Room room1 = new Room("Living Room", "A cozy place with a fireplace.");
       Room room2 = new Room("Kitchen", "A spacious kitchen with a large table.");
-      Room room3 = new Room("M's BedRoom", "Bed on the left, lable on the right with 2 monitors.");
+      Room room3 = new Room("M's BedRoom", "Bed on the left, table on the right with 2 monitors.");
         Exit exitToKitchen = new Exit("north", room1, room2);
         Exit exitMBedroom = new Exit("north", room2, room3);
-        
+        Exit exitFromKitchen = new Exit("south", room2, room1);
+
         room1.addExit(exitToKitchen);
         room2.addExit(exitMBedroom);
+        room2.addExit(exitFromKitchen);
 
         System.out.println(room1.describe());
-        System.out.println(room2.describe());
-
-
+        System.out.println(room2.describe()); 
+      // System.out.println(room3.describe());
         Room nextRoom = room1.leaveby("north");
-        
-        if (nextRoom != null) {
-            System.out.println("You can go north to " + nextRoom.getName());
-        } 
-        else {
-            System.out.println("You can't go that way.");
-        }
-     
-    
+        System.out.println(nextRoom.describe());
+   
+        Room nextRoom2 = room2.leaveby("north");
+        System.out.println(nextRoom2.describe());
+
    }
 }
 
