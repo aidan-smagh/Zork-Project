@@ -39,11 +39,11 @@ public class GameState {
         return dungeon;
     }
 
-    public void visit(Room room) {
+    void visit(Room room) {
         visited.add(room);
     }
 
-    public boolean hasBeenVisited(Room room) {
+    boolean hasBeenVisited(Room room) {
         return visited.contains(room);
     }
 }

@@ -1,17 +1,17 @@
-import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Room{
 
 
-   String name;
-   String desc;  //description
+   private String name = null;
+   private String desc= null;  //description
    
-   ArrayList<Exit> exits;
+   private Hashtable<String,Exit> exits = null;
 
-    Room(String name, String desc){
+   public Room(String name, String desc){
        this.name = name;
        this.desc = desc;
-       this.exits = new ArrayList<>();
+       this.exits = new Hashtable<>();
     }
 
     public String getName(){
@@ -23,67 +23,67 @@ public class Room{
 
     }
 
-    String describe(){
-
-        if(GameState.instance().hasBeenVisited(this)){
-        //if(GameState.hasbeenVisited(this){
-        //return this.name+ " " +this.desc;
-        
-       return this.name;
-        } 
+    String describe() {
+        String roomInfo = "";
+        if (!GameState.instance().hasBeenVisited(this)) {
+            roomInfo = this.name + "\n" + this.desc;
+            GameState.instance().visit(this);
+        }
         else{
-
-        String roomInfo = this.name + "\n" + this.desc;
-        
-        for(Exit exit : exits){
-    
+            roomInfo = this.name;
+        }
+        for (Exit exit : exits.values()) {
             roomInfo += "\n" + exit.describe();
-      }
-      GameState.instance().visit(this);
-    
-      return roomInfo;
+        }
+        return roomInfo;
     }
-   }
 
 
-    public Room leaveby(String dir){
-        for(Exit exit : exits){
-            if(exit.getDir().equals(dir)){
-                return exit.getDest();
-         }
-       }
-        return null;    
-    }
-    
+    Room leaveby(String dir) {
+        if (exits.containsKey(dir)) {
+            Exit exit = exits.get(dir);
+            GameState.instance().setAdventurersCurrentRoom(exit.getDest());
 
-    public void addExit(Exit exit){
-        exits.add(exit);
+            //System.out.println("works- " + this);
+            //System.out.println("works!!!");
+            return exit.getDest();
+        } else {
+            System.out.println("No Exit in this direction");
+            return this;
+        }
     }
     
 
-    public static void main(String[] args){
+    public void addExit(String dir, Room destRoom) {
+    Exit exit = new Exit(dir, this, destRoom);
+    exits.put(dir, exit);
+    //System.out.println("Exit added: " + dir + " to " + destRoom.getName());
+}
+    
+
+   // public static void main(String[] args){
     
     
-      Room room1 = new Room("Living Room", "A cozy place with a fireplace.");
-      Room room2 = new Room("Kitchen", "A spacious kitchen with a large table.");
-      Room room3 = new Room("M's BedRoom", "Bed on the left, table on the right with 2 monitors.");
-        Exit exitToKitchen = new Exit("north", room1, room2);
-        Exit exitMBedroom = new Exit("north", room2, room3);
-        Exit exitFromKitchen = new Exit("south", room2, room1);
+   //   Room room1 = new Room("Living Room", "A cozy place with a fireplace.");
+    //  Room room2 = new Room("Kitchen", "A spacious kitchen with a large table.");
+    //  Room room3 = new Room("M's BedRoom", "Bed on the left, table on the right with 2 monitors.");
+      //  Exit exitToKitchen = new Exit("north", room1, room2);
+      //  Exit exitMBedroom = new Exit("north", room2, room3);
+      //  Exit exitFromKitchen = new Exit("south", room2, room1);
 
-        room1.addExit(exitToKitchen);
-        room2.addExit(exitMBedroom);
-        room2.addExit(exitFromKitchen);
+       // room1.addExit(exitToKitchen);
+       // room2.addExit(exitMBedroom);
+      //  room2.addExit(exitFromKitchen);
 
-        System.out.println(room1.describe());
-        System.out.println(room2.describe()); 
+       // System.out.println(room1.describe());
+       // System.out.println(room2.describe()); 
       // System.out.println(room3.describe());
-        Room nextRoom = room1.leaveby("north");
-        System.out.println(nextRoom.describe());
+       // Room nextRoom = room1.leaveby("north");
+       // System.out.println(nextRoom.describe());
    
-        Room nextRoom2 = room2.leaveby("north");
-        System.out.println(nextRoom2.describe());
+  //      Room nextRoom2 = room2.leaveby("north");
+    //    System.out.println(nextRoom2.describe());
 
-   }
+  // }
 }
 
