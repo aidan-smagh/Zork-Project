@@ -5,11 +5,8 @@ Room states:
 Basement:
 beenHere=true
 ---
-Room 044:
-beenHere=true
----
 Rotunda:
 beenHere=true
 ---
 ===
-Current room: Room 044
+Current room: Basement

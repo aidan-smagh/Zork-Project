@@ -9,7 +9,7 @@ class Interpreter{
 
             Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the file name (with .zork or .sav extension):");
+        System.out.println("Enter the file name or file path (with .zork or .sav extension):");
         String fileName = scanner.nextLine();
 
         Dungeon dungeon = null;
