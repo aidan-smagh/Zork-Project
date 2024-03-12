@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Exit{
 
     private String dir;
@@ -9,6 +11,23 @@ class Exit{
         this.src = src;
         this.dest = dest;
     }
+
+
+
+    public Exit(Scanner scanner) throws Exception{
+        Dungeon dungeon = GameState.instance().getDungeon();
+        String temp = scanner.nextLine();
+        if(temp.equals("===")){
+            throw new NoExitException();
+        }
+        this.src = dungeon.getRoom(temp);
+        this.dir = scanner.nextLine();
+        this.dest = dungeon.getRoom(scanner.nextLine());
+        scanner.nextLine();
+    }
+
+
+
 
 
     
@@ -27,6 +46,17 @@ class Exit{
     public Room getDest(){
         return dest;
     }
+
+    public class IllegalSaveFormatException extends Exception{
+
+        public IllegalSaveFormatException(String e){
+            super(e);
+
+        }
+    }
+
+    public class NoExitException extends Exception{
+}
 
 
 //    public static void main(String[] args){

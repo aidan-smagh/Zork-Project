@@ -1,10 +1,14 @@
 import java.util.Hashtable;
+import java.util.Scanner;
+import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Dungeon{
 
-    Hashtable<String,Room> rooms;
-    Room entryRoom;
-    private String title;
+    Hashtable<String,Room> rooms = null;
+    Room entryRoom = null;
+    private String title = null;
 
 
     public Dungeon(Room entryRoom, String title){
@@ -14,6 +18,75 @@ public class Dungeon{
 
         rooms.put(entryRoom.getName(), entryRoom);
     }
+
+//Dungeon scanner:
+//
+
+    Dungeon(String filename) throws IllegalDungeonFormatException, FileNotFoundException, Room.NoRoomException {
+        GameState.instance().setDungeon(this); // Set the Dungeon in GameState
+
+        this.rooms = new Hashtable<>();
+        Scanner scanner = new Scanner(new File(filename));
+
+        // Read the first line as the dungeon's title
+        if (scanner.hasNextLine()) {
+            this.title = scanner.nextLine();
+            String versionLine = scanner.nextLine();
+            if (!versionLine.equals("Zork II")) {
+                throw new IllegalDungeonFormatException("Invalid version line: " + versionLine);
+            }
+            scanner.nextLine(); // "===
+            scanner.nextLine(); //Room:
+
+            try {
+                while (true) {
+                    Room room = new Room(scanner);
+                    this.entryRoom = room;
+
+                    rooms.put(room.getName(), room);
+                }
+            } catch (Exception e) {
+                try {
+                    scanner.nextLine();
+                    while (true) {
+                        Exit exit = new Exit(scanner);
+                        //exit.getSrc();
+                        exit.getSrc().addExit(exit.getDir(), exit.getDest());
+                    }
+                } catch (Exception e2) {
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+//            while (scanner.hasNextLine()) {
+//
+//                Room room = new Room(scanner);
+//                rooms.put(room.getName(), room);
+//
+//                if (scanner.hasNextLine() && scanner.nextLine().equals("===")) {
+//                    throw new Room.NoRoomException(); // Throw exception for the last "==="
+//                }
+//
+//            }
+
+//            Room room = new Room(scanner);
+//            rooms.put(room.getName(), room);
+//            Room room2 = new Room(scanner);
+//            rooms.put(room.getName(), room);
+//            Room room3 = new Room(scanner);
+//            rooms.put(room.getName(), room);
+       
+   
+
+
+
 
     public Room getEntry(){
         return entryRoom;
@@ -38,6 +111,53 @@ public class Dungeon{
         return null;
     }
 
+    public class IllegalDungeonFormatException extends Exception {
+        public IllegalDungeonFormatException(String e) {
+            super(e);
+        }
+    }
+
+
+
+
+
+
+
+    public static void main(String[] args) throws FileNotFoundException, IllegalDungeonFormatException {
+
+        // Instantiate Dungeon object with the hardcoded filename
+        try {
+            Dungeon dungeon = new Dungeon("files/farmer.zork");
+            System.out.println("Dungeon Title: " + dungeon.getTitle());
+            System.out.println("Rooms in the Dungeon:");
+        for (String roomName : dungeon.rooms.keySet()) {
+            System.out.println(roomName);
+        }
+
+        System.out.println();
+            for (Room room : dungeon.rooms.values()) {
+                System.out.println(room.describe());
+                System.out.println("---");
+
+            }
+
+            for (Room room : dungeon.rooms.values()) {
+                System.out.println("Exits from " + room.getName() + ":");
+               // for (Exit exit : room.exits.values()) {
+                 //   System.out.println(exit.describe());
+               // }
+                System.out.println("---");
+            }
+
+
+
+
+        } catch (IllegalDungeonFormatException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (Room.NoRoomException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
   //  public static void main(String[] args) {

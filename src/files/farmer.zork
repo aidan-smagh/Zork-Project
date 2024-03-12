@@ -1,0 +1,77 @@
+James Farmer Hall
+Zork II
+===
+Rooms:
+Rotunda
+You are in a beautiful round entry chamber, with tall white pillars that
+seemingly reach to the skies. There is an elevator here.
+---
+Basement
+A long, white hallway stretches to the east and west. It is cold here, and you
+can detect the faint smell of body odor. A vending machine hums softly in the
+corner.
+---
+Back hallway
+A smaller, cozier hallway greets your eye. A small kitchen area with a purring
+coffee machine is on one side, and on the other, a row of welcoming office
+doors. One has Star Wars insignias on it.
+---
+Stephen's office
+This is a cluttered office, with many geeky toys sprawling on a desk. Dr.
+Anewalt finds it cold in here.
+---
+Room 044
+Sunlight streams through tall windows and illuminates a jolly little classroom.
+The students in it can see you through the door windows. They smile and wave.
+---
+Rotunda balcony
+You stand on a circular white balcony overlooking an entry hall. Columnar
+bannisters in ancient Grecian style stand between you and the precipice.
+---
+===
+Exits:
+Rotunda
+u
+Rotunda balcony
+---
+Rotunda balcony
+d
+Rotunda
+---
+Rotunda
+d
+Basement
+---
+Basement
+u
+Rotunda
+---
+Basement
+w
+Back hallway
+---
+Room 044
+w
+Basement
+---
+Basement
+n
+Room 044
+---
+Back hallway
+s
+Stephen's office
+---
+Stephen's office
+n
+Back hallway
+---
+Room 044
+w
+Back hallway
+---
+Back hallway
+e
+Room 044
+---
+===

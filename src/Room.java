@@ -1,4 +1,6 @@
 import java.util.Hashtable;
+import java.util.Scanner;
+
 
 public class Room{
 
@@ -14,6 +16,31 @@ public class Room{
        this.exits = new Hashtable<>();
     }
 
+
+
+    Room (Scanner scanner) throws NoRoomException{
+
+        this.name = scanner.nextLine();
+        if(this.name.equals("===")){
+            throw new NoRoomException();
+        }
+
+        this.exits = new Hashtable<String, Exit>();
+
+            this.desc = "";
+            String temp = "";
+            temp = scanner.nextLine();
+            while(!temp.equals("---")) {
+                this.desc += temp + "\n";
+                temp = scanner.nextLine();
+            }
+            temp = "";
+        }
+
+
+
+
+
     public String getName(){
         return name;
     }
@@ -25,6 +52,8 @@ public class Room{
 
     String describe() {
         String roomInfo = "";
+      
+      //i/Room exitss
         if (!GameState.instance().hasBeenVisited(this)) {
             roomInfo = this.name + "\n" + this.desc;
             GameState.instance().visit(this);
@@ -59,7 +88,9 @@ public class Room{
     exits.put(dir, exit);
     //System.out.println("Exit added: " + dir + " to " + destRoom.getName());
 }
-    
+    public static class NoRoomException extends Exception{
+
+    }
 
    // public static void main(String[] args){
     
