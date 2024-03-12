@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 class Exit{
 
-    private String dir;
-    private Room dest;  //room exiting to
-    private Room src; //rom currently in
+    private String dir = null;
+    private Room dest = null;  //room exiting to
+    private Room src = null; //rom currently in
 
     Exit(String dir, Room src, Room dest){
         this.dir = dir;
