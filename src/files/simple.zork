@@ -1,0 +1,35 @@
+Simple Dungeon
+Zork II
+===
+Rooms:
+Boring Room
+This is a room with plain, white walls.
+Some might call it boring, but I call it "home."
+I mean, it *does* have a multi-line description!
+---
+Tedious Room
+This room is missing something, I just can't put my
+finger on it.
+---
+Blah Room
+Sooooo sick of quarantine.
+---
+===
+Exits:
+Boring Room
+e
+Tedious Room
+---
+Tedious Room
+w
+Boring Room
+---
+Tedious Room
+e
+Blah Room
+---
+Blah Room
+w
+Tedious Room
+---
+===

@@ -60,7 +60,7 @@ public class GameState {
 
 
     void store(String saveName) throws Exception{
-        try (PrintWriter pw = new PrintWriter("files/save.sav")) {
+        try (PrintWriter pw = new PrintWriter(saveName)) {
             // Write the first line
             pw.println(dungeon.getTitle());
             pw.println("Zork II");
@@ -76,21 +76,26 @@ public class GameState {
             pw.println("===");
             pw.print("Current room: " + currentRoom.getName() + "\n");
         }
+        catch (Exception e) {
+            System.err.println("Error loading the game: " + e.getMessage());
+            System.exit(1);
+        }
     }
 
 
 
 
     void restore(String saveFileName) throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader("files/save.sav"));
         
+    try{
+        BufferedReader reader = new BufferedReader(new FileReader(saveFileName));     
       //  System.out.println("Success1");
         // Step 2: Read and ignore the first line (informational version line)
         reader.readLine();
         reader.readLine();
         // Step 3: Read the second line to get the full path to the dungeon file
         String dungeonFilePath = reader.readLine();
-        Dungeon dungeon = new Dungeon(dungeonFilePath);
+        Dungeon saveddungeon = new Dungeon(dungeonFilePath);
 
         reader.readLine();
 
@@ -104,28 +109,33 @@ public class GameState {
         }
 
         String currentRoomLine = reader.readLine();
-        System.out.println(currentRoomLine);
+    //    System.out.println(currentRoomLine);
         if (currentRoomLine.startsWith("Current room: ")) {
             String currentRoomName = currentRoomLine.substring("Current room: ".length());
            
           //  System.out.println(currentRoomName);
 
-            Room currentRoom = dungeon.getRoom(currentRoomName.trim());
+            Room currentsavedRoom = saveddungeon.getRoom(currentRoomName.trim());
           //  System.out.println(currentRoom);
-            if (currentRoom != null) {
-                GameState.instance().setAdventurersCurrentRoom(currentRoom);
+            if (currentsavedRoom != null) {
+                GameState.instance().setAdventurersCurrentRoom(currentsavedRoom);
             }
         }
+    } catch (Exception e) {
+            throw new RuntimeException(e);
     }
+            //    } catch (Dungeon.IllegalDungeonFormatException e) {
+    //        throw new RuntimeException(e);
+    //    } catch (Room.NoRoomException e) {
+    //        throw new RuntimeException(e);
+    //    }
 
-
+    }
     public class IllegalSaveFormatException extends Exception{
 
-        public IllegalSaveFormatException(String e){
-            super(e);
-
-        }
-    }
+         public IllegalSaveFormatException(String e){
+             super(e);
+         }
+     }
 
 }
-

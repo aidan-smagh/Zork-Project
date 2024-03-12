@@ -38,10 +38,14 @@ public class Dungeon{
             scanner.nextLine(); // "===
             scanner.nextLine(); //Room:
 
+
+            this.entryRoom = new Room(scanner);
+            rooms.put(entryRoom.getName(), entryRoom);
+
             try {
                 while (true) {
                     Room room = new Room(scanner);
-                    this.entryRoom = room;
+               //     this.entryRoom = room;
 
                     rooms.put(room.getName(), room);
                 }
