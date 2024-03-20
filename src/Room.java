@@ -1,6 +1,6 @@
 import java.util.Hashtable;
 import java.util.Scanner;
-
+import java.util.HashSet;
 
 public class Room{
 
@@ -9,20 +9,29 @@ public class Room{
    private String desc= null;  //description
    
    private Hashtable<String,Exit> exits = null;
+   private HashSet<Item> itemsInRoom = null;
 
    public Room(String name, String desc){
        this.name = name;
        this.desc = desc;
        this.exits = new Hashtable<>();
+       this.itemsInRoom = new HashSet<Item>();
     }
 
 
 
-    Room (Scanner scanner) throws NoRoomException{
+    Room (Scanner scanner) throws NoRoomException, NoItemException{
 
         this.name = scanner.nextLine();
         if(this.name.equals("===")){
             throw new NoRoomException();
+        }
+
+        if(scanner.next().equals("Contents:")) {
+            String itemName = scanner.nextLine().trim();
+
+        } else {
+            throw new NoItemException();
         }
 
         this.exits = new Hashtable<String, Exit>();
@@ -88,6 +97,20 @@ public class Room{
     exits.put(dir, exit);
     //System.out.println("Exit added: " + dir + " to " + destRoom.getName());
 }
+    HashSet<Item> getContents() {
+        return this.itemsInRoom; 
+    }
+    
+    //Item getItemNamed(String name) { //still working
+        //return this.itemsInRoom.contains(name);
+   // }
+
+    void add(Item item) {
+        this.itemsInRoom.add(item);
+    }
+    void remove(Item item) {
+        this.itemsInRoom.remove(item);
+    }
     public static class NoRoomException extends Exception{
 
     }
