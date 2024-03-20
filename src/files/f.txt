@@ -1,0 +1,18 @@
+DrPepper,can,soda
+10
+kick:The can skitters down the hallway.
+shake:A liquid fizzes menacingly inside the can.
+drink:Gulp, gulp -- that was GOOD!  *belch*
+---
+StarWarsToy,Yoda
+5
+touch:Yoda says, "Do, or do not! There is no try."
+break:Whoops!
+---
+chainsaw
+35
+---
+donut
+7
+eat:You feel mildly guilt-ridden.
+---
