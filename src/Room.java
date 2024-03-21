@@ -55,8 +55,7 @@ public class Room{
                 this.desc += temp + "\n";
                 temp = scanner.nextLine();
             }
-            temp = "";
-
+            temp = "";                  
     }
 
 

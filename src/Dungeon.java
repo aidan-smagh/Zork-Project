@@ -59,11 +59,10 @@ public class Dungeon{
                 } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }
           
-              // scanner.nextLine();
+            scanner.nextLine();
             while (scanner.hasNextLine()) {
-                try {
-                    Exit exit = new Exit(scanner);
-                    //exit.getSrc();
+                try {                    
+                    Exit exit = new Exit(scanner);                                                           
                     exit.getSrc().addExit(exit.getDir(), exit.getDest());                    
                     } catch (Exception e3) {break;}
             }
@@ -165,13 +164,13 @@ public class Dungeon{
 
             }
 
-            for (Room room : dungeon.rooms.values()) {
+          /*  for (Room room : dungeon.rooms.values()) {
                 System.out.println("Exits from " + room.getName() + ":");
                // for (Exit exit : room.exits.values()) {
                  //   System.out.println(exit.describe());
                // }
                 System.out.println("---");
-            }
+            } */
             for (Item item : dungeon.dungeonItems.values()) { //prints each item's primary name
                 System.out.println(item.getPrimaryName());
                 System.out.println("---");

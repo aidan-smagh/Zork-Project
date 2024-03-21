@@ -17,6 +17,7 @@ class Exit{
     public Exit(Scanner scanner) throws Exception{
         Dungeon dungeon = GameState.instance().getDungeon();
         String temp = scanner.nextLine();
+        
         if(temp.equals("===")){
             throw new NoExitException();
         }
