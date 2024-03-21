@@ -26,18 +26,28 @@ public class Room{
         if(this.name.equals("===")){
             throw new NoRoomException();
         }
-
-        if(scanner.next().equals("Contents:")) {
+        //checking for start of items section
+        String check = scanner.next();
+        //System.out.println(check);
+        if(check.equals("Contents:")) {
             String itemName = scanner.nextLine().trim();
+            String[] itemNames = itemName.split(",");
+            for (String item : itemNames) {
+                //System.out.println(item);
+                //System.out.println("");
+                check = "";
+            }
+        } else {
+            this.desc += check;
+        
         } /*removed else condition that threw NoItemException,
             rooms can be hydrated with *or without* items -
             'Contents:' not there = room w/ no items */
-         
         
 
         this.exits = new Hashtable<String, Exit>();
 
-            this.desc = "";
+            this.desc = check + "";
             String temp = "";
             temp = scanner.nextLine();
             
@@ -46,7 +56,9 @@ public class Room{
                 temp = scanner.nextLine();
             }
             temp = "";
-        }
+        System.out.println(this.name);
+        System.out.println(this.desc);    
+    }
 
 
 
