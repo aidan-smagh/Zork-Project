@@ -64,9 +64,7 @@ public class Dungeon{
                 try {                    
                     Exit exit = new Exit(scanner);                                                           
                     exit.getSrc().addExit(exit.getDir(), exit.getDest());                    
-                    } catch (Exception e3) {
-                        e3.printStackTrace();
-                        break;}
+                    } catch (Exception e3) {break;}
             }
                 
                 
