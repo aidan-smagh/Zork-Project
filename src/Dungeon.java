@@ -22,7 +22,7 @@ public class Dungeon{
 //Dungeon scanner:
 //
 
-    Dungeon(String filename) throws IllegalDungeonFormatException, FileNotFoundException, Room.NoRoomException {
+    Dungeon(String filename) throws IllegalDungeonFormatException, FileNotFoundException, Room.NoRoomException, NoItemException {
         GameState.instance().setDungeon(this); // Set the Dungeon in GameState
 
         this.rooms = new Hashtable<>();
@@ -32,7 +32,7 @@ public class Dungeon{
         if (scanner.hasNextLine()) {
             this.title = scanner.nextLine();
             String versionLine = scanner.nextLine();
-            if (!versionLine.equals("Zork II")) {
+            if (!versionLine.equals("Zork III")) {
                 throw new IllegalDungeonFormatException("Invalid version line: " + versionLine);
             }
             scanner.nextLine(); // "===
@@ -126,7 +126,7 @@ public class Dungeon{
 
 
 
-
+/*
     public static void main(String[] args) throws FileNotFoundException, IllegalDungeonFormatException {
 
         // Instantiate Dungeon object with the hardcoded filename
@@ -196,5 +196,5 @@ public class Dungeon{
 
 
   //  }
-
-//}
+*/
+}

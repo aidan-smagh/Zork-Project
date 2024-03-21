@@ -1,12 +1,21 @@
 James Farmer Hall
 Zork II
-/home/students/sfakhry/zorkProject/src/files/farmer.zork
+/home/students/asmagh/zorkProject/src/files/farmer.zork
 Room states:
+Stephen's office:
+beenHere=true
+---
+Room 044:
+beenHere=true
+---
 Basement:
+beenHere=true
+---
+Back hallway:
 beenHere=true
 ---
 Rotunda:
 beenHere=true
 ---
 ===
-Current room: Basement
+Current room: Room 044
