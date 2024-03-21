@@ -32,7 +32,7 @@ class Exit{
 
     
     String describe(){
-        return "Yo can go " + this.dir + " to " + this.dest.getName();
+        return "You can go " + this.dir + " to " + this.dest.getName();
     } 
 
     public String getDir(){

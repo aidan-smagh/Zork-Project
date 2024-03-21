@@ -13,15 +13,19 @@ public class Item {
 
 
 
-    public Item(Scanner s) {
+    public Item(Scanner s) throws NoItemException {
         aliases = new HashSet<>();
         messages = new Hashtable<>();
-        this.primaryName = s.nextLine();
+        this.primaryName = s.nextLine(); 
+        if (primaryName.equals("===")) {
+            throw new NoItemException();
+        }
         this.weight = Integer.parseInt(s.nextLine());
-        String line; //check that this line doesn't equal to ---. check for aliases
-        while (!(line = s.nextLine()).equals("---")) {
+        String line = s.nextLine(); //check that this line doesn't equal to ---. check for aliases
+        while (!line.equals("---")) {
             String[] parts = line.split(":");
             messages.put(parts[0], parts[1]);
+            line = s.nextLine();
         }
         String[] names = primaryName.split(",");  //for aliases... splits the primary name with aliases.
         this.primaryName = names[0];
@@ -72,7 +76,7 @@ public class Item {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoItemException {
         try {
             // Test with the first file
             Scanner scanner = new Scanner(new File("files/f.txt"));

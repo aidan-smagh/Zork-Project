@@ -9,13 +9,13 @@ public class Room{
    private String desc= null;  //description
    
    private Hashtable<String,Exit> exits = null;
-   private HashSet<Item> itemsInRoom = null;
+   private HashSet<Item> itemsInRoom = null;  
 
    public Room(String name, String desc){
        this.name = name;
        this.desc = desc;
        this.exits = new Hashtable<>();
-       this.itemsInRoom = new HashSet<Item>();
+       this.itemsInRoom = new HashSet<Item>(); //to be removed, room items will be accessed through GameState 
     }
 
 
@@ -29,16 +29,18 @@ public class Room{
 
         if(scanner.next().equals("Contents:")) {
             String itemName = scanner.nextLine().trim();
-
-        } else {
-            throw new NoItemException();
-        }
+        } /*removed else condition that threw NoItemException,
+            rooms can be hydrated with *or without* items -
+            'Contents:' not there = room w/ no items */
+         
+        
 
         this.exits = new Hashtable<String, Exit>();
 
             this.desc = "";
             String temp = "";
             temp = scanner.nextLine();
+            
             while(!temp.equals("---")) {
                 this.desc += temp + "\n";
                 temp = scanner.nextLine();

@@ -9,13 +9,13 @@ public class Dungeon{
     Hashtable<String,Room> rooms = null;
     Room entryRoom = null;
     private String title = null;
-
+    Hashtable<String, Item> dungeonItems = new Hashtable<>();;
 
     public Dungeon(Room entryRoom, String title){
         this.rooms = new Hashtable<>();
         this.entryRoom = entryRoom;
         this.title = title;
-
+        this.dungeonItems = dungeonItems;
         rooms.put(entryRoom.getName(), entryRoom);
     }
 
@@ -35,33 +35,44 @@ public class Dungeon{
             if (!versionLine.equals("Zork III")) {
                 throw new IllegalDungeonFormatException("Invalid version line: " + versionLine);
             }
-            scanner.nextLine(); // "===
-            scanner.nextLine(); //Room:
+            scanner.nextLine(); // "==="
+            scanner.nextLine(); //Items: <- changed from 'Rooms:' as items are now at top of file
+            
 
-
-            this.entryRoom = new Room(scanner);
-            rooms.put(entryRoom.getName(), entryRoom);
-
-            try {
-                while (true) {
-                    Room room = new Room(scanner);
-               //     this.entryRoom = room;
-
-                    rooms.put(room.getName(), room);
-                }
-            } catch (Exception e) {
+        
+         
+          
+            while (scanner.hasNextLine()) { //while condition changed from 'true', functionality remains 
                 try {
-                    scanner.nextLine();
-                    while (true) {
-                        Exit exit = new Exit(scanner);
-                        //exit.getSrc();
-                        exit.getSrc().addExit(exit.getDir(), exit.getDest());
-                    }
-                } catch (Exception e2) {
-                }
+                    Item item = new Item(scanner);
+                    this.add(item);                               
+                } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
+            }            
+
+            scanner.nextLine(); //consume 'Rooms:' 
+            this.entryRoom = new Room(scanner); //create entryRoom
+            rooms.put(entryRoom.getName(), entryRoom); //set entryRoom
+            while (scanner.hasNextLine()) {
+                try {
+                Room room = new Room(scanner);               
+                rooms.put(room.getName(), room);                
+                } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }
-        }
+          
+              // scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                try {
+                    Exit exit = new Exit(scanner);
+                    //exit.getSrc();
+                    exit.getSrc().addExit(exit.getDir(), exit.getDest());                    
+                    } catch (Exception e3) {break;}
+            }
+                
+                
+        }    
     }
+    
+    
 
 
 
@@ -114,7 +125,15 @@ public class Dungeon{
         }
         return null;
     }
+    
+    public void add (Item item) {
+        this.dungeonItems.put(item.getPrimaryName(), item);
+        /* unsure if this will override the other in-file add() for Rooms,
+           I asssume it won't - it will call whichever method based
+           on if it was passed a Room or Item */
+    }
 
+   // public Room getItem(String itemName) {} //updated GameState needed 
     public class IllegalDungeonFormatException extends Exception {
         public IllegalDungeonFormatException(String e) {
             super(e);
@@ -126,12 +145,13 @@ public class Dungeon{
 
 
 
-/*
-    public static void main(String[] args) throws FileNotFoundException, IllegalDungeonFormatException {
+
+
+    public static void main(String[] args) throws FileNotFoundException, IllegalDungeonFormatException, NoItemException {
 
         // Instantiate Dungeon object with the hardcoded filename
         try {
-            Dungeon dungeon = new Dungeon("files/farmer.zork");
+            Dungeon dungeon = new Dungeon("files/farmerv3.zork");
             System.out.println("Dungeon Title: " + dungeon.getTitle());
             System.out.println("Rooms in the Dungeon:");
         for (String roomName : dungeon.rooms.keySet()) {
@@ -152,7 +172,10 @@ public class Dungeon{
                // }
                 System.out.println("---");
             }
-
+            for (Item item : dungeon.dungeonItems.values()) { //prints each item's primary name
+                System.out.println(item.getPrimaryName());
+                System.out.println("---");
+            }  
 
 
 
@@ -162,7 +185,7 @@ public class Dungeon{
             throw new RuntimeException(e);
         }
     }
-}
+
 
   //  public static void main(String[] args) {
         // Create a dungeon with an entry room and a title
@@ -196,5 +219,5 @@ public class Dungeon{
 
 
   //  }
-*/
+
 }
