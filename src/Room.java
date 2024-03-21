@@ -56,8 +56,7 @@ public class Room{
                 temp = scanner.nextLine();
             }
             temp = "";
-        System.out.println(this.name);
-        System.out.println(this.desc);    
+
     }
 
 
