@@ -55,9 +55,7 @@ public class Room{
                 this.desc += temp + "\n";
                 temp = scanner.nextLine();
             }
-            temp = "";
-        System.out.println(this.name);
-        System.out.println(this.desc);    
+            temp = "";                  
     }
 
 
@@ -109,7 +107,7 @@ public class Room{
     public void addExit(String dir, Room destRoom) {
     Exit exit = new Exit(dir, this, destRoom);
     exits.put(dir, exit);
-    //System.out.println("Exit added: " + dir + " to " + destRoom.getName());
+    System.out.println("Exit added: " + dir + " to " + destRoom.getName());
 }
     HashSet<Item> getContents() {
         return this.itemsInRoom; 
