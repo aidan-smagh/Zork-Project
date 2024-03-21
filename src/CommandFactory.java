@@ -32,9 +32,26 @@ public class CommandFactory {
      }
    
 
-    else{
-    return new UnknownCommand(commandString);
-    }
+   else if(commandTypes.equals("look")){
+      return new LookCommand();
+   }
+
+
+   else if(commandTypes.equals("save")){
+      String file;
+      if(parseParts.length > 1){
+          file = parseParts[1];
+      }else{
+          file = "";
+      }
+  return new SaveCommand(file);
+   }
+
+
+    return new MovementCommand(commandString);
+  //  else{
+   // return new UnknownCommand(commandString);
+  //  }
     
     }
 

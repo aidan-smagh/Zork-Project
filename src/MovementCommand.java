@@ -9,7 +9,16 @@ class MovementCommand extends Command{
 
     String execute(){
   
-        return "movement command for direction: " +dir;
+    Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
+        //System.out.println("C - works- " + currentRoom);
+        Room nextRoom = currentRoom.leaveby(dir);
+
+        if (nextRoom != null) {
+        }
+
+        return nextRoom.describe();
+
+//        return "movement command for direction: " +dir;
 
     }
 
