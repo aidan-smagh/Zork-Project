@@ -10,12 +10,14 @@ public class Room{
    
    private Hashtable<String,Exit> exits = null;
    private HashSet<Item> itemsInRoom = null;  
+   private String items = null;
 
    public Room(String name, String desc){
        this.name = name;
        this.desc = desc;
        this.exits = new Hashtable<>();
-       this.itemsInRoom = new HashSet<Item>(); //to be removed, room items will be accessed through GameState 
+       this.itemsInRoom = new HashSet<Item>(); //to be removed, room items will be accessed through GameState
+       this.items = items; 
     }
 
 
@@ -35,6 +37,7 @@ public class Room{
             for (String item : itemNames) {
                 //System.out.println(item);
                 //System.out.println("");
+                this.items += item;
                 check = "";
             }
         } else {
@@ -76,8 +79,14 @@ public class Room{
       
       //i/Room exitss
         if (!GameState.instance().hasBeenVisited(this)) {
-            roomInfo = this.name + "\n" + this.desc;
+            if (this.items == null) {
+                roomInfo = this.name + "\n" + this.desc;
+                GameState.instance().visit(this);
+            } else {
+            roomInfo = this.name + "\n" + this.desc + "There is a " + 
+                this.items + " here.";
             GameState.instance().visit(this);
+            }
         }
         else{
             roomInfo = this.name;
