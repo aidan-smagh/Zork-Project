@@ -3,8 +3,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
-
-
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
 
 public class GameState {
 
@@ -12,12 +13,16 @@ public class GameState {
     private Dungeon dungeon = null;           //dungeon
     private Room currentRoom = null;          //from Room
     private HashSet<Room> visited = null;
+    private ArrayList<Item> inventory = null;
+    private Hashtable<Room, HashSet<Item>> roomContents = null;
 
     private GameState() {
         // Singleton pattern
         dungeon = null;
         currentRoom = null;
         visited = new HashSet<>();
+        inventory = new ArrayList<>();
+        roomContents = new Hashtable<>();
     }
 
     public static GameState instance() {
@@ -124,12 +129,48 @@ public class GameState {
     } catch (Exception e) {
             throw new RuntimeException(e);
     }
+
             //    } catch (Dungeon.IllegalDungeonFormatException e) {
     //        throw new RuntimeException(e);
     //    } catch (Room.NoRoomException e) {
     //        throw new RuntimeException(e);
     //    }
 
+    }
+    ArrayList<Item> getInventory() {
+        return inventory;
+    }
+    void addToInventory(Item item) {
+        inventory.add(item);
+    }
+    void removeFromInventory(Item item) {
+        inventory.remove(item);
+    }
+    //Item getItemInVicinityNamed(String name) { //in progress
+        
+    //}
+    Item getItemFromInventoryNamed(String name) throws Exception {
+        //loop so we can use this as a getter for a specific item
+        String itemName = name;
+        for (Item item : inventory) {
+            if (item.getPrimaryName().equals(itemName)) {
+                return item;
+            }             
+        }  
+        throw new NoItemException();
+    }
+    void addItemToRoom(Item item, Room room) {
+        //loop through items and if its the correct item, add it to
+        //the set of items in the adventurers current room.
+        for (Item itemAdded : inventory) {
+            if (itemAdded.getPrimaryName().equals(item.getPrimaryName())) {
+                GameState.instance().getAdventurersCurrentRoom()
+                    .add(itemAdded);
+            }
+        }
+    }
+    void removeItemFromRoom(Item item, Room room) {
+    
     }
     public class IllegalSaveFormatException extends Exception{
 
