@@ -9,7 +9,7 @@ public class Dungeon{
     Hashtable<String,Room> rooms = null;
     Room entryRoom = null;
     private String title = null;
-    Hashtable<String, Item> dungeonItems = new Hashtable<>();;
+    Hashtable<String, Item> dungeonItems = new Hashtable<>();
 
     public Dungeon(Room entryRoom, String title){
         this.rooms = new Hashtable<>();
@@ -132,7 +132,15 @@ public class Dungeon{
            on if it was passed a Room or Item */
     }
 
-   // public Room getItem(String itemName) {} //updated GameState needed 
+    public Item getItem(String itemName) throws NoItemException {
+        String name = itemName;
+        for (Item item : this.dungeonItems.values()) {
+            if (name.equals(item.getPrimaryName())) {
+                return item;
+            }
+        }
+        throw new NoItemException(); //loops ends without returning = no item found   
+    }  
     public class IllegalDungeonFormatException extends Exception {
         public IllegalDungeonFormatException(String e) {
             super(e);
@@ -171,8 +179,10 @@ public class Dungeon{
                // }
                 System.out.println("---");
             } */
+            System.out.println("Items in the Dungeon:");
             for (Item item : dungeon.dungeonItems.values()) { //prints each item's primary name
-                System.out.println(item.getPrimaryName());
+                Item testItem = dungeon.getItem(item.getPrimaryName());
+                System.out.println(testItem.getPrimaryName());
                 System.out.println("---");
             }  
 
