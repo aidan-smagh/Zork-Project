@@ -1,6 +1,7 @@
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Room{
 
@@ -11,13 +12,15 @@ public class Room{
    private Hashtable<String,Exit> exits = null;
    private HashSet<Item> itemsInRoom = null;  
    private String items = null;
+   private ArrayList <String> itemsAL = null;
 
    public Room(String name, String desc){
        this.name = name;
        this.desc = desc;
        this.exits = new Hashtable<>();
        this.itemsInRoom = new HashSet<Item>(); //to be removed, room items will be accessed through GameState
-       this.items = items; 
+       this.items = items;
+       this.itemsAL = new ArrayList<>(); 
     }
 
 
@@ -31,13 +34,13 @@ public class Room{
         //checking for start of items section
         String check = scanner.next();
         //System.out.println(check);
-        if(check.equals("Contents:")) {
-            String itemName = scanner.nextLine().trim();
-            String[] itemNames = itemName.split(",");
+        if (check.equals("Contents:")) {
+            String itemName = scanner.nextLine();
+            String[] itemNames = itemName.replace(",", " ").split(",");
             for (String item : itemNames) {
                 //System.out.println(item);
                 //System.out.println("");
-                this.items += item;
+                this.items += item; 
                 check = "";
             }
         } else {
@@ -58,7 +61,7 @@ public class Room{
                 this.desc += temp + "\n";
                 temp = scanner.nextLine();
             }
-            temp = "";                  
+            temp = "";
     }
 
 
@@ -96,9 +99,9 @@ public class Room{
                 roomInfo = this.name + "\n" + this.desc;
                 GameState.instance().visit(this);
             } else {
-            roomInfo = this.name + "\n" + this.desc + "There is a " + 
-                this.items + " here.";
-            GameState.instance().visit(this);
+                roomInfo = this.name + "\n" + this.desc + "There is a " + 
+                    this.items + " here.";
+                GameState.instance().visit(this);
             }
         }
         else{
@@ -132,18 +135,17 @@ public class Room{
     //System.out.println("Exit added: " + dir + " to " + destRoom.getName());
 }
     HashSet<Item> getContents() {
-        return this.itemsInRoom; 
+        return this.itemsInRoom;
     }
     
-    //Item getItemNamed(String name) { //still working
-        //return this.itemsInRoom.contains(name);
-   // }
+    //Item getItemNamed(String name) {
+    //}
 
     void add(Item item) {
         this.itemsInRoom.add(item);
     }
     void remove(Item item) {
-        this.itemsInRoom.remove(item);
+        //this.itemsInRoom.remove(item);
     }
     public static class NoRoomException extends Exception{
 

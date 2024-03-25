@@ -162,6 +162,11 @@ public class GameState {
         }  
         throw new NoItemException();
     }
+    HashSet<Item> getItemsInRoom(Room room) {
+        return GameState.instance().getAdventurersCurrentRoom()
+            .getContents();
+    }
+    
     void addItemToRoom(Item item, Room room) {
         //loop through items and if its the correct item, add it to
         //the set of items in the adventurers current room.
@@ -173,7 +178,7 @@ public class GameState {
         }
     }
     void removeItemFromRoom(Item item, Room room) {
-    
+            
     }
     public class IllegalSaveFormatException extends Exception{
 
