@@ -2,7 +2,6 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.HashSet;
 import java.util.ArrayList;
-
 public class Room{
 
 
@@ -11,8 +10,7 @@ public class Room{
    
    private Hashtable<String,Exit> exits = null;
    private HashSet<Item> itemsInRoom = null;  
-   private String items = null;
-   private ArrayList <String> itemsAL = null;
+   private String items = "";
 
    public Room(String name, String desc){
        this.name = name;
@@ -20,7 +18,6 @@ public class Room{
        this.exits = new Hashtable<>();
        this.itemsInRoom = new HashSet<Item>(); //to be removed, room items will be accessed through GameState
        this.items = items;
-       this.itemsAL = new ArrayList<>(); 
     }
 
 
@@ -35,12 +32,14 @@ public class Room{
         String check = scanner.next();
         //System.out.println(check);
         if (check.equals("Contents:")) {
-            String itemName = scanner.nextLine();
-            String[] itemNames = itemName.replace(",", " ").split(",");
+            String itemName = scanner.next();
+            String[] itemNames = itemName.split(",");
             for (String item : itemNames) {
-                //System.out.println(item);
-                //System.out.println("");
-                this.items += item; 
+                System.out.println(item);
+                System.out.println(" ");
+                //this.itemsInRoom.add(GameState.instance().getDungeon()
+                        //.getItem(item));
+                this.items += item + " ";
                 check = "";
             }
         } else {
@@ -95,7 +94,7 @@ public class Room{
       
       //i/Room exitss
         if (!GameState.instance().hasBeenVisited(this)) {
-            if (this.items == null) {
+            if (this.items.equals("")) {
                 roomInfo = this.name + "\n" + this.desc;
                 GameState.instance().visit(this);
             } else {
