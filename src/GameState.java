@@ -62,8 +62,11 @@ public class GameState {
     boolean hasBeenVisited(Room room) {
         return visited.contains(room);
     }
-
-
+    
+//    public describeFull(){
+        
+  //  }
+  
     void store(String saveName) throws Exception{
         try (PrintWriter pw = new PrintWriter(saveName)) {
             // Write the first line

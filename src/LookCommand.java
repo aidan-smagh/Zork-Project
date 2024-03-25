@@ -9,15 +9,17 @@ class LookCommand extends Command{
         
        Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
      //  return currentRoom.describe();
-      boolean yn = GameState.instance().hasBeenVisited(currentRoom);
-      yn = false;
-        
+     // boolean yn = GameState.instance().hasBeenVisited(currentRoom);
+     // yn = false;
+      // GameState.instance().hasBeenVisited(currentRoom, false); // Set visited flag to false
+ 
+
      // if(yn){
        //   yn = false;
       //    return currentRoom.describe();
      // }
 
-       return currentRoom.describe();
+       return currentRoom.describeFull();
       // return "Look";
     }
 

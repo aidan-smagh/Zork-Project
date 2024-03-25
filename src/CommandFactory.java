@@ -24,13 +24,15 @@ public class CommandFactory {
        String item;          //assigns the second part of the command to 
        if(parseParts.length > 1){
        item = parseParts[1];
-       }else{
+       }
+       else{
            item = "";
        }
-   
-   return new TakeCommand(item);
-     }
-   
+       if(item.isEmpty()){
+           return new TakeCommand("");
+       }else{
+           return new TakeCommand(item);}
+   } 
 
    else if(commandTypes.equals("look")){
       return new LookCommand();
@@ -47,11 +49,18 @@ public class CommandFactory {
   return new SaveCommand(file);
    }
 
-
-    return new MovementCommand(commandString);
-  //  else{
-   // return new UnknownCommand(commandString);
-  //  }
+   else if (commandTypes.equals("n") || commandTypes.equals("u") || commandTypes.equals("d") || commandTypes.equals("s") || commandTypes.equals("w") || commandTypes.equals("e")) {
+        return new MovementCommand(commandString);
+    }
+   // return new MovementCommand(commandString);
+   
+   else if (commandTypes.equals("i") || commandTypes.equals("inventory")) {
+            return new InventoryCommand();
+        }
+   
+   else{
+    return new UnknownCommand(commandString);
+    }
     
     }
 

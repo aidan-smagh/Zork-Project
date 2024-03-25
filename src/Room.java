@@ -74,6 +74,19 @@ public class Room{
 
     }
 
+    public String describeFull(){
+    
+    String roomInfo = "";
+        roomInfo = this.name + "\n" + this.desc + "There is a " + 
+            this.items + " here.";
+     
+        GameState.instance().visit(this);
+        for (Exit exit : exits.values()) {
+                 roomInfo += "\n" + exit.describe();
+             }
+         return roomInfo;
+    }
+
     String describe() {
         String roomInfo = "";
       
