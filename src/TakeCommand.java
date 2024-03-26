@@ -12,18 +12,15 @@ class TakeCommand extends Command{
         if (itemName.isEmpty()) {
             return "Take what?";
         }
-        Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
-        ArrayList<Item> inventory = GameState.instance().getInventory();
+        Room currentRoom = GameState.instance().getAdventurersCurrentRoom();        
         String nameOfTaken="";
         try {
         Item i = GameState.instance().getDungeon().getItem(itemName);
         nameOfTaken = i.getPrimaryName();
         GameState.instance().removeItemFromRoom(i, currentRoom);
         GameState.instance().addToInventory(i);
-        } catch (NoItemException e) { 
-            
-            System.out.println("There's no "+itemName+" in here!");
-            
+        } catch (NoItemException e) {             
+            System.out.println("There's no "+itemName+" in here!");            
         }
         
         
@@ -42,7 +39,7 @@ class TakeCommand extends Command{
         if (nameOfTaken.isEmpty()) {
             return "...";
         } else {
-            return nameOfTaken + " taken";
+            return nameOfTaken + " taken!";
         }
         
     }

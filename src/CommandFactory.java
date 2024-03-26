@@ -57,7 +57,7 @@ public class CommandFactory {
    else if (commandTypes.equals("i") || commandTypes.equals("inventory")) {
             return new InventoryCommand();
         }
-   
+    
    else{
     return new UnknownCommand(commandString);
     }
