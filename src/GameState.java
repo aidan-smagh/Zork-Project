@@ -11,10 +11,10 @@ public class GameState {
 
     static GameState theinstance = null; 
     private Dungeon dungeon = null;           //dungeon
-    private Room currentRoom = null;          //from Room
+    Room currentRoom = null;          //from Room
     private HashSet<Room> visited = null;
     private ArrayList<Item> inventory = null;
-    private Hashtable<Room, HashSet<Item>> roomContents = null;
+    Hashtable<Room, HashSet<Item>> roomContents = null;
 
     private GameState() {
         // Singleton pattern
@@ -172,13 +172,12 @@ public class GameState {
         //the set of items in the adventurers current room.
         for (Item itemAdded : inventory) {
             if (itemAdded.getPrimaryName().equals(item.getPrimaryName())) {
-                GameState.instance().getAdventurersCurrentRoom()
-                    .add(itemAdded);
+                GameState.instance().getAdventurersCurrentRoom().add(itemAdded);
             }
         }
     }
     void removeItemFromRoom(Item item, Room room) {
-            
+           
     }
     public class IllegalSaveFormatException extends Exception{
 
