@@ -10,10 +10,10 @@ import java.util.Iterator;
 public class GameState {
 
     static GameState theinstance = null; 
-    private Dungeon dungeon = null;           //dungeon
+    Dungeon dungeon = null;           //dungeon
     Room currentRoom = null;          //from Room
-    private HashSet<Room> visited = null;
-    private ArrayList<Item> inventory = null;
+    HashSet<Room> visited = null;
+    ArrayList<Item> inventory = null;
     Hashtable<Room, HashSet<Item>> roomContents = null;
 
     private GameState() {
@@ -144,40 +144,53 @@ public class GameState {
         return inventory;
     }
     void addToInventory(Item item) {
-        inventory.add(item);
+        GameState.instance().inventory.add(item);
     }
     void removeFromInventory(Item item) {
-        inventory.remove(item);
+        GameState.instance().inventory.remove(item);
     }
-    //Item getItemInVicinityNamed(String name) { //in progress
-        
-    //}
-    Item getItemFromInventoryNamed(String name) throws Exception {
+    Item getItemInVicinityNamed(String name) throws NoItemException { //in progress
+        String itemName = name;
+        for (Item item : inventory) {
+            if (item.aliases.contains(itemName)) {
+                return item;
+            }
+        }         //this line below accesses currentRoom's Items to search through
+        HashSet<Item> items = GameState.instance().roomContents.get(GameState.instance().currentRoom);
+        for (Item item : items) {
+            if (item.aliases.contains(itemName)) {
+                return item;
+            }
+        }
+        throw new NoItemException();
+    }
+    Item getItemFromInventoryNamed(String name) throws NoItemException {
         //loop so we can use this as a getter for a specific item
         String itemName = name;
         for (Item item : inventory) {
-            if (item.getPrimaryName().equals(itemName)) {
+            if (item.aliases.contains(itemName)) {
                 return item;
             }             
         }  
         throw new NoItemException();
     }
     HashSet<Item> getItemsInRoom(Room room) {
-        return GameState.instance().getAdventurersCurrentRoom()
-            .getContents();
+        return GameState.instance().roomContents.get(room);
     }
     
     void addItemToRoom(Item item, Room room) {
-        //loop through items and if its the correct item, add it to
-        //the set of items in the adventurers current room.
+        GameState.instance().roomContents.get(room).add(item);
+        /*loop through items and if its the correct item, add it to
+        the set of items in the adventurers current room.
         for (Item itemAdded : inventory) {
             if (itemAdded.getPrimaryName().equals(item.getPrimaryName())) {
                 GameState.instance().getAdventurersCurrentRoom().add(itemAdded);
             }
-        }
+        }*/
+        
     }
     void removeItemFromRoom(Item item, Room room) {
-           
+          GameState.instance().roomContents.get(room).remove(item); 
     }
     public class IllegalSaveFormatException extends Exception{
 

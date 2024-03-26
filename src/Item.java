@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Scanner;
 public class Item {
 
-    private String primaryName;
-    private int weight;
+    String primaryName;
+    int weight;
     //hashtable and hashset for messages and aliases -used
-    private Hashtable<String, String> messages;
-    private HashSet<String> aliases; //the other names players can refer to the item are called its aliases.
+    Hashtable<String, String> messages;
+    HashSet<String> aliases; //the other names players can refer to the item are called its aliases.
 
 
 
