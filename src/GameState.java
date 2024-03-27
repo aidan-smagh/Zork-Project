@@ -71,18 +71,35 @@ public class GameState {
         try (PrintWriter pw = new PrintWriter(saveName)) {
             // Write the first line
             pw.println(dungeon.getTitle());
-            pw.println("Zork II");
+            pw.println("Zork III");
             //pw.println("Dungeon file: " + new File("files/farmer.zork").getAbsolutePath() + "\n");
-            pw.print(new File("files/farmer.zork").getAbsolutePath() + "\n");
+            pw.print(new File("files/farmerv3.zork").getAbsolutePath() + "\n");
             pw.print("Room states:\n");
             for (Room room : visited) {
                 pw.print(room.getName() + ":\n");
                 pw.print("beenHere=true\n");
-                pw.print("---\n");
+                if (GameState.instance().getItemsInRoom(room).isEmpty()) {
+                    pw.println("---");
+                } else {
+
+                    pw.println("Contents: " + GameState.instance()
+                        .getItemsInRoom(room));
+                    pw.println("---");
+                }
             }
             // Write the ending delimiter
             pw.println("===");
+            pw.println("Adventurer:");
             pw.print("Current room: " + currentRoom.getName() + "\n");
+            if (inventory.isEmpty()) {
+                pw.println(" ");
+            } else {
+                pw.print("Inventory: ");
+                for (int i = 0; i < inventory.size(); i++) {
+                    pw.print(inventory.get(i) + ", ");
+            
+                }
+            }
         }
         catch (Exception e) {
             System.err.println("Error loading the game: " + e.getMessage());
@@ -105,15 +122,16 @@ public class GameState {
         String dungeonFilePath = reader.readLine();
         Dungeon saveddungeon = new Dungeon(dungeonFilePath);
 
-        reader.readLine();
+        reader.readLine(); //throw away "Room states:"
 
         String line;
         while (!(line = reader.readLine()).equals("===")) {
-            //String roomName = line.substring(0, line.length() - 1); // Remove the colon at the end
+            String roomName = line.substring(0, line.length() - 1); // Remove the colon at the end
             //Room room = dungeon.getRoom(roomName);
-            reader.readLine();
-            reader.readLine();
-
+            reader.readLine(); //throw away "beenHere = true"
+            //System.out.println(roomName);
+            reader.readLine(); //throw away "---"
+ 
         }
 
         String currentRoomLine = reader.readLine();
