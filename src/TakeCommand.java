@@ -17,6 +17,19 @@ class TakeCommand extends Command{
         try {
         Item i = GameState.instance().getDungeon().getItem(itemName);
         nameOfTaken = i.getPrimaryName();
+        
+        
+        int weight = 0;
+        for (Item item : GameState.instance().inventory) {
+            weight += item.weight;
+           /* if (nameOfTaken.equals(item.getPrimaryName())) {
+                return "You already have the "+itemName+"!";
+            }*/
+        }
+        if (weight+i.weight > 40) {
+            return "Inventory is too heavy! ("+(weight+i.weight)+"/40)";
+        }
+
         GameState.instance().removeItemFromRoom(i, currentRoom);
         GameState.instance().addToInventory(i);
         } catch (NoItemException e) {             
@@ -38,7 +51,7 @@ class TakeCommand extends Command{
 //        inventory.add(itemName);
         if (nameOfTaken.isEmpty()) {
             return "...";
-        } else {
+        } else {            
             return nameOfTaken + " taken!";
         }
         
