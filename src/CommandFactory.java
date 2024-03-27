@@ -57,6 +57,17 @@ public class CommandFactory {
    else if (commandTypes.equals("i") || commandTypes.equals("inventory")) {
             return new InventoryCommand();
         }
+   else if (commandTypes.equals("drop")) {
+        String item;
+        if(parseParts.length > 1){
+            item = parseParts[1];
+        } else {
+            item = "";
+        }
+        return new DropCommand(item);
+   }
+           
+           
     
    else{
     return new UnknownCommand(commandString);

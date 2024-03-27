@@ -7,8 +7,27 @@ class DropCommand extends Command{
         this.itemName = itemName;
     }
 
-    String execute(){
-        return "item dropped! " + itemName;
+    String execute() {
+        if (this.itemName.isEmpty()) {
+            System.out.println("Drop what?");
     }
-
+        Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
+        String nameOfDropped = "";
+        try {
+            Item i = GameState.instance().getDungeon()
+                .getItem(this.itemName);
+            nameOfDropped = i.getPrimaryName();
+            GameState.instance().removeFromInventory(i);
+            GameState.instance().addItemToRoom(i, GameState.instance()
+                    .getAdventurersCurrentRoom());
+        } catch (NoItemException e) {
+            System.out.println("There is no " + this.itemName 
+                    + " to drop!");
+        }
+        if (nameOfDropped.isEmpty()) {
+            return "...";
+        } else {
+            return nameOfDropped + " dropped";
+        }
+    }
 }
