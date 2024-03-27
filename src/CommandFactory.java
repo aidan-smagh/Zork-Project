@@ -66,7 +66,9 @@ public class CommandFactory {
         }
         return new DropCommand(item);
    }
-           
+   else if (parseParts.length == 2) {
+            return new ItemSpecificCommand(parseParts[0], parseParts[1]);
+        }        
            
     
    else{

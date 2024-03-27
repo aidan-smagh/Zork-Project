@@ -152,13 +152,14 @@ public class GameState {
     Item getItemInVicinityNamed(String name) throws NoItemException { //in progress
         String itemName = name;
         for (Item item : inventory) {
-            if (item.aliases.contains(itemName)) {
+           if (item.aliases.contains(itemName) || item.getPrimaryName().equalsIgnoreCase(itemName)){
                 return item;
             }
         }         //this line below accesses currentRoom's Items to search through
         HashSet<Item> items = GameState.instance().roomContents.get(GameState.instance().currentRoom);
         for (Item item : items) {
-            if (item.aliases.contains(itemName)) {
+          if (item.aliases.contains(itemName) || item.getPrimaryName().equalsIgnoreCase(itemName)){
+           // if (item.aliases.contains(itemName)) {
                 return item;
             }
         }
