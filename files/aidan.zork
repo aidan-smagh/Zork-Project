@@ -1,0 +1,53 @@
+Midgard
+Zork III
+===
+Items:
+busterSword
+10
+swing:You swing the Buster Sword
+inspect:A sword battered by countless battles
+emote:You do your victory dance while spinning the sword
+repair:The buster sword is carefully mended
+---
+gauntlets
+2
+punch:You swing your fists wildly
+---
+fireMateria
+1
+burn:You cast a fire spell with no direction
+fit:You fit the fire materia into your busterSword
+---
+fancyDrink
+1
+drink:You drink the cocktail as the bartender smiles at you
+refuse:The bartender takes the drink for herself
+---
+masamune
+4
+slice:You swing masamune and your enemies cower
+stab:Masamune is thrust downwards
+---
+sorcererStaff
+3
+cast:You cast the most potent of spells
+snap:Oh no! The sorcererStaff is broken
+fix:You use magic to fix the staff
+---
+elixer
+1
+kick:The elixer falls over
+smell:The elixer fills your nostrils and you feel powerful
+---
+phoenixDown
+1
+ingest:You breathe in the phoenixDown and feel as if you could never die
+release:The feather flutters towards the ground and you pick it back up
+---
+darts
+1
+throw:You hit a perfect bullseye on the dart board
+---
+bandle
+2
+wear:You put the bandle on and feel very protected
