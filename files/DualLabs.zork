@@ -1,0 +1,307 @@
+Dual Laboratory
+Zork III
+===
+Items:
+SmallArcticFox,fox,animal
+7
+pet:It's fluffy and seemingly friendly. He accepts your gesture and jumps excitedly at your feet. Surely the bestest of friends.
+lift:You lift the fox into your arms. His cute round eyes peer into yours. 
+throw:Consider talking to a loved one. 
+---
+GNComputer,computer
+999
+use:The lab computer boots up to a desktop background of a cacti collage.
+browse:Surfing through the running application displays a research interface. It seems black holes and teleportation are being studied. 
+hit:Your hand feels considerably more hurt than the bulky hunk of metal.
+---
+WarningSign,sign
+5
+read:'DO NOT ENTER CONTAINMENT: S-CLASS RISK' - You want to 'consider' these words.
+consider:Surely whatever's beyond this sign can't be THAT bad, right? I mean, what's the worst consequence - eternal regret? Signs are kinda lame anyway.
+---
+GrowthSerumVialSet,vials,experiment,serum,set
+8
+shake:The fluids glow and fizz reactively.
+spill:Drops of liquid come out, combusting when exposed to open air.
+---
+Singularity,singularity
+0
+smack:You feel every atom within and around you wobble in the most uncomfortable way.
+bite:Why is it chewy?
+---
+plant,Planty
+5
+pet:'I didn't say you could touch me! Have you seen my friend Rocking?'
+ask:'My name is Planty, and I don't know my parents. I lost my friend Rocking, too.
+---
+HandheldFan,fan
+2
+use:A nice breeze cools you down.
+---
+HuggableCactus
+999
+touch:Ouch! Not unexpected. 
+hug:AEEIIIIAAA!!! (you ponder on why you did that)
+---
+tumbleweed,saltwort,windwitch,bush
+999
+roll:It tumbles around, coming back to you.
+kick:Your foot gets caught in the bush, it takes some shaking to free yourself.
+---
+TallCactus
+999
+touch:Ow! 
+hug:OOWWW!!! (is this some kinda hobby?)
+---
+CactusChair
+999
+sit:Surprisingly (disappointly?) there are no spines. The cactus print fabric is fairly comfortable.
+lay:This would be relaxing if it weren't for the blazing desert sun.
+---
+KnowledgeableVultureDude
+999
+ask:'Yo. There's nothing else out here besides that lab and miiiiles of desert bro. And that chair.'
+---
+ZIComputer,computer
+999
+use:This computer has a desktop of a cute white fox with a hamburger next to it.
+browse:Information on an umbrium mining project is displayed. Apparently there's a large deposit of it underground.
+hit:Thunk!
+---
+rock,Rocking
+3
+pet:'Thanks, but have you seen Planty anywhere?'
+throw:'Wait wait wait! Don't throw me! At least talk to me..'
+talk:'Basically, I don't know how I got here. But I haven't seen my friend Planty anywhere. I miss Planty.'
+---
+UmbriumShard,umbrium,shard,ore,crystal
+1
+shake:The shard begins to glow and vibrate, then settles down shortly after.
+bite:It vibrates in response with a harder bite force. It is hard. It is a crystal.
+---
+HandWarmers
+2
+use:Your hands feel slightly warmer with these in your hands.
+crush:The heat output raises nicely.
+---
+LittlePiggy,pig,piggy
+4
+pet:The pig oinks lovingly at you.
+push:The pig oinks sadly in despair.
+poke:The pig falls over before getting back up.
+--- 
+===
+Rooms:
+Glacial Nexus: South Perimeter
+Contents: SmallArcticFox
+Visibilty is low out here, and freezing winds claw at your
+senses. Electric fences are to your sides, and the Glacial 
+Nexus laboratory lies in front of you. The subtle hum of 
+a blue portal is behind you.
+---
+GN: Hub
+Contents: GNComputer
+The main hub. This facility is well-built - fluorscent lights
+and computers decorate this room. Low humming is heard from
+a room to the left. An elevator can also be seen.
+---
+GN: Hallway
+Contents: WarningSign
+A long hallway. There is an infographic on the wall debating
+the sentience of inanimate objects. A sign lies next to one 
+of the doors.
+---
+GN: Synthesis Sector
+Contents: GrowthSerumVials
+You enter a room full of funny-looking bottles and beakers,
+with all sorts of colors. The sheer amount makes you wonder
+what exactly is being worked on.
+---
+CONTAINMENT: UMBRIUM LOCK
+After travelling past several airlocks, you reach an indoor
+balcony outlooking an enourmous underground containment zone.
+A black hole resides within this zone, and it's presence is 
+nauseating. Luckily, a purple energy gathers around it - 
+creating a field that negates effects of this prisoner.
+Something's off: You gaze, It gazes. The balcony is scaleable.
+---
+<Singularity>
+Contents: Singularity
+VIOLATION_OF_REALITY####
+########################
+####01001100############
+####01001111############
+####01001100############
+########################
+Clearly there is no way out.
+---
+GN: Flora Sector
+Contents: plant
+An indoor greenhouse. Specialized lights and air control makes
+replicating ideal growth conditions easy. Huge ferns and other
+plants coexist here, making the air is super breatheable. It's 
+almost like they're all talking to eachother.
+---
+Link-AB
+Contents: HandheldFan
+An orange portal is the source of the humming here, and a
+slight warmth radiates from it.
+---
+Zephyr Institute: Main Gate
+Contents: tumbleweed,HuggableCactus
+Coming out of the portal, you feel the beaming heat from the 
+binary star system above you. A vast desert spreads to the east
+and west - the Zephyr Institute lies in front of you.
+---
+East Dunes
+Contents: Cactus
+Hills and hills of sand stretch to the horizon. The heat and 
+light render anything far away as a blurry mixture.
+---
+West Dunes
+Contents: KnowledgableVultureDude,CactusChair
+More desert, another cactus... and a vulture? He looks kinda
+chill, maybe he knows a thing or two if you ask.
+---
+ZI: Hub
+Contents: ZIComputer
+The main hub. A giant sandworm fossil is on display, and
+several research stations are around the place. Some distance
+away lies a large industrial elevator.
+---
+ZI: Minecart Railway
+A holographic map is on the wall coming out of the elevator.
+It shows the rail spliting to a blue oval icon and to a purple
+diamond.
+---
+ZI: Umbrium Quarry
+Contents: UmbriumShard,rock
+The rail stops here, overlooking an underground quarry. Large
+drills and aerial mining tech are scattered across the area. 
+The Zephyr Institute is extracting umbrium, which powers their
+institute. The ore is then exported to whoever can afford it.
+---
+Link-BA
+Contents: HandWarmers
+This rail stops at a room with a blue portal, and a frigid
+gust rushes in every now and then.
+---
+===
+Exits:
+Glacier Nexus: South Perimeter
+n
+GN: Hub
+---
+GN: Hub
+s
+Glacier Nexus: South Perimeter
+---
+GN: Hub
+u
+GN: Hallway
+---
+GN: Hub
+w
+Link-AB
+---
+GN: Hallway
+d
+GN: Hub
+---
+GN: Hallway
+s
+GN: Synthesis Sector
+---
+GN: Hallway
+e
+CONTAINMENT: UMBRIUM LOCK
+---
+GN: Hallway
+n
+GN: Flora Sector
+---
+GN: Synthesis Sector
+n
+GN: Hallway
+---
+CONTAINMENT: UMBRIUM LOCK
+w
+GN: Hallway
+---
+CONTAINMENT: UMBRIUM LOCK
+d
+//Singularity//
+---
+GN: Flora Sector
+s
+GN: Hallway
+---
+Link-AB
+e
+GN: Hub
+---
+Link-AB
+d
+Zephyr Institute: Main Gate
+---
+Zephyr Institute: Main Gate
+e
+East Dunes
+---
+Zephyr Institute: Main Gate
+w
+West Dunes
+---
+Zephyr Institute: Main Gate
+n
+ZI: Hub
+---
+West Dunes
+e
+Zephyr Institute: Main Gate
+---
+East Dunes
+w
+Zephyr Institute: Main Gate
+---
+ZI: Hub
+s
+Zephyr Institute: Main Gate
+---
+ZI: Hub
+d
+ZI: Minecart Railway
+---
+ZI: Hub
+w
+Link-BA
+---
+ZI: Minecart Railway
+u
+ZI: Hub
+---
+ZI: Minecart Railway
+n
+ZI: Umbrium Quarry
+---
+ZI: Umbrium Quarry
+s
+ZI: Minecart Railway
+---
+ZI: Minecart Railway
+w
+Link-BA
+---
+Link-BA
+d
+ZI: Minecart Railway
+---
+Link-BA
+e
+ZI: Hub
+---
+Link-BA
+u
+Glacier Nexus: South Perimeter
+---
+===
