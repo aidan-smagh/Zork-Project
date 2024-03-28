@@ -33,9 +33,10 @@ public class Item {
         for (int i = 1; i < names.length; i++) {
             aliases.add(names[i].trim());
         }
-//        for (String name : names) {
-//            aliases.add(name.trim());
-//        }
+
+
+
+        
     }
 
     public boolean goesBy(String name) {

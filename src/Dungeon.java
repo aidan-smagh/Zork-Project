@@ -42,27 +42,26 @@ public class Dungeon{
         
          
           
-            while (scanner.hasNextLine()) { //while condition changed from 'true', functionality remains 
-                try {
+            while (scanner.hasNextLine()) {  
+                try {                    
                     Item item = new Item(scanner);
                     this.add(item);                               
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }            
-
-            scanner.nextLine(); //consume 'Rooms:' 
-            this.entryRoom = new Room(scanner); //create entryRoom
-            rooms.put(entryRoom.getName(), entryRoom); //set entryRoom
+           //scanner.nextLine(); 
+           scanner.nextLine(); //consume 'Rooms:' 
+           // this.entryRoom = new Room(scanner); //create entryRoom
+           // rooms.put(entryRoom.getName(), entryRoom); //set entryRoom
             while (scanner.hasNextLine()) {
-                try {
-                Room room = new Room(scanner);               
-                rooms.put(room.getName(), room);                
+                try {                
+                Room room = new Room(scanner);                           
+                this.add(room);                                              
                 } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }
-          
-            scanner.nextLine();
+            scanner.nextLine(); //consume Exits: 
             while (scanner.hasNextLine()) {
-                try {                    
-                    Exit exit = new Exit(scanner);                                                           
+                try {                                        
+                    Exit exit = new Exit(scanner);                      
                     exit.getSrc().addExit(exit.getDir(), exit.getDest());                    
                     } catch (Exception e3) {break;}
             }
@@ -111,17 +110,18 @@ public class Dungeon{
     }
     
     public void add(Room room){
-        rooms.put(room.getName(), room);
+        GameState.instance().getDungeon().rooms.put(room.getName(), room);
    
         //System.out.println("room added");
     }
 
-    public Room getRoom(String roomName){
-        for(String key : rooms.keySet()){
-            if(key.equals(roomName)){
-                return rooms.get(key);
+    public Room getRoom(String roomName) {
+        for(Room room : GameState.instance().getDungeon().rooms.values()){
+            if(room.getName().equals(roomName)){
+                return room;
             }
         }
+        System.out.println("room not found, set to null"); 
         return null;
     }
     
@@ -133,9 +133,9 @@ public class Dungeon{
     }
 
     public Item getItem(String itemName) throws NoItemException {
-        String name = itemName;
-        for (Item item : this.dungeonItems.values()) {
-            if (name.equals(item.getPrimaryName())) {
+        String name = itemName;        
+        for (Item item : GameState.instance().getDungeon().dungeonItems.values()) {
+            if (item.goesBy(itemName)) {
                 return item;
             }
         }

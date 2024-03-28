@@ -16,14 +16,14 @@ class Exit{
 
     public Exit(Scanner scanner) throws Exception{
         Dungeon dungeon = GameState.instance().getDungeon();
-        String temp = scanner.nextLine();
-        
+        String temp = scanner.nextLine();         
         if(temp.equals("===")){
             throw new NoExitException();
         }
-        this.src = dungeon.getRoom(temp);
+        this.src = dungeon.getRoom(temp);        
         this.dir = scanner.nextLine();
         this.dest = dungeon.getRoom(scanner.nextLine());
+        //System.out.println("exit from "+this.src.getName()+" to "+this.dest.getName()+" by "+this.dir);
         scanner.nextLine();
     }
 
