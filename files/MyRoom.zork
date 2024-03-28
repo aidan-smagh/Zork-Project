@@ -1,0 +1,167 @@
+MyHome
+Zork III
+===
+Items:
+CrystalChandelier,Crystal
+30
+shake:The crystals shimmer and refract light beautifully.
+turnon:The chandelier illuminates the foyer with a brilliant glow.
+---
+AntiqueRug,Rug
+20
+roll:You roll the rug to reveal the intricate patterns woven into its fabric.
+---
+AntiqueGlobe,Globe
+15
+spin:You give the globe a gentle spin, watching as the continents blur together in a mesmerizing display
+---
+SoccerBall,Ball
+5
+kick:You give the soccer ball a powerful kick, sending it soaring across the field.
+dribble:You deftly maneuver the soccer ball between your feet, showing off your dribbling skills.
+---
+Mercedez-Benz,Car,Mercedez,Benz
+2000 
+unlock:You press the key fob to unlock the doors, hearing a satisfying click as they release.
+rev:You start the engine of the luxury sedan, feeling the power beneath the hood come to life.
+---
+LaptopComputer,Computer,Laptop
+5
+type:You type furiously on the laptop's keyboard, multitasking between documents and web browsing with ease.
+---
+Dinnerware
+3
+admire:You admire the intricate details of the Persian dinnerware, marveling at its exquisite craftsmanship and the rich cultural heritage it represents.
+---
+FoosballTable,Foosball
+150
+spin:You spin the rods of the foosball table, maneuvering your players into position for the perfect shot on goal.
+---
+PottedPlants,Plants,plant
+8
+water:You water the potted plants, ensuring they remain vibrant and healthy.
+arrange:You rearrange the potted plants, creating an aesthetically pleasing display along the walkway.
+---
+Blanket
+8
+---
+PrayerRug,Rug
+8
+---
+===
+Rooms:
+Grand Foyer:
+Contents: CrystalChandelier
+The Grand Foyer welcomes visitors with its expansive marble floors and towering ceilings adorned with a magnificent chandelier. Ornate columns line the perimeter, while a sweeping staircase leads to the upper levels, exuding an aura of grandeur and sophistication.
+---
+Library:
+Contents: AntiqueRug
+Step into the Library, a haven of intellectual pursuits and quiet contemplation. Floor-to-ceiling bookshelves filled with leather-bound volumes line the walls, while plush armchairs invite readers to immerse themselves in literary worlds. Soft lighting and the scent of aged paper create an atmosphere conducive to scholarly endeavors.
+---
+Patio:
+Contents: SoccerBall
+The Patio offers a seamless transition from indoor luxury to outdoor recreation, boasting a quaint soccer field nestled amidst lush greenery and vibrant flowers. With neatly trimmed grass and goal posts standing at either end, it provides the perfect space for friendly matches and outdoor enjoyment.
+---
+Front of the House:
+Contents: Mercedez-Benz
+The Front of the House presents a stately facade, with manicured lawns and meticulously maintained landscaping framing the entrance. Tall pillars and a grand entranceway exude timeless elegance, while flowering bushes add a touch of color to the scene. Three beautiful cars are parked in the driveway. Each car exudes luxury and style, reflecting the refined taste of the household's occupants.
+---
+Work Space:
+Contents: LaptopComputer,AntiqueGlobe
+The Work Space is a hub of productivity and innovation, featuring modern furnishings and state-of-the-art technology. Sleek desks and ergonomic chairs are arranged to optimize workflow, while large windows offer views of the surrounding landscape, inspiring creativity and focus.
+---
+Dining Room:
+Contents: Dinnerware
+Enter the Dining Room, where a long mahogany table is set with fine china and sparkling crystalware, ready to host elegant soirées and memorable gatherings. Soft candlelight and floral centerpieces add a touch of romance to the room, while the aroma of gourmet cuisine tantalizes the senses.
+---
+Garden Terrace:
+Contents: PottedPlants
+The Garden Terrace is a tranquil retreat, with fragrant blossoms and verdant foliage creating a serene backdrop for outdoor relaxation. Paved pathways wind through the garden, leading to secluded seating areas and charming fountains. The gentle rustle of leaves and the chirping of birds provide a symphony of natural tranquility.
+---
+M's Room:
+Contents: Blanket
+The Master Bedroom Suite is a sanctuary of luxury and comfort, boasting a spacious sleeping area adorned with plush linens and sumptuous pillows. French doors lead to a private balcony overlooking the grounds, while an en-suite bathroom features a spa-like bathtub and deluxe amenities, offering indulgent relaxation and rejuvenation.
+---
+Game Room:
+Contents: FoosballTable
+The Game Room is a vibrant space filled with laughter and excitement, featuring a variety of recreational activities for all ages. Arcade machines, billiards, and foosball tables offer endless entertainment options, while colorful bean bags and cozy seating provide a comfortable place to relax between games. With its lively atmosphere and assortment of games, it's the perfect spot for family fun and friendly competition.
+---
+Prayer Room:
+Contents: PrayerRug
+The Prayer Room is a sacred space designed for contemplation and spiritual devotion, adhering to the principles of Islamic architecture and design. Adorned with intricate calligraphy and geometric patterns, the room is oriented toward the qibla, indicating the direction of the Kaaba in Mecca. Soft prayer rugs cover the floor, providing a comfortable surface for salah (prayer), while shelves display copies of the Quran and other religious texts. The ambiance is one of tranquility and reverence, inviting Muslims to engage in acts of worship and reflection.
+---
+===
+Exits:
+Grand Foyer
+n
+M's Room
+---
+Grand Foyer
+e
+Library
+---
+Grand Foyer
+s
+Front of the House
+---
+Grand Foyer
+w
+Dining Room
+---
+Library
+w
+Grand Foyer
+---
+M's Room
+s
+Grand Foyer
+---
+Front of the House
+n
+Grand Foyer
+---
+Dining Room
+e
+Grand Foyer
+---
+M's Room
+e
+Patio
+---
+M's Room
+w 
+Garden Terrace
+---
+M's Room
+n
+Work Space
+---
+Patio
+w
+M's Room
+---
+Garden Terrace
+e
+M's Room
+---
+Work Space
+s
+M's Room
+---
+Work Space
+e
+Game Room
+---
+Work Space
+w
+Prayer Room
+---
+Game Room
+w
+Work Space
+---
+Prayer Room
+e
+Work Space
+---
+===
