@@ -127,10 +127,39 @@ public class GameState {
         String line;
         while (!(line = reader.readLine()).equals("===")) {
             String roomName = line.substring(0, line.length() - 1); // Remove the colon at the end
-            //Room room = dungeon.getRoom(roomName);
+            Room room = dungeon.getRoom(roomName);
             reader.readLine(); //throw away "beenHere = true"
-            //System.out.println(roomName);
-            reader.readLine(); //throw away "---"
+           // System.out.println(roomName);
+            
+                      
+          String line2 = reader.readLine();
+          System.out.println(line2);
+          if(line2.startsWith("Contents:")){
+                String[] itemNames = line2.substring("Contents: ".length()).split(",");
+               // System.out.println(java.util.Arrays.toString(itemNames));
+
+                for(String itemName : itemNames){
+                    try{
+                    System.out.println(itemName);
+
+                        // String contentsString = java.util.Arrays.toString(itemNames);    
+                    String trimitemName = itemName.replaceAll("\\[|\\]", "").trim();
+                    System.out.println(trimitemName); 
+                    Item item = new Item(trimitemName);
+                   System.out.println(item);
+
+                    GameState.instance().addToInventory(item);
+                }
+                catch (Exception e) {
+            // Handle other exceptions
+            System.out.println("Error adding item to inventory: " + e.getMessage());
+                     }
+
+            }
+        }
+          
+             
+           // reader.readLine(); //throw away "---"
  
         }
 
