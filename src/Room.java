@@ -10,45 +10,42 @@ public class Room{
    private String desc= null;  //description
    
    private Hashtable<String,Exit> exits = null;
-   //HashSet<Item> itemsInRoom = null;  
-   //private String items = "";
+
 
    public Room(String name, String desc){
        this.name = name;
        this.desc = desc;
        this.exits = new Hashtable<>();
-       //this.itemsInRoom = new HashSet<Item>(); //to be removed, room items will be accessed through GameState
-       //this.items = items;
     }
 
 
 
     Room (Scanner scanner) throws NoRoomException, NoItemException{
 
-        this.name = scanner.nextLine();
+        this.name = scanner.nextLine();        
+        this.exits = exits;
         if(this.name.equals("===")){
             throw new NoRoomException();
         }
         //checking for start of items section
         String check = scanner.next();
-        //System.out.println(check);
         HashSet<Item> roomItems = new HashSet<>();
-        if (check.equals("Contents:")) {
-            String itemNames = scanner.next();
+        if (check.equals("Contents:")) {            
+            String itemNames = scanner.next(); 
             String[] items = itemNames.split(",");
             for (String itemName : items) {
-
                 Item i = GameState.instance().getDungeon().getItem(itemName);
-                roomItems.add(i);
+                roomItems.add(i);                
             }
             check = scanner.next();
+            
         } else {
             this.desc += check;
         
         } 
         
 
-        this.exits = new Hashtable<String, Exit>();
+        exits = new Hashtable<String, Exit>();
 
             this.desc = check + "";
             String temp = "";
@@ -59,6 +56,9 @@ public class Room{
                 temp = scanner.nextLine();
             }
             temp = "";
+        if (GameState.instance().getDungeon().entryRoom == null) {
+            GameState.instance().getDungeon().entryRoom=this;
+        } 
         GameState.instance().roomContents.put(this, roomItems);
     }
 
