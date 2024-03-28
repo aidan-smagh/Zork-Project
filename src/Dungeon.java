@@ -24,7 +24,6 @@ public class Dungeon{
 
     Dungeon(String filename) throws IllegalDungeonFormatException, FileNotFoundException, Room.NoRoomException, NoItemException {
         GameState.instance().setDungeon(this); // Set the Dungeon in GameState
-
         this.rooms = new Hashtable<>();
         Scanner scanner = new Scanner(new File(filename));
 
@@ -33,36 +32,34 @@ public class Dungeon{
             this.title = scanner.nextLine();
             String versionLine = scanner.nextLine();
             if (!versionLine.equals("Zork III")) {
-                throw new IllegalDungeonFormatException("Invalid version line: " + versionLine);
+                throw new IllegalDungeonFormatException("Invalid version! Required: 'Zork III'" );
             }
             scanner.nextLine(); // "==="
-            scanner.nextLine(); //Items: <- changed from 'Rooms:' as items are now at top of file
-            
-
-        
+            scanner.nextLine(); //Items: <- changed from 'Rooms:' as items are now at top of file 
          
-          
             while (scanner.hasNextLine()) {  
                 try {                    
                     Item item = new Item(scanner);
                     this.add(item);                               
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }            
-           //scanner.nextLine(); 
-           scanner.nextLine(); //consume 'Rooms:' 
-           // this.entryRoom = new Room(scanner); //create entryRoom
-           // rooms.put(entryRoom.getName(), entryRoom); //set entryRoom
+           scanner.nextLine(); 
+           scanner.nextLine(); //consume 'Rooms:'           
+           
             while (scanner.hasNextLine()) {
                 try {                
-                Room room = new Room(scanner);                           
-                this.add(room);                                              
+                Room room = new Room(scanner);
+                System.out.println(room.getName()+" made");                           
+                this.add(room); 
+                                                             
                 } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }
-            scanner.nextLine(); //consume Exits: 
+            scanner.nextLine(); //consume Exits:
+ 
             while (scanner.hasNextLine()) {
                 try {                                        
                     Exit exit = new Exit(scanner);                      
-                    exit.getSrc().addExit(exit.getDir(), exit.getDest());                    
+                    exit.getSrc().addExit(exit.getDir(), exit.getDest());
                     } catch (Exception e3) {break;}
             }
                 
@@ -70,36 +67,6 @@ public class Dungeon{
         }    
     }
     
-    
-
-
-
-
-
-
-
-//            while (scanner.hasNextLine()) {
-//
-//                Room room = new Room(scanner);
-//                rooms.put(room.getName(), room);
-//
-//                if (scanner.hasNextLine() && scanner.nextLine().equals("===")) {
-//                    throw new Room.NoRoomException(); // Throw exception for the last "==="
-//                }
-//
-//            }
-
-//            Room room = new Room(scanner);
-//            rooms.put(room.getName(), room);
-//            Room room2 = new Room(scanner);
-//            rooms.put(room.getName(), room);
-//            Room room3 = new Room(scanner);
-//            rooms.put(room.getName(), room);
-       
-   
-
-
-
 
     public Room getEntry(){
         return entryRoom;
@@ -111,8 +78,6 @@ public class Dungeon{
     
     public void add(Room room){
         GameState.instance().getDungeon().rooms.put(room.getName(), room);
-   
-        //System.out.println("room added");
     }
 
     public Room getRoom(String roomName) {
@@ -127,9 +92,6 @@ public class Dungeon{
     
     public void add (Item item) {
         this.dungeonItems.put(item.getPrimaryName(), item);
-        /* unsure if this will override the other in-file add() for Rooms,
-           I asssume it won't - it will call whichever method based
-           on if it was passed a Room or Item */
     }
 
     public Item getItem(String itemName) throws NoItemException {
@@ -140,7 +102,8 @@ public class Dungeon{
             }
         }
         throw new NoItemException(); //loops ends without returning = no item found   
-    }  
+    }
+  
     public class IllegalDungeonFormatException extends Exception {
         public IllegalDungeonFormatException(String e) {
             super(e);
@@ -196,37 +159,6 @@ public class Dungeon{
     }
 
 
-  //  public static void main(String[] args) {
-        // Create a dungeon with an entry room and a title
-      //  Room entryRoom = new Room("M's bedroom", "This is the starting room.");
-     //   Dungeon dungeon = new Dungeon(entryRoom, "My Dungeon");
-
-        // Add some rooms to the dungeon
-      //  Room room1 = new Room("Hallway", "This is room 1.");
-     //   Room room2 = new Room("Kitchen", "This is room 2.");
-    //    dungeon.add(room1);
-     //   dungeon.add(room2);
-
-        // Print information about the dungeon
-      //  System.out.println("Dungeon Title: " + dungeon.getTitle());
-     //   System.out.println("Entry Room: " + dungeon.getEntry().getName());
-//
-//        System.out.println("Rooms in the Dungeon:");
-//        for (String roomName : dungeon.rooms.keySet()) {
-//            System.out.println(roomName);
-//        }
-
-
-        // Print the contents of the hashtable (both key and value)
-        // Print the contents of the hashtable (both key and value)
-     //   System.out.println("Rooms in the Dungeon:");
-     //   for (Map.Entry<String, Room> entry : dungeon.rooms.entrySet()) {
-      //      String key = entry.getKey();
-      //      Room room = entry.getValue();
-     //       System.out.println("Key: " + key + ", Value: " + room);
-    //    }
-
-
-  //  }
+ 
 
 }

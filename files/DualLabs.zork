@@ -16,7 +16,7 @@ hit:Your hand feels considerably more hurt than the bulky hunk of metal.
 ---
 WarningSign,sign
 5
-read:'DO NOT ENTER CONTAINMENT: S-CLASS RISK' - You want to 'consider' these words.
+read:'DO NOT ENTER CONTAINMENT >> S-CLASS RISK' - You want to 'consider' these words.
 consider:Surely whatever's beyond this sign can't be THAT bad, right? I mean, what's the worst consequence - eternal regret? Signs are kinda lame anyway.
 ---
 GrowthSerumVialSet,vials,experiment,serum,set
@@ -112,7 +112,7 @@ the sentience of inanimate objects. A sign lies next to one
 of the doors.
 ---
 GN: Synthesis Sector
-Contents: GrowthSerumVials
+Contents: GrowthSerumVialSet
 You enter a room full of funny-looking bottles and beakers,
 with all sorts of colors. The sheer amount makes you wonder
 what exactly is being worked on.
@@ -154,12 +154,12 @@ binary star system above you. A vast desert spreads to the east
 and west - the Zephyr Institute lies in front of you.
 ---
 East Dunes
-Contents: Cactus
+Contents: TallCactus
 Hills and hills of sand stretch to the horizon. The heat and 
 light render anything far away as a blurry mixture.
 ---
 West Dunes
-Contents: KnowledgableVultureDude,CactusChair
+Contents: KnowledgeableVultureDude,CactusChair
 More desert, another cactus... and a vulture? He looks kinda
 chill, maybe he knows a thing or two if you ask.
 ---
@@ -188,13 +188,13 @@ gust rushes in every now and then.
 ---
 ===
 Exits:
-Glacier Nexus: South Perimeter
+Glacial Nexus: South Perimeter
 n
 GN: Hub
 ---
 GN: Hub
 s
-Glacier Nexus: South Perimeter
+Glacial Nexus: South Perimeter
 ---
 GN: Hub
 u
@@ -230,7 +230,7 @@ GN: Hallway
 ---
 CONTAINMENT: UMBRIUM LOCK
 d
-//Singularity//
+<Singularity>
 ---
 GN: Flora Sector
 s
@@ -302,6 +302,6 @@ ZI: Hub
 ---
 Link-BA
 u
-Glacier Nexus: South Perimeter
+Glacial Nexus: South Perimeter
 ---
 ===
