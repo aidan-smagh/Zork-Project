@@ -48,12 +48,12 @@ tumbleweed,saltwort,windwitch,bush
 roll:It tumbles around, coming back to you.
 kick:Your foot gets caught in the bush, it takes some shaking to free yourself.
 ---
-TallCactus
+TallCactus,cactus
 999
 touch:Ow! 
 hug:OOWWW!!! (is this some kinda hobby?)
 ---
-CactusChair
+CactusChair,cactuschair
 999
 sit:Surprisingly (disappointly?) there are no spines. The cactus print fabric is fairly comfortable.
 lay:This would be relaxing if it weren't for the blazing desert sun.
@@ -89,7 +89,7 @@ LittlePiggy,pig,piggy
 pet:The pig oinks lovingly at you.
 push:The pig oinks sadly in despair.
 poke:The pig falls over before getting back up.
---- 
+---
 ===
 Rooms:
 Glacial Nexus: South Perimeter

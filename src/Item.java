@@ -16,27 +16,25 @@ public class Item {
     public Item(Scanner s) throws NoItemException {
         aliases = new HashSet<>();
         messages = new Hashtable<>();
-        this.primaryName = s.nextLine(); 
+        this.primaryName = s.nextLine();         
         if (primaryName.equals("===")) {
             throw new NoItemException();
         }
+        String[] names = primaryName.split(",");
+        this.primaryName = names[0];
         this.weight = Integer.parseInt(s.nextLine());
-        String line = s.nextLine(); //check that this line doesn't equal to ---. check for aliases
+        String line = s.nextLine();
+        
+         //check that this line doesn't equal to ---. check for aliases       
         while (!line.equals("---")) {
             String[] parts = line.split(":");
             messages.put(parts[0], parts[1]);
             line = s.nextLine();
         }
-        String[] names = primaryName.split(",");  //for aliases... splits the primary name with aliases.
-        this.primaryName = names[0];
-
+        //add aliases         
         for (int i = 1; i < names.length; i++) {
             aliases.add(names[i].trim());
-        }
-
-
-
-        
+        }        
     }
 
     public boolean goesBy(String name) {

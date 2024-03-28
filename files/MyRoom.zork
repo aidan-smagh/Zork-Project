@@ -21,7 +21,7 @@ kick:You give the soccer ball a powerful kick, sending it soaring across the fie
 dribble:You deftly maneuver the soccer ball between your feet, showing off your dribbling skills.
 ---
 Mercedez-Benz,Car,Mercedez,Benz
-2000 
+2000
 unlock:You press the key fob to unlock the doors, hearing a satisfying click as they release.
 rev:You start the engine of the luxury sedan, feeling the power beneath the hood come to life.
 ---
@@ -50,43 +50,43 @@ PrayerRug,Rug
 ---
 ===
 Rooms:
-Grand Foyer:
+Grand Foyer
 Contents: CrystalChandelier
 The Grand Foyer welcomes visitors with its expansive marble floors and towering ceilings adorned with a magnificent chandelier. Ornate columns line the perimeter, while a sweeping staircase leads to the upper levels, exuding an aura of grandeur and sophistication.
 ---
-Library:
+Library
 Contents: AntiqueRug
 Step into the Library, a haven of intellectual pursuits and quiet contemplation. Floor-to-ceiling bookshelves filled with leather-bound volumes line the walls, while plush armchairs invite readers to immerse themselves in literary worlds. Soft lighting and the scent of aged paper create an atmosphere conducive to scholarly endeavors.
 ---
-Patio:
+Patio
 Contents: SoccerBall
 The Patio offers a seamless transition from indoor luxury to outdoor recreation, boasting a quaint soccer field nestled amidst lush greenery and vibrant flowers. With neatly trimmed grass and goal posts standing at either end, it provides the perfect space for friendly matches and outdoor enjoyment.
 ---
-Front of the House:
+Front of the House
 Contents: Mercedez-Benz
 The Front of the House presents a stately facade, with manicured lawns and meticulously maintained landscaping framing the entrance. Tall pillars and a grand entranceway exude timeless elegance, while flowering bushes add a touch of color to the scene. Three beautiful cars are parked in the driveway. Each car exudes luxury and style, reflecting the refined taste of the household's occupants.
 ---
-Work Space:
+Work Space
 Contents: LaptopComputer,AntiqueGlobe
 The Work Space is a hub of productivity and innovation, featuring modern furnishings and state-of-the-art technology. Sleek desks and ergonomic chairs are arranged to optimize workflow, while large windows offer views of the surrounding landscape, inspiring creativity and focus.
 ---
-Dining Room:
+Dining Room
 Contents: Dinnerware
 Enter the Dining Room, where a long mahogany table is set with fine china and sparkling crystalware, ready to host elegant soirées and memorable gatherings. Soft candlelight and floral centerpieces add a touch of romance to the room, while the aroma of gourmet cuisine tantalizes the senses.
 ---
-Garden Terrace:
+Garden Terrace
 Contents: PottedPlants
 The Garden Terrace is a tranquil retreat, with fragrant blossoms and verdant foliage creating a serene backdrop for outdoor relaxation. Paved pathways wind through the garden, leading to secluded seating areas and charming fountains. The gentle rustle of leaves and the chirping of birds provide a symphony of natural tranquility.
 ---
-M's Room:
+M's Room
 Contents: Blanket
 The Master Bedroom Suite is a sanctuary of luxury and comfort, boasting a spacious sleeping area adorned with plush linens and sumptuous pillows. French doors lead to a private balcony overlooking the grounds, while an en-suite bathroom features a spa-like bathtub and deluxe amenities, offering indulgent relaxation and rejuvenation.
 ---
-Game Room:
+Game Room
 Contents: FoosballTable
 The Game Room is a vibrant space filled with laughter and excitement, featuring a variety of recreational activities for all ages. Arcade machines, billiards, and foosball tables offer endless entertainment options, while colorful bean bags and cozy seating provide a comfortable place to relax between games. With its lively atmosphere and assortment of games, it's the perfect spot for family fun and friendly competition.
 ---
-Prayer Room:
+Prayer Room
 Contents: PrayerRug
 The Prayer Room is a sacred space designed for contemplation and spiritual devotion, adhering to the principles of Islamic architecture and design. Adorned with intricate calligraphy and geometric patterns, the room is oriented toward the qibla, indicating the direction of the Kaaba in Mecca. Soft prayer rugs cover the floor, providing a comfortable surface for salah (prayer), while shelves display copies of the Quran and other religious texts. The ambiance is one of tranquility and reverence, inviting Muslims to engage in acts of worship and reflection.
 ---

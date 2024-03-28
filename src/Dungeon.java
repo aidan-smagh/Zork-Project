@@ -43,27 +43,22 @@ public class Dungeon{
                     this.add(item);                               
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }            
-           scanner.nextLine(); 
-           scanner.nextLine(); //consume 'Rooms:'           
            
+            scanner.nextLine(); //consume 'Rooms:'                      
             while (scanner.hasNextLine()) {
                 try {                
-                Room room = new Room(scanner);
-                System.out.println(room.getName()+" made");                           
-                this.add(room); 
-                                                             
+                Room room = new Room(scanner);                     
+                this.add(room);                                                   
                 } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
-            }
-            scanner.nextLine(); //consume Exits:
+            }         
+           scanner.nextLine(); //consume Exits:
  
             while (scanner.hasNextLine()) {
                 try {                                        
-                    Exit exit = new Exit(scanner);                      
+                    Exit exit = new Exit(scanner);                  
                     exit.getSrc().addExit(exit.getDir(), exit.getDest());
                     } catch (Exception e3) {break;}
-            }
-                
-                
+            }                                
         }    
     }
     
@@ -80,10 +75,10 @@ public class Dungeon{
         GameState.instance().getDungeon().rooms.put(room.getName(), room);
     }
 
-    public Room getRoom(String roomName) {
-        for(Room room : GameState.instance().getDungeon().rooms.values()){
-            if(room.getName().equals(roomName)){
-                return room;
+    public Room getRoom(String roomName) {        
+        for(Room room : GameState.instance().getDungeon().rooms.values()){                        
+            if(room.getName().equals(roomName)){              
+               return room;
             }
         }
         System.out.println("room not found, set to null"); 
