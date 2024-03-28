@@ -43,8 +43,8 @@ public class Dungeon{
                     this.add(item);                               
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }            
-           //scanner.nextLine(); 
-           scanner.nextLine(); //consume 'Rooms:'           
+           
+            scanner.nextLine(); //consume 'Rooms:'           
            
             while (scanner.hasNextLine()) {
                 try {                
