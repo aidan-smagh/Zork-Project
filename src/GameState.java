@@ -143,7 +143,7 @@ public class GameState {
                 String itemNames = line2.substring("Contents: ".length());
                 String exactName = itemNames.substring
                     (1, itemNames.length()-1);
-                System.out.println(exactName);
+                System.out.println(exactName + "your mom");
                 System.out.println(" ");
                 reader.readLine(); //throw away "---"
             } else if (line2.startsWith("---")) {
@@ -165,6 +165,7 @@ public class GameState {
                 GameState.instance().setAdventurersCurrentRoom
                     (currentSavedRoom);
             }
+        
         
         
     } catch (Exception e) {
