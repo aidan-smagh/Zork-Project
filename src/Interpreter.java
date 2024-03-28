@@ -32,28 +32,29 @@ class Interpreter{
             // Restore the game state from the .sav file
             try {
                 GameState.instance().restore(fileName);
-                dungeon = GameState.instance().getDungeon();
-                String input = "restore";
+                Dungeon savedDungeon = GameState.instance().getDungeon();
+                //GameState.instance().initialize(dungeon);
+                System.out.println(GameState.instance()
+                        .getAdventurersCurrentRoom().describe() + "hi");
+                String input = scanner.nextLine();
                 Command command = CommandFactory.instance().parse(input);
                 String result = command.execute();
                 System.out.println(result);
 
             }catch (FileNotFoundException e) {
-                System.err.println("Error restoring the game: " + e.getMessage());
+                System.err.println("Error restoring  game: " + e.getMessage());
                 System.exit(1);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.err.println("Error restoring the game: " + e.getMessage());
-                System.exit(1);
-            }
+                //System.exit(1);
+            } 
         } else {
             System.out.println("Invalid file format. Supported formats: .zork, .sav");
-            System.exit(1);
+            //System.exit(1);
         }
 
 
         // Initialize the game state
-        GameState.instance().initialize(dungeon);
 
         //Scanner scanner = new Scanner(System.in);
 

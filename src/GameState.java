@@ -113,78 +113,63 @@ public class GameState {
     void restore(String saveFileName) throws Exception {
         
     try{
-        BufferedReader reader = new BufferedReader(new FileReader(saveFileName));     
-      //  System.out.println("Success1");
-        // Step 2: Read and ignore the first line (informational version line)
-        reader.readLine();
-        reader.readLine();
-        // Step 3: Read the second line to get the full path to the dungeon file
+        BufferedReader reader = new BufferedReader
+            (new FileReader(saveFileName));     
+        //System.out.println("Success1");
+        // Step 2: Read and ignore the first line 
+        //(informational version line)
+        reader.readLine(); //throw away James Farmer Hall
+        reader.readLine(); //throw away ZorkIII
+        // Step 3: Read the second line to get 
+        //the full path to the dungeon file
         String dungeonFilePath = reader.readLine();
-        Dungeon saveddungeon = new Dungeon(dungeonFilePath);
-
+        Dungeon savedDungeon = new Dungeon(dungeonFilePath);
+        GameState.instance().initialize(savedDungeon);
+        System.out.println(savedDungeon.getTitle());
         reader.readLine(); //throw away "Room states:"
-
+         
         String line;
         while (!(line = reader.readLine()).equals("===")) {
-            String roomName = line.substring(0, line.length() - 1); // Remove the colon at the end
-            Room room = dungeon.getRoom(roomName);
-            reader.readLine(); //throw away "beenHere = true"
-           // System.out.println(roomName);
             
-                      
-          String line2 = reader.readLine();
-          System.out.println(line2);
-          if(line2.startsWith("Contents:")){
-                String[] itemNames = line2.substring("Contents: ".length()).split(",");
-               // System.out.println(java.util.Arrays.toString(itemNames));
+            //get rid of the colon at the end
+            String roomName = line.substring(0, line.length() - 1);
+            Room room = savedDungeon.getRoom(roomName);
 
-                for(String itemName : itemNames){
-                    try{
-                    System.out.println(itemName);
-
-                        // String contentsString = java.util.Arrays.toString(itemNames);    
-                    String trimitemName = itemName.replaceAll("\\[|\\]", "").trim();
-                    System.out.println(trimitemName); 
-                    Item item = new Item(trimitemName);
-                   System.out.println(item);
-
-                    GameState.instance().addToInventory(item);
-                }
-                catch (Exception e) {
-            // Handle other exceptions
-            System.out.println("Error adding item to inventory: " + e.getMessage());
-                     }
-
-            }
-        }
-          
+            reader.readLine(); //throw away "beenHere = true"
+            System.out.println(roomName);
              
-           // reader.readLine(); //throw away "---"
- 
-        }
-
-        String currentRoomLine = reader.readLine();
-    //    System.out.println(currentRoomLine);
-        if (currentRoomLine.startsWith("Current room: ")) {
-            String currentRoomName = currentRoomLine.substring("Current room: ".length());
-           
-          //  System.out.println(currentRoomName);
-
-            Room currentsavedRoom = saveddungeon.getRoom(currentRoomName.trim());
-          //  System.out.println(currentRoom);
-            if (currentsavedRoom != null) {
-                GameState.instance().setAdventurersCurrentRoom(currentsavedRoom);
+            String line2 = reader.readLine();          
+            if(line2.startsWith("Contents:")) {
+                String itemNames = line2.substring("Contents: ".length());
+                String exactName = itemNames.substring
+                    (1, itemNames.length()-1);
+                System.out.println(exactName);
+                System.out.println(" ");
+                reader.readLine(); //throw away "---"
+            } else if (line2.startsWith("---")) {
+                //do nothing
             }
         }
+        reader.readLine(); //throw away "Adventurer"
+        String currentRoomLine = reader.readLine();
+        String currentRoomFitted = currentRoomLine.substring
+            (14, currentRoomLine.length());
+        System.out.println("Current room: " +currentRoomFitted);
+        
+           
+        Room currentSavedRoom = savedDungeon.getRoom(currentRoomFitted);
+        //setAdventurersCurrentRoom(currentSavedRoom);
+        this.currentRoom = currentSavedRoom;
+          //  System.out.println(currentRoom);
+            if (currentSavedRoom != null) {
+                GameState.instance().setAdventurersCurrentRoom
+                    (currentSavedRoom);
+            }
+        
+        
     } catch (Exception e) {
-            throw new RuntimeException(e);
+        throw new RuntimeException(e);
     }
-
-            //    } catch (Dungeon.IllegalDungeonFormatException e) {
-    //        throw new RuntimeException(e);
-    //    } catch (Room.NoRoomException e) {
-    //        throw new RuntimeException(e);
-    //    }
 
     }
     ArrayList<Item> getInventory() {

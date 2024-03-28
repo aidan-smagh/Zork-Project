@@ -8,7 +8,7 @@ class UnknownCommand extends Command{
     }
 
     String execute(){
-        return "Unknwon command: " + bogusCommandString;
+        return "Unknown command: " + bogusCommandString;
     }
 
 
