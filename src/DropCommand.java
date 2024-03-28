@@ -12,6 +12,14 @@ class DropCommand extends Command{
             System.out.println("Drop what?");
     }
         Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
+
+        if (itemName.equals("all")) {
+            for (Item item : GameState.instance.inventory) {
+                GameState.instance.removeFromInventory(item);
+                GameState.instance().addItemToRoom(item, currentRoom);
+                return "You dropped everything in your bag.";
+            }
+        }
         String nameOfDropped = "";
         try {
             Item i = GameState.instance().getDungeon()
