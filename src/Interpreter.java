@@ -11,6 +11,7 @@ class Interpreter{
 
         System.out.println("Enter the file name or file path (with .zork or .sav extension):");
         String fileName = scanner.nextLine();
+        GameState.instance().setDungeonFileName(fileName);
 
         Dungeon dungeon = null;
 

@@ -15,6 +15,7 @@ public class GameState {
     HashSet<Room> visited = null;
     ArrayList<Item> inventory = null;
     Hashtable<Room, HashSet<Item>> roomContents = null;
+    private String dungeonFileName = null;
 
     private GameState() {
         // Singleton pattern
@@ -23,6 +24,7 @@ public class GameState {
         visited = new HashSet<>();
         inventory = new ArrayList<>();
         roomContents = new Hashtable<>();
+        this.dungeonFileName = dungeonFileName;
     }
 
     public static GameState instance() {
@@ -62,6 +64,9 @@ public class GameState {
     boolean hasBeenVisited(Room room) {
         return visited.contains(room);
     }
+    public void setDungeonFileName(String filename) {
+        this.dungeonFileName = filename;
+    }
     
 //    public describeFull(){
         
@@ -73,7 +78,8 @@ public class GameState {
             pw.println(dungeon.getTitle());
             pw.println("Zork III");
             //pw.println("Dungeon file: " + new File("files/farmer.zork").getAbsolutePath() + "\n");
-            pw.print(new File("files/farmerv3.zork").getAbsolutePath() + "\n");
+            pw.print(new File(this.dungeonFileName)
+                    .getAbsolutePath() + "\n");
             pw.print("Room states:\n");
             for (Room room : visited) {
                 pw.print(room.getName() + ":\n");
