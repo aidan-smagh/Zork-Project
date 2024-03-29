@@ -12,25 +12,20 @@ class DropCommand extends Command{
             System.out.println("Drop what?");
     }
         Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
-
+        
         if (itemName.equals("all")) {
-            for (Item item : GameState.instance().inventory) {
-                GameState.instance().removeFromInventory(item);
-                GameState.instance().addItemToRoom(item, currentRoom);
-                return "You dropped everything in your bag.";
-            }
+            GameState.instance().inventory.clear();
+            return "You dropped everything in your bag.";
         }
+
         String nameOfDropped = "";
         try {
-            Item i = GameState.instance().getDungeon()
-                .getItem(this.itemName);
+            Item i = GameState.instance().getDungeon().getItem(this.itemName);
             nameOfDropped = i.getPrimaryName();
             GameState.instance().removeFromInventory(i);
-            GameState.instance().addItemToRoom(i, GameState.instance()
-                    .getAdventurersCurrentRoom());
+            GameState.instance().addItemToRoom(i, GameState.instance().getAdventurersCurrentRoom());
         } catch (NoItemException e) {
-            System.out.println("There is no " + this.itemName 
-                    + " to drop!");
+            System.out.println("There is no " + this.itemName + " to drop!");
         }
         if (nameOfDropped.isEmpty()) {
             return "...";

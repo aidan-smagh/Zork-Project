@@ -34,8 +34,8 @@ public class Dungeon{
             if (!versionLine.equals("Zork III")) {
                 throw new IllegalDungeonFormatException("Invalid version! Required: 'Zork III'" );
             }
-            System.out.println(scanner.nextLine()); // "==="
-            System.out.println(scanner.nextLine()); //Items: <- changed from 'Rooms:' as items are now at top of file 
+            scanner.nextLine(); // "==="
+            scanner.nextLine(); //Items: <- changed from 'Rooms:' as items are now at top of file 
          
             while (scanner.hasNextLine()) {  
                 try {                    
@@ -44,21 +44,21 @@ public class Dungeon{
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }  
            
-            System.out.println(scanner.nextLine()); //consume 'Rooms:'           
+            scanner.nextLine(); //consume 'Rooms:'           
            
             while (scanner.hasNextLine()) {
                 try {                
                 Room room = new Room(scanner);                     
                 this.add(room);                                                   
-                } catch (Exception e2) {e2.printStackTrace();break;} //rooms done, break to start hydrating exits
+                } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }         
-           System.out.println(scanner.nextLine()); //consume Exits:
+           scanner.nextLine(); //consume Exits:
  
             while (scanner.hasNextLine()) {
                 try {                                        
                     Exit exit = new Exit(scanner);                  
                     exit.getSrc().addExit(exit.getDir(), exit.getDest());
-                    } catch (Exception e3) {e3.printStackTrace();break;}
+                    } catch (Exception e3) {break;}
             }                                
         }    
     }
@@ -78,7 +78,7 @@ public class Dungeon{
 
     public Room getRoom(String roomName) {        
         for(Room room : GameState.instance().getDungeon().rooms.values()){
-        System.out.println("checking if "+room.getName()+" is "+room.getName());                         
+                                 
             if(room.getName().equals(roomName)){              
                return room;
             }
