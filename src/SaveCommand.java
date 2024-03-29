@@ -12,7 +12,7 @@ class SaveCommand extends Command{
         try {
                 // Step 3: Call GameState::store() when "save" is entered
                 //String saveName = "save.zork";
-                GameState.instance().store("files/save.sav");
+                GameState.instance().store("../files/save.sav");
                 System.out.println("Game saved successfully.");
                 return "Game saved!";    
 

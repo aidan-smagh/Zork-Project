@@ -1,15 +1,29 @@
-James Farmer Hall
+Midgar
 Zork III
-/home/students/asmagh/zorkProject/src/files/farmerv3.zork
+/home/students/asmagh/zorkProject/src/../files/Midgar.zork
 Room states:
-Back hallway:
+Sector 7 Slums:
+beenHere=true
+Contents: [gauntlets]
+---
+Bar:
 beenHere=true
 ---
-Stephen's office:
+Seventh Heaven:
 beenHere=true
-Contents: [WawaTravelMug, StarWarsToy]
+Contents: [darts]
+---
+Underground Expressway:
+beenHere=true
+Contents: [phoenixDown]
+---
+Wall Market:
+beenHere=true
+---
+Sector 5 Slums:
+beenHere=true
 ---
 ===
 Adventurer:
-Current room: Back hallway
-Inventory: DrPepper,StarWarsToy,donut,
+Current room: Wall Market
+Inventory: busterSword,fancyDrink,
