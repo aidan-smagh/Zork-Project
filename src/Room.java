@@ -21,8 +21,9 @@ public class Room{
 
 
     Room (Scanner scanner) throws NoRoomException, NoItemException{
-
-        this.name = scanner.nextLine();        
+        
+        this.name = scanner.nextLine();
+        System.out.println("making "+this.name);        
         this.exits = exits;
         if(this.name.equals("===")){
             throw new NoRoomException();
