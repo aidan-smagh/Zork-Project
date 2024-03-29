@@ -30,8 +30,9 @@ class TakeCommand extends Command{
                 for (Item item : itemsToTake) {
                     GameState.instance().removeItemFromRoom(item, currentRoom);
                     GameState.instance().addToInventory(item);
+             //       return "All taken.";
+                }
                     return "All taken.";
-                }   
             } else {
                 return "Everything in here won't fit in your bag!";
             } 
