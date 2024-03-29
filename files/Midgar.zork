@@ -1,0 +1,166 @@
+Midgar
+Zork III
+===
+Items:
+busterSword,sword
+10
+swing:You swing the Buster Sword
+inspect:A sword battered by countless battles
+emote:You do your victory dance while spinning the sword
+repair:The buster sword is carefully mended
+---
+gauntlets,fists
+2
+punch:You swing your fists wildly
+---
+fireMateria,magic
+1
+burn:You cast a fire spell with no direction
+fit:You fit the fire materia into your busterSword
+---
+fancyDrink,drink
+1
+drink:You drink the cocktail as the bartender smiles at you
+refuse:The bartender takes the drink for herself
+---
+masamune
+4
+slice:You swing masamune and your enemies cower
+stab:Masamune is thrust downwards
+---
+sorcererStaff,staff
+3
+cast:You cast the most potent of spells
+snap:Oh no! The sorcererStaff is broken
+fix:You use magic to fix the staff
+---
+elixer
+1
+kick:The elixer falls over
+smell:The elixer fills your nostrils and you feel powerful
+---
+phoenixDown
+1
+ingest:You breathe in the phoenixDown and feel as if you could never die
+release:The feather flutters towards the ground and you pick it back up
+---
+darts
+1
+throw:You hit a perfect bullseye on the dart board
+---
+bandle,armor
+2
+wear:You put the bandle on and feel very protected
+---
+===
+Rooms:
+Sector 7 Slums
+Contents: busterSword,gauntlets
+You are in the slums under the Midgar plate. Around you are the friendliest
+faces in all of Midgar.
+---
+Seventh Heaven
+Contents: darts
+You enter a bar that feels like a home away from home. Calming music plays
+from the jukebox, and a beautiful bartender ushers you over.
+---
+Bar
+Contents: fancyDrink
+The bartender offers you a cocktail and introduces herself. "Hi, welcome
+to Seventh Heaven. My name is Tifa."
+---
+Church
+Contents: masamune
+Aerith is tending to her flowers as sunlight shines through the hole in the
+roof to illuminate the room.
+---
+Sector 5 Slums
+Another section of the slums beneath the Midgar plate. Children run across
+the street towards their hideout as had just gotten out of school.
+---
+Aeriths House
+Contents: sorcererStaff,fireMateria
+An unbelievable quaint home sitting above the only flowers left in all of
+Midgar. You had forgotten what the smell of fresh air was really like.
+---
+Hideout
+Contents: potion
+You enter the children's hideout. They all yell at you for entering. "
+Adults are not allowed they all say." *LEAVE*
+---
+Underground Expressway
+Contents: phoenixDown
+A highway connecting the Sector 5 Slums to the world famous Wall Market.
+---
+Wall Market
+Shops and restaurants line the streets. At the very end you hear the roars
+of the arena.
+---
+Arena
+Contents: elixer
+You are quickly ushered into the battleground before you can prepare. Your
+opponent is the dreaded Tonberry. You barely escape with your life.
+---
+===
+Exits:
+Sector 7 Slums
+n
+Seventh Heaven
+---
+Seventh Heaven
+n
+Bar
+---
+Bar
+s
+Seventh Heaven
+---
+Seventh Heaven
+s
+Sector 7 Slums
+---
+Sector 7 Slums
+w
+Sector 5 Slums
+---
+Sector 5 Slums
+w
+Hideout
+---
+Hideout
+e
+Sector 5 Slums
+---
+Sector 5 Slums
+w
+Aeriths House
+---
+Aeriths House
+s
+Church
+---
+Church
+n
+Aeriths House
+---
+Sector 5 Slums
+n
+Underground Expressway
+---
+Underground Expressway
+s
+Sector 5 Slums
+---
+Underground Expressway
+n
+Wall Market
+---
+Wall Market
+s
+Underground Expressway
+---
+Wall Market
+w
+Arena
+---
+===
