@@ -1,21 +1,15 @@
 James Farmer Hall
-Zork II
-/home/students/asmagh/zorkProject/src/files/farmer.zork
+Zork III
+/home/students/asmagh/zorkProject/src/files/farmerv3.zork
 Room states:
-Stephen's office:
-beenHere=true
----
-Room 044:
-beenHere=true
----
-Basement:
-beenHere=true
----
 Back hallway:
 beenHere=true
 ---
-Rotunda:
+Stephen's office:
 beenHere=true
+Contents: [WawaTravelMug, StarWarsToy]
 ---
 ===
-Current room: Room 044
+Adventurer:
+Current room: Back hallway
+Inventory: DrPepper,StarWarsToy,donut,

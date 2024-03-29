@@ -35,7 +35,7 @@ class Interpreter{
                 Dungeon savedDungeon = GameState.instance().getDungeon();
                 //GameState.instance().initialize(dungeon);
                 System.out.println(GameState.instance()
-                        .getAdventurersCurrentRoom().describe() + "hi");
+                        .getAdventurersCurrentRoom().describe());
                 String input = scanner.nextLine();
                 Command command = CommandFactory.instance().parse(input);
                 String result = command.execute();

@@ -96,7 +96,7 @@ public class GameState {
             } else {
                 pw.print("Inventory: ");
                 for (int i = 0; i < inventory.size(); i++) {
-                    pw.print(inventory.get(i) + ", ");
+                    pw.print(inventory.get(i) + ",");
             
                 }
             }
@@ -125,7 +125,7 @@ public class GameState {
         String dungeonFilePath = reader.readLine();
         Dungeon savedDungeon = new Dungeon(dungeonFilePath);
         GameState.instance().initialize(savedDungeon);
-        System.out.println(savedDungeon.getTitle());
+        //System.out.println(savedDungeon.getTitle());
         reader.readLine(); //throw away "Room states:"
          
         String line;
@@ -136,15 +136,15 @@ public class GameState {
             Room room = savedDungeon.getRoom(roomName);
 
             reader.readLine(); //throw away "beenHere = true"
-            System.out.println(roomName);
+            //System.out.println(roomName);
              
             String line2 = reader.readLine();          
             if(line2.startsWith("Contents:")) {
                 String itemNames = line2.substring("Contents: ".length());
                 String exactName = itemNames.substring
                     (1, itemNames.length()-1);
-                System.out.println(exactName + "your mom");
-                System.out.println(" ");
+                //System.out.println(exactName + "your mom");
+                //System.out.println(" ");
                 reader.readLine(); //throw away "---"
             } else if (line2.startsWith("---")) {
                 //do nothing
@@ -154,7 +154,7 @@ public class GameState {
         String currentRoomLine = reader.readLine();
         String currentRoomFitted = currentRoomLine.substring
             (14, currentRoomLine.length());
-        System.out.println("Current room: " +currentRoomFitted);
+        //System.out.println("Current room: " +currentRoomFitted);
         
            
         Room currentSavedRoom = savedDungeon.getRoom(currentRoomFitted);
@@ -165,8 +165,18 @@ public class GameState {
                 GameState.instance().setAdventurersCurrentRoom
                     (currentSavedRoom);
             }
-        
-        
+        //read in the inventory 
+        String inventoryItems = reader.readLine();
+        String itemsFormatted =  inventoryItems.substring
+            (11, inventoryItems.length() - 1);
+        //System.out.println(itemsFormatted);
+        String theAnswer = itemsFormatted.replace(",", " ");
+        String[] itemsByOne = itemsFormatted.split(",");
+        for (String itemName : itemsByOne) {
+            //System.out.println(itemName);
+            GameState.instance().addToInventory(GameState.instance()
+                .getDungeon().getItem(itemName));
+        } 
         
     } catch (Exception e) {
         throw new RuntimeException(e);
