@@ -1,0 +1,30 @@
+class item {
+}
+class weapon {
+  damage : int
+  equipped : String
+  void doDamage()
+}
+class npc {
+  healthPoints : int
+  defense : int
+  lifeStatus : String
+}
+class GameState {
+  itemEquipped : String
+}
+class Dungeon {
+  getWeapon()
+  getNPC()
+}
+class Sword {
+}
+class Magic {
+}
+item <|-- weapon
+GameState "*" <-- item
+item <-- Dungeon : instantiates
+npc <-- Dungeon : instantiates
+item <|-- Sword
+item <|-- Magic
+
