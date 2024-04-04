@@ -1,17 +1,23 @@
+@startuml
 class item {
 }
 class weapon {
   damage : int
   equipped : String
-  void doDamage()
+  void attack()
 }
 class npc {
-  healthPoints : int
-  defense : int
-  lifeStatus : String
+  actionDesc : String
+  getActionDesc()
+}
+class player {
+  equippedWeapon : Weapon
+  getWeapon()
+  actionDesc() : String
 }
 class GameState {
   itemEquipped : String
+  removeNPCFromRoom()
 }
 class Dungeon {
   getWeapon()
@@ -21,10 +27,25 @@ class Sword {
 }
 class Magic {
 }
+class Character {
+  healthPoints : int
+  defense : int
+  lifeStatus : String
+}
+class Battle {
+  characters : ArrayList
+  numNPCs : int
+}
+class Room {
+}
+Battle <-- Room : instantiates
 item <|-- weapon
 GameState "*" <-- item
 item <-- Dungeon : instantiates
-npc <-- Dungeon : instantiates
-item <|-- Sword
-item <|-- Magic
-
+Character <-- Dungeon : instantiates
+weapon <|-- Sword
+weapon <|-- Magic
+Character <|-- player
+Character <|-- npc
+GameState <-- Battle : uses
+@enduml
