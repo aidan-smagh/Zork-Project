@@ -78,8 +78,7 @@ public class GameState {
             pw.println(dungeon.getTitle());
             pw.println("Zork III");
             //pw.println("Dungeon file: " + new File("files/farmer.zork").getAbsolutePath() + "\n");
-            pw.print(new File(this.dungeonFileName)
-                    .getAbsolutePath() + "\n");
+            pw.print(new File(this.dungeonFileName).getAbsolutePath() + "\n");
             pw.print("Room states:\n");
             for (Room room : visited) {
                 pw.print(room.getName() + ":\n");

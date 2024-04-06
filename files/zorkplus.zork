@@ -1,0 +1,43 @@
+Simple Dungeon
+Zork III
+===
+Characters:
+VoidMage,100,20
+---
+IceWizard,100,15
+---
+===
+Items:
+VoidGrimoire,book,grimoire
+10
+read:The pages have glowing purple text.
+---
+IceStaff,staff
+25
+Light=true
+14
+raise:The staff glows brightly, chilling the surrounding air.
+---
+===
+Rooms:
+Dark Chamber
+Contents:VoidGrimoire
+NPCs:VoidMage
+A dark cave with glowing purple candles and an altar.
+---
+Ice Mountain
+Contents:IceStaff
+NPCs:IceWizard
+Atop this tall mountain lies a lived-in mancave with a penguin painting.
+---
+===
+Exits:
+Dark Chamber
+u
+Ice Mountain
+---
+Ice Mountain
+d
+Dark Chamber
+---
+===

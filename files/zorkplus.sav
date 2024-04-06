@@ -1,0 +1,17 @@
+Simple Dungeon
+Zork III
+/home/students/dfrazie2/zorkProject/files/zorkplus.zork
+Room States:
+Dark Chamber:
+beenHere=true
+Characters: [VoidMage]
+---
+Ice Mountain:
+beenHere=false
+Contents: [IceStaff]
+Characters: [IceWizard]
+---
+===
+Adventurer:
+Current room: Dark Chamber
+Inventory: VoidGrimoire,
