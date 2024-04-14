@@ -1,12 +1,5 @@
-import java.util.HashSet;
-import java.io.File;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
-
+import java.io.*;
+import java.util.*;
 public class GameState {
 
     static GameState theinstance = null; 
@@ -228,24 +221,26 @@ public class GameState {
     }
     
     void addItemToRoom(Item item, Room room) {
-        GameState.instance().roomContents.get(room).add(item);
-        /*loop through items and if its the correct item, add it to
-        the set of items in the adventurers current room.
-        for (Item itemAdded : inventory) {
-            if (itemAdded.getPrimaryName().equals(item.getPrimaryName())) {
-                GameState.instance().getAdventurersCurrentRoom().add(itemAdded);
-            }
-        }*/
-        
+        GameState.instance().roomContents.get(room).add(item);            
     }
     void removeItemFromRoom(Item item, Room room) {
           GameState.instance().roomContents.get(room).remove(item); 
     }
-    public class IllegalSaveFormatException extends Exception{
 
+   void drop(Item i) {
+        DropCommand drop = new DropCommand(i.getPrimaryName());
+        drop.execute();
+    }
+    
+    void disappear(Item i) {
+        GameState.instance().removeFromInventory(i);
+        GameState.instance().removeItemFromRoom(i, GameState.instance().currentRoom);
+        GameState.instance().getDungeon().dungeonItems.remove(i.getPrimaryName());  
+    }
+    public class IllegalSaveFormatException extends Exception{
          public IllegalSaveFormatException(String e){
              super(e);
          }
-     }
-
+    }
+    
 }

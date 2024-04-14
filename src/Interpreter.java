@@ -5,7 +5,7 @@ import java.util.Scanner;
 class Interpreter{
 
 //    public static void main(String args[]) {
-    public static void main(String args[]) throws Room.NoRoomException, FileNotFoundException, Dungeon.IllegalDungeonFormatException, NoItemException {
+    public static void main(String args[]) throws Room.NoRoomException, FileNotFoundException, Dungeon.IllegalDungeonFormatException, NoItemException, NoCharacterException {
 
             Scanner scanner = new Scanner(System.in);
 

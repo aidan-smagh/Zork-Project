@@ -24,7 +24,7 @@ public class Item {
         this.primaryName = names[0];
         this.weight = Integer.parseInt(s.nextLine());
         String line = s.nextLine();
-        
+      
          //check that this line doesn't equal to ---. check for aliases       
         while (!line.equals("---")) {
             String[] parts = line.split(":");
@@ -34,8 +34,15 @@ public class Item {
         //add aliases         
         for (int i = 1; i < names.length; i++) {
             aliases.add(names[i].trim());
-        }        
-    }
+        }
+   /*     if (line.contains("light")) {            //stuck here, dont know how to make this item a light
+            String[] lineInfo = line.split("=");
+            if (lineInfo[1].equals("true")) {
+                LightSource light = new LightSource(s);
+                //this = light;
+            }
+        } */ 
+    } 
 
     public boolean goesBy(String name) {
         return primaryName.equals(name) || aliases.contains(name);
