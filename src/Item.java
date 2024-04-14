@@ -28,7 +28,19 @@ public class Item {
          //check that this line doesn't equal to ---. check for aliases       
         while (!line.equals("---")) {
             String[] parts = line.split(":");
-            messages.put(parts[0], parts[1]);
+            String part1 = parts[0];
+            String command;
+            if(part1.contains("[")){
+             command = part1.split("\\[")[0].trim();
+            }
+            else{
+                command = part1;
+            }
+            messages.put(command, parts[1]);
+           
+      //   String command = line.split("\\[")[0].trim();
+      //  messages.put(command, line.substring(command.length()+1));
+
             line = s.nextLine();
         }
         //add aliases         

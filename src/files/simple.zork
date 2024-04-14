@@ -1,35 +1,42 @@
-Simple Dungeon
-Zork II
+MyHome
+Zork III
+===
+Items:
+DrPepper,can,soda
+10
+kick:The can skitters down the hallway.
+shake:A liquid fizzes menacingly inside the can.
+drink[Transform(emptyCan)]:Gulp, gulp -- that was GOOD!  *belch*
+---
+emptyCan,can,soda
+2
+kick:The empty can skitters down the hallway.
+drink:Sorry, all gone!
+---
+magicWand,wand
+5
+break[Wound(10),Disappear]:The wand snaps in half. Strange magic fills the air; you feel suddenly ill.
+wave[Score(5),Teleport]:An angelic form briefly appears, smiles, and just as quickly fades away. 
+---
 ===
 Rooms:
-Boring Room
-This is a room with plain, white walls.
-Some might call it boring, but I call it "home."
-I mean, it *does* have a multi-line description!
+Grand Foyer
+Contents: DrPepper
+The Grand Foyer welcomes visitors.
 ---
-Tedious Room
-This room is missing something, I just can't put my
-finger on it.
----
-Blah Room
-Sooooo sick of quarantine.
+M's Room
+Contents: magicWand
+The Master Bedroom.
 ---
 ===
 Exits:
-Boring Room
-e
-Tedious Room
+Grand Foyer
+n
+M's Room
 ---
-Tedious Room
-w
-Boring Room
----
-Tedious Room
-e
-Blah Room
----
-Blah Room
-w
-Tedious Room
+M's Room
+s
+Grand Foyer
 ---
 ===
+
