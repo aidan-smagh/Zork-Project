@@ -3,20 +3,28 @@ import java.util.*;
 public class GameState {
 
     static GameState theinstance = null; 
-    Dungeon dungeon = null;           //dungeon
-    Room currentRoom = null;          //from Room
+    Dungeon dungeon = null;           
+    Character PLAYER = null; //static Character representing the user (has HP, DEF, hurt messages)
+    int playerScore = 0;  //score
+    Item equippedItem = null;
+    Room currentRoom = null;         
     HashSet<Room> visited = null;
     ArrayList<Item> inventory = null;
     Hashtable<Room, HashSet<Item>> roomContents = null;
+    Hashtable<Room, HashSet<Character>> charsInRoom = null; //knows which chars are in which rooms
     private String dungeonFileName = null;
 
     private GameState() {
         // Singleton pattern
         dungeon = null;
+        PLAYER = new Character("player",100,25);
+        playerScore = 0;
+        equippedItem = null;
         currentRoom = null;
         visited = new HashSet<>();
         inventory = new ArrayList<>();
         roomContents = new Hashtable<>();
+        charsInRoom = new Hashtable<>();
         this.dungeonFileName = dungeonFileName;
     }
 
@@ -30,7 +38,6 @@ public class GameState {
     public void initialize(Dungeon dungeon) {
         this.dungeon = dungeon;
         this.currentRoom = dungeon.getEntry();
-
     }
 
     public Room getAdventurersCurrentRoom() {
@@ -60,11 +67,7 @@ public class GameState {
     public void setDungeonFileName(String filename) {
         this.dungeonFileName = filename;
     }
-    
-//    public describeFull(){
-        
-  //  }
-  
+     
     void store(String saveName) throws Exception{
         try (PrintWriter pw = new PrintWriter(saveName)) {
             // Write the first line
@@ -79,9 +82,7 @@ public class GameState {
                 if (GameState.instance().getItemsInRoom(room).isEmpty()) {
                     pw.println("---");
                 } else {
-
-                    pw.println("Contents: " + GameState.instance()
-                        .getItemsInRoom(room));
+                    pw.println("Contents: " + GameState.instance().getItemsInRoom(room));
                     pw.println("---");
                 }
             }
@@ -94,8 +95,7 @@ public class GameState {
             } else {
                 pw.print("Inventory: ");
                 for (int i = 0; i < inventory.size(); i++) {
-                    pw.print(inventory.get(i) + ",");
-            
+                    pw.print(inventory.get(i) + ",");            
                 }
             }
         }
@@ -105,11 +105,7 @@ public class GameState {
         }
     }
 
-
-
-
-    void restore(String saveFileName) throws Exception {
-        
+    void restore(String saveFileName) throws Exception {        
     try{
         BufferedReader reader = new BufferedReader
             (new FileReader(saveFileName));     
@@ -185,10 +181,10 @@ public class GameState {
         return inventory;
     }
     void addToInventory(Item item) {
-        GameState.instance().inventory.add(item);
+        inventory.add(item);
     }
     void removeFromInventory(Item item) {
-        GameState.instance().inventory.remove(item);
+        inventory.remove(item);
     }
     Item getItemInVicinityNamed(String name) throws NoItemException { //in progress
         String itemName = name;
@@ -217,22 +213,45 @@ public class GameState {
         throw new NoItemException();
     }
     HashSet<Item> getItemsInRoom(Room room) {
-        return GameState.instance().roomContents.get(room);
+        return roomContents.get(room);
     }
     
     void addItemToRoom(Item item, Room room) {
-        GameState.instance().roomContents.get(room).add(item);            
+        roomContents.get(room).add(item);            
     }
     void removeItemFromRoom(Item item, Room room) {
-          GameState.instance().roomContents.get(room).remove(item); 
+        roomContents.get(room).remove(item); 
     }
 
-   void drop(Item i) {
+    void addToScore(int n) {
+        playerScore += n;
+    } 
+    //no getter for playerScore, it's public
+    void setScore(int n) {
+        playerScore = n;
+    }
+    //no getter for equppedItem, it's public 
+    void setEquippedItem(Item i) {
+        equippedItem = i;
+    }
+    
+    void addCharToRoom(Character c, Room room) {       //these 3 methods are just replicas of the Item versions
+        charsInRoom.get(room).add(c);
+    }
+    void removeCharFromRoom(Character c, Room room) {
+         charsInRoom.get(room).remove(c);
+    }
+    HashSet<Character> getCharsInRoom(Room room) {
+        HashSet<Character> chars = charsInRoom.get(room);
+        return chars;
+    }
+
+    void drop(Item i) { //new drop comd created AND executed, allows for multiple actions to be done with one user input, ex. some Item is hot and wounds you, and you also drop it at the same time
         DropCommand drop = new DropCommand(i.getPrimaryName());
         drop.execute();
     }
     
-    void disappear(Item i) {
+    void disappear(Item i) { //currently "untestable" w/ test main()s, but should work in-game. u can test but u have to manually input items an inventory and dungeon etc etc 
         GameState.instance().removeFromInventory(i);
         GameState.instance().removeItemFromRoom(i, GameState.instance().currentRoom);
         GameState.instance().getDungeon().dungeonItems.remove(i.getPrimaryName());  
