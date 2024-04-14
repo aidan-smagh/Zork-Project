@@ -14,9 +14,9 @@ read:The pages have glowing purple text.
 ---
 IceStaff,staff
 25
-Light=true
-14
 raise:The staff glows brightly, chilling the surrounding air.
+light=true
+14,0.5
 ---
 ===
 Rooms:
