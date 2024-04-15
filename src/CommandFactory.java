@@ -68,8 +68,15 @@ public class CommandFactory {
    }
    else if (parseParts.length == 2) {
             return new ItemSpecificCommand(parseParts[0], parseParts[1]);
-        }        
-           
+        }
+
+    else if(commandTypes.equalsIgnoreCase("score")){
+        return new ScoreCommand(); 
+    }   
+    
+    else if(commandTypes.equalsIgnoreCase("health")){
+        return new HealthCommand();
+    }    
     
    else{
     return new UnknownCommand(commandString);

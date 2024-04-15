@@ -29,9 +29,14 @@ class ItemSpecificCommand extends Command{
                     Item targetItem = GameState.instance().getItemFromInventoryNamed(targetItemName);
                     transformItem(item, targetItem);
 
-            }
+                 }
+              // else{
+               //System.out.println("targetItemName is null");
+               // return "targetItemName is null";
+              // }
+              
+             }
             
-         }
 
             if(verb.contains("Teleport")){
                 teleport();

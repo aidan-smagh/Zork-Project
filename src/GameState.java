@@ -260,18 +260,8 @@ public class GameState {
          public IllegalSaveFormatException(String e){
              super(e);
          }
-<<<<<<< HEAD
      }
 
-
-
-
-
-
-
-
-=======
-    }
     
->>>>>>> 68c1676e14a7eef298614d07df047442cf6e51ab
+   
 }
