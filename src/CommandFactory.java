@@ -19,6 +19,9 @@ public class CommandFactory {
    
    String[] parseParts = commandString.split(" ", 2);
    String commandTypes = parseParts[0].toLowerCase();
+   
+  // System.out.println(commandString);
+  // System.out.println(commandTypes);
 
    if(commandTypes.equals("take")){   
        String item;          //assigns the second part of the command to 

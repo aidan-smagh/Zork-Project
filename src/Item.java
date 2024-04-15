@@ -7,6 +7,8 @@ public class Item {
 
     String primaryName;
     int weight;
+
+    String fullCommand;
     //hashtable and hashset for messages and aliases -used
     Hashtable<String, String> messages;
     HashSet<String> aliases; //the other names players can refer to the item are called its aliases.
@@ -25,13 +27,18 @@ public class Item {
         this.weight = Integer.parseInt(s.nextLine());
         String line = s.nextLine();
       
+        this. fullCommand = "";
          //check that this line doesn't equal to ---. check for aliases       
         while (!line.equals("---")) {
             String[] parts = line.split(":");
             String part1 = parts[0];
             String command;
+
+           // String fullcommand;
+
             if(part1.contains("[")){
              command = part1.split("\\[")[0].trim();
+             fullCommand = part1.trim();
             }
             else{
                 command = part1;
@@ -93,6 +100,12 @@ public class Item {
             System.out.println(alias);
         }
     }
+
+
+    public String getFullCommand(){
+    return fullCommand;
+    }
+
 
     public static void main(String[] args) throws NoItemException {
         try {

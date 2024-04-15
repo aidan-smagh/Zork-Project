@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Hashtable;
 
 class ItemSpecificCommand extends Command{
 
@@ -20,13 +23,36 @@ class ItemSpecificCommand extends Command{
         if (item != null){
 
             String responseMsg = item.getMessageForVerb(verb);
-            
-            if (verb.contains("Transform")) {
+           
+
+            String fullCommand = item.getFullCommand();
+            System.out.println(fullCommand);
+
+
+            if (fullCommand.contains("Transform")) {
             
         // String targetItemName = verb.split("\\(")[1].split("\\)")[0];
-            String targetItemName = extractTargetItemName(verb);
-               if(targetItemName != null){
-                    Item targetItem = GameState.instance().getItemFromInventoryNamed(targetItemName);
+            String targetItemName = extractTargetItemName(fullCommand);
+              
+           System.out.println("target item: "+ targetItemName);
+
+           Item targetItem1 = GameState.instance().getDungeon().getItem(targetItemName);
+            System.out.println("hi "+targetItem1);
+          // Hashtable<String, Item> dungeonItems = GameState.instance().getDungeon().getItem();
+
+            // Print the items in the dungeon
+         //   System.out.println("Items in the dungeon:");
+         //   for (String itemName : dungeonItems.keySet()) {
+         //       System.out.println("- " + itemName);
+          //  }
+
+
+
+
+           if(targetItemName != null){
+              // System.out.println("hi");
+                    Item targetItem = GameState.instance().getDungeon().getItem(targetItemName);
+                    System.out.println(targetItem);
                     transformItem(item, targetItem);
 
                  }
@@ -38,9 +64,17 @@ class ItemSpecificCommand extends Command{
              }
             
 
-            if(verb.contains("Teleport")){
+            if(fullCommand.contains("Teleport")){
                 teleport();
             }
+
+            if(verb.contains("Score")){
+
+            int scoreValue = extractScoreValue(verb);
+ 
+            GameState.instance().addToScore(scoreValue);
+            }
+
 
             if (responseMsg != null) {
                     return responseMsg;
@@ -69,6 +103,20 @@ class ItemSpecificCommand extends Command{
             }
         }
         return null;
+    }
+
+
+    private int extractScoreValue(String verb) {
+    int scoreIndex = verb.indexOf("Score");
+    if (scoreIndex != -1) {
+        int startIndex = verb.indexOf('(', scoreIndex);
+        int endIndex = verb.indexOf(')', startIndex);
+        if (startIndex != -1 && endIndex != -1) {
+            String scoreString = verb.substring(startIndex + 1, endIndex);
+            return Integer.parseInt(scoreString);
+        }
+    }
+    return 0; // Return 0 if score value not found
     }
 
 
