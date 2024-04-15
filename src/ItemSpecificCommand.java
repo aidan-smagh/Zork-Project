@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Hashtable;
-
+import java.util.ArrayList;
 class ItemSpecificCommand extends Command{
 
     private String verb;
@@ -65,6 +65,7 @@ class ItemSpecificCommand extends Command{
             
 
             if(fullCommand.contains("Teleport")){
+                System.out.println("teleport exists");
                 teleport();
             }
 
@@ -151,12 +152,23 @@ class ItemSpecificCommand extends Command{
     // Get the current room
     Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
 
+    System.out.println("current Room: " +currentRoom);
     // Get a random room different from the current room
-    Room randomRoom;
-    do {
-        int randomIndex = (int) (Math.random() * GameState.instance().getDungeon().rooms.size());
-        randomRoom = GameState.instance().getDungeon().rooms.get(randomIndex);
-    } while (randomRoom == currentRoom);
+    
+   
+ArrayList<Room> availableRooms = new ArrayList<>(GameState.instance().getDungeon().rooms.values());
+    availableRooms.remove(currentRoom);
+
+    // Get a random index to select a room
+    int randomIndex = (int) (Math.random() * availableRooms.size());
+
+    // Select the random room
+    Room randomRoom = availableRooms.get(randomIndex);
+    System.out.println("Random Room: " + randomRoom.getName());
+
+
+
+    System.out.println("randomRoom: " + randomRoom);
 
     // Teleport the player to the random room
     GameState.instance().setAdventurersCurrentRoom(randomRoom);
