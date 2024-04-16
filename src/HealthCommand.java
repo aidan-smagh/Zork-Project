@@ -6,11 +6,11 @@ public class HealthCommand extends Command{
     int healthNum = GameState.instance().PLAYER.getHP();
 
       String healthStatus;
-        if (healthNum >= 80) {
+        if (healthNum > 80) {
             healthStatus = "You feel fit as a fiddle.";
-        } else if (healthNum >= 60) {
+        } else if (healthNum > 50) {
             healthStatus = "You're a bit light-headed.";
-        } else if (healthNum >= 40) {
+        } else if (healthNum > 20) {
             healthStatus = "Each step is a stagger from the pain of your wounds.";
         } else {
             healthStatus = "You are about to die.";

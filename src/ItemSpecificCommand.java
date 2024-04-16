@@ -21,12 +21,33 @@ class ItemSpecificCommand extends Command{
 
 
         if (item != null){
-
             String responseMsg = item.getMessageForVerb(verb);
            
 
-            String fullCommand = item.getFullCommand();
-            System.out.println(fullCommand);
+            ArrayList<String> fullCommands = item.getFullCommands();
+
+            String fullCommand = "";
+                // Iterate through the commands to find the matching one
+                for (String fullCommand1 : fullCommands) {
+                    if (fullCommand1.contains(verb)) {
+                        // Perform the action associated with the command
+                        // For now, just printing the full command
+
+                        fullCommand = fullCommand1;
+                        System.out.println("hi " + fullCommand);
+                        
+                        // Optionally, you can return a response message based on the command
+                        // String responseMsg = item.getMessageForVerb(verb);
+                        // return responseMsg;
+                    }
+                }
+
+
+
+
+
+           // String fullCommand = item.getFullCommand();
+            System.out.println("hi "+fullCommand);
 
 
             if (fullCommand.contains("Transform")) {
@@ -34,10 +55,10 @@ class ItemSpecificCommand extends Command{
         // String targetItemName = verb.split("\\(")[1].split("\\)")[0];
             String targetItemName = extractTargetItemName(fullCommand);
               
-           System.out.println("target item: "+ targetItemName);
+          // System.out.println("target item: "+ targetItemName);
 
            Item targetItem1 = GameState.instance().getDungeon().getItem(targetItemName);
-            System.out.println("hi "+targetItem1);
+         //   System.out.println("hi "+targetItem1);
           // Hashtable<String, Item> dungeonItems = GameState.instance().getDungeon().getItem();
 
             // Print the items in the dungeon
@@ -52,7 +73,7 @@ class ItemSpecificCommand extends Command{
            if(targetItemName != null){
               // System.out.println("hi");
                     Item targetItem = GameState.instance().getDungeon().getItem(targetItemName);
-                    System.out.println(targetItem);
+           //         System.out.println(targetItem);
                     transformItem(item, targetItem);
 
                  }
@@ -77,6 +98,13 @@ class ItemSpecificCommand extends Command{
 
             GameState.instance().addToScore(scoreValue);
             }
+
+         //wound
+           if(fullCommand.contains("Wound")){
+            System.out.println("wound exists");
+            wound(fullCommand);
+           }
+
 
 
             if (responseMsg != null) {
@@ -131,17 +159,17 @@ class ItemSpecificCommand extends Command{
         // Remove the original item from the inventory
        // GameState.instance().removeFromInventory(originalItem);
       try{
-        System.out.println("Removing " + originalItem.getPrimaryName() + " from the current room...");
-
+  //      System.out.println("Removing " + originalItem.getPrimaryName() + " from the current room...");
+        GameState.instance().removeFromInventory(originalItem);
         GameState.instance().removeItemFromRoom(originalItem, GameState.instance().currentRoom);
      System.out.println("Removed " + originalItem.getPrimaryName() + " from the current room.");
     
         // Add the target item to the inventory
        // GameState.instance().addToInventory(targetItem);
-        System.out.println("Adding " + targetItem.getPrimaryName() + " to the current room...");
+ //       System.out.println("Adding " + targetItem.getPrimaryName() + " to the current room...");
 
      GameState.instance().addItemToRoom(targetItem, GameState.instance().currentRoom);
-    System.out.println("done");
+  //  System.out.println("done");
         System.out.println("Added " + targetItem.getPrimaryName() + " to the current room.");
       }
       catch (Exception e) {
@@ -179,6 +207,34 @@ ArrayList<Room> availableRooms = new ArrayList<>(GameState.instance().getDungeon
     System.out.println("You have been teleported to " + randomRoom.getName() + ".");
     
     }
+
+
+ private int wound(String verb) {
+     int woundIndex = verb.indexOf("Wound");
+     System.out.println(woundIndex);
+
+     if (woundIndex != -1) {
+         int startIndex = verb.indexOf('(', woundIndex);
+         int endIndex = verb.indexOf(')', startIndex);
+         if (startIndex != -1 && endIndex != -1) {
+          String woundString = verb.substring(startIndex + 1, endIndex); 
+          int woundValue = Integer.parseInt(woundString);
+          System.out.println(woundValue);
+          int currentHP = GameState.instance().PLAYER.getHP();
+          System.out.println(currentHP);
+          int newHP = currentHP - woundValue;
+
+          
+
+          GameState.instance().PLAYER.setHP(newHP);
+            System.out.println("You've been wounded!");
+         
+         }
+     }
+     return 0; // Return 0 if score value not found
+     }
+
+
 }
 
 

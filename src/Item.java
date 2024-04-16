@@ -3,17 +3,18 @@ import java.io.FileNotFoundException;
 import java.util.Hashtable;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Item {
 
     String primaryName;
     int weight;
 
-    String fullCommand;
+   // String fullCommand;
     //hashtable and hashset for messages and aliases -used
     Hashtable<String, String> messages;
     HashSet<String> aliases; //the other names players can refer to the item are called its aliases.
-
-
+    
+    ArrayList<String> fullCommands;
 
     public Item(Scanner s) throws NoItemException {
         aliases = new HashSet<>();
@@ -27,18 +28,21 @@ public class Item {
         this.weight = Integer.parseInt(s.nextLine());
         String line = s.nextLine();
       
-        this. fullCommand = "";
-         //check that this line doesn't equal to ---. check for aliases       
+       // this.fullCommand = "";
+        fullCommands = new ArrayList<>();
+        
+        //check that this line doesn't equal to ---. check for aliases       
         while (!line.equals("---")) {
             String[] parts = line.split(":");
             String part1 = parts[0];
+            fullCommands.add(part1);
             String command;
 
            // String fullcommand;
 
             if(part1.contains("[")){
              command = part1.split("\\[")[0].trim();
-             fullCommand = part1.trim();
+            // fullCommand = part1.trim();
             }
             else{
                 command = part1;
@@ -102,8 +106,8 @@ public class Item {
     }
 
 
-    public String getFullCommand(){
-    return fullCommand;
+    public ArrayList<String> getFullCommands(){
+    return fullCommands;
     }
 
 
