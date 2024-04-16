@@ -28,6 +28,9 @@ M's Room
 Contents: magicWand
 The Master Bedroom.
 ---
+Living Room
+Beautiful Living Room.
+---
 ===
 Exits:
 Grand Foyer
@@ -37,6 +40,14 @@ M's Room
 M's Room
 s
 Grand Foyer
+---
+M's Room
+w
+Living Room
+---
+Living Room
+e
+M's Room
 ---
 ===
 

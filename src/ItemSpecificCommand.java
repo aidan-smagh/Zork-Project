@@ -69,10 +69,12 @@ class ItemSpecificCommand extends Command{
                 teleport();
             }
 
-            if(verb.contains("Score")){
+            if(fullCommand.contains("Score")){
 
-            int scoreValue = extractScoreValue(verb);
- 
+            int scoreValue = extractScoreValue(fullCommand);
+            
+            System.out.println("score: "+scoreValue);
+
             GameState.instance().addToScore(scoreValue);
             }
 
@@ -109,6 +111,8 @@ class ItemSpecificCommand extends Command{
 
     private int extractScoreValue(String verb) {
     int scoreIndex = verb.indexOf("Score");
+    System.out.println(scoreIndex);
+    
     if (scoreIndex != -1) {
         int startIndex = verb.indexOf('(', scoreIndex);
         int endIndex = verb.indexOf(')', startIndex);
