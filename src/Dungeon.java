@@ -32,8 +32,8 @@ public class Dungeon{
         if (scanner.hasNextLine()) {
             this.title = scanner.nextLine();
             String versionLine = scanner.nextLine();
-            if (!versionLine.equals("Zork III")) {
-                throw new IllegalDungeonFormatException("Invalid version! Required: 'Zork III'" );
+            if (!versionLine.equals("Zork++")) {
+                throw new IllegalDungeonFormatException("Invalid version! Required: 'Zork++'" );
             }
             System.out.println(scanner.nextLine()); // "==="
             System.out.println(scanner.nextLine()); // 

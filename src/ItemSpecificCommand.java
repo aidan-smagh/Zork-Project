@@ -266,14 +266,14 @@ ArrayList<Room> availableRooms = new ArrayList<>(GameState.instance().getDungeon
          GameState.instance().removeItemFromRoom(item, GameState.instance().currentRoom);
          GameState.instance().getDungeon().dungeonItems.remove(item.getPrimaryName());
     }
-    private String win(String fullCommand) {
-        int winText = fullCommand.indexOf(':');
+    private void win(String fullCommand) {
+        int winTextIndex = fullCommand.indexOf(':');
 
-        if (winText != -1) {
-            String answer = fullCommand.substring(winText + 1).trim();
+        if (winTextIndex != -1) {
+            String answer = fullCommand.substring(winTextIndex + 1).trim();
             System.out.println(answer);
         }
-        return "q";
+        GameState.instance().endGame();
     }
 }
 

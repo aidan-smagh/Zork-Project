@@ -7,7 +7,7 @@ class Interpreter{
 //    public static void main(String args[]) {
     public static void main(String args[]) throws Room.NoRoomException, FileNotFoundException, Dungeon.IllegalDungeonFormatException, NoItemException, NoCharacterException {
 
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the file name or file path (with .zork or .sav extension):");
         String fileName = scanner.nextLine();
@@ -61,6 +61,7 @@ class Interpreter{
         while (true) {
             String input = scanner.nextLine();
             
+   
             if (input.equals("q")) {
                 break;
             }
