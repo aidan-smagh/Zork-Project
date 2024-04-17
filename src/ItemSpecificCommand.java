@@ -99,9 +99,12 @@ class ItemSpecificCommand extends Command{
             GameState.instance().addToScore(scoreValue);
             }
             
-            if(fullCommand.contains("Win")) {
+            if (fullCommand.contains("Win")) {
                 win(fullCommand);
                 
+            }
+            if (fullCommand.contains("Die")) {
+                die(fullCommand);
             }
          //wound
            if(fullCommand.contains("Wound")){
@@ -273,6 +276,17 @@ ArrayList<Room> availableRooms = new ArrayList<>(GameState.instance().getDungeon
             String answer = fullCommand.substring(winTextIndex + 1).trim();
             System.out.println(answer);
         }
+        System.out.println("Congratulations, you have won the game!");
+        GameState.instance().endGame();
+    }
+    private void die(String fullCommand) {
+        int dieTextIndex = fullCommand.indexOf(':');
+        if (dieTextIndex != -1) {
+            String answer = fullCommand.substring(dieTextIndex + 1).trim();
+            System.out.println(answer);
+        }
+        System.out.println("You have died");
+        System.out.println("GAME OVER!");
         GameState.instance().endGame();
     }
 }

@@ -59,6 +59,13 @@ class Interpreter{
         //Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            
+            if (GameState.instance().PLAYER.getHP() == 0) {
+                System.out.println("You have died.");
+                System.out.println("GAME OVER");
+                break;
+            }
+            
             String input = scanner.nextLine();
             
    

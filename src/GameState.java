@@ -257,7 +257,6 @@ public class GameState {
         GameState.instance().getDungeon().dungeonItems.remove(i.getPrimaryName());  
     }
     void endGame() {
-        System.out.println("Congratulations, you have beaten the game!");
         System.exit(0);
     }
     public class IllegalSaveFormatException extends Exception{
