@@ -108,7 +108,9 @@ class ItemSpecificCommand extends Command{
             if (fullCommand.contains("Disappear")) {
                 GameState.instance().disappear(item);
             }
-
+            if (fullCommand.contains("Drop")) {
+                GameState.instance().drop(item);
+            }
             if (responseMsg != null) {
                     return responseMsg;
                 } else {
