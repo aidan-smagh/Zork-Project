@@ -4,13 +4,13 @@ Zork III
 Items:
 DrPepper,can,soda
 10
-kick:The can skitters down the hallway.
+kick[Drop]:The can skitters down the hallway.
 shake:A liquid fizzes menacingly inside the can.
 drink[Transform(emptyCan)]:Gulp, gulp -- that was GOOD!  *belch*
 ---
 emptyCan,can,soda
 2
-kick:The empty can skitters down the hallway.
+kick[Drop]:The empty can skitters down the hallway.
 drink:Sorry, all gone!
 ---
 magicWand,wand

@@ -34,7 +34,7 @@ class ItemSpecificCommand extends Command{
                         // For now, just printing the full command
 
                         fullCommand = fullCommand1;
-                        System.out.println("hi " + fullCommand);
+      //                  System.out.println("hi " + fullCommand);
                         
                         // Optionally, you can return a response message based on the command
                         // String responseMsg = item.getMessageForVerb(verb);
@@ -47,7 +47,7 @@ class ItemSpecificCommand extends Command{
 
 
            // String fullCommand = item.getFullCommand();
-            System.out.println("hi "+fullCommand);
+    //        System.out.println("hi "+fullCommand);
 
 
             if (fullCommand.contains("Transform")) {
@@ -105,6 +105,15 @@ class ItemSpecificCommand extends Command{
             wound(fullCommand);
            }
 
+            if(fullCommand.contains("Drop")){
+            System.out.println("hii!");
+                drop(item); //drop method
+            }
+
+            
+            if(fullCommand.contains("Disappear")){
+                disappear(item);
+            }
 
 
             if (responseMsg != null) {
@@ -209,20 +218,20 @@ ArrayList<Room> availableRooms = new ArrayList<>(GameState.instance().getDungeon
     }
 
 
- private int wound(String verb) {
-     int woundIndex = verb.indexOf("Wound");
-     System.out.println(woundIndex);
+    private int wound(String verb) {
+         int woundIndex = verb.indexOf("Wound");
+         System.out.println(woundIndex);
 
-     if (woundIndex != -1) {
-         int startIndex = verb.indexOf('(', woundIndex);
-         int endIndex = verb.indexOf(')', startIndex);
-         if (startIndex != -1 && endIndex != -1) {
-          String woundString = verb.substring(startIndex + 1, endIndex); 
-          int woundValue = Integer.parseInt(woundString);
-          System.out.println(woundValue);
-          int currentHP = GameState.instance().PLAYER.getHP();
-          System.out.println(currentHP);
-          int newHP = currentHP - woundValue;
+         if (woundIndex != -1) {
+             int startIndex = verb.indexOf('(', woundIndex);
+             int endIndex = verb.indexOf(')', startIndex);
+             if (startIndex != -1 && endIndex != -1) {
+             String woundString = verb.substring(startIndex + 1, endIndex); 
+             int woundValue = Integer.parseInt(woundString);
+             System.out.println(woundValue);
+             int currentHP = GameState.instance().PLAYER.getHP();
+             System.out.println(currentHP);
+             int newHP = currentHP - woundValue;
 
           
 
@@ -235,6 +244,18 @@ ArrayList<Room> availableRooms = new ArrayList<>(GameState.instance().getDungeon
      }
 
 
+    private void drop(Item item){
+        DropCommand drop = new DropCommand(item.getPrimaryName());
+        drop.execute();
+        System.out.println("Item dropped");
+    }
+
+    private void disappear(Item item){
+    
+    GameState.instance().removeFromInventory(item);
+         GameState.instance().removeItemFromRoom(item, GameState.instance().currentRoom);
+         GameState.instance().getDungeon().dungeonItems.remove(item.getPrimaryName());
+    }
 }
 
 
