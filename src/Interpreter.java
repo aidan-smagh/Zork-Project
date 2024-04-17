@@ -23,7 +23,7 @@ class Interpreter{
                 dungeon = new Dungeon(fileName);
                 GameState.instance().initialize(dungeon);
                 System.out.println(dungeon.getEntry().describe());
-
+                
 
             } catch (Dungeon.IllegalDungeonFormatException | FileNotFoundException | Room.NoRoomException e) {
                 System.err.println("Error loading the dungeon: " + e.getMessage());
@@ -54,18 +54,17 @@ class Interpreter{
             //System.exit(1);
         }
 
-
         // Initialize the game state
 
         //Scanner scanner = new Scanner(System.in);
 
         while (true) {
             String input = scanner.nextLine();
-
+            
             if (input.equals("q")) {
                 break;
             }
-
+            
             Command command = CommandFactory.instance().parse(input);
             //direction
             //Command command = new Command(input);

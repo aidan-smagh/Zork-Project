@@ -38,7 +38,7 @@ public class Dungeon{
             System.out.println(scanner.nextLine()); // "==="
             System.out.println(scanner.nextLine()); // 
 
-         /*   while (scanner.hasNextLine()) {
+            /*while (scanner.hasNextLine()) {
                 try {
                     Character character = new Character(scanner); 
                     this.add(character);        //character hydration
