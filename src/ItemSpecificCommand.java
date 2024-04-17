@@ -104,6 +104,7 @@ class ItemSpecificCommand extends Command{
             System.out.println("wound exists");
             wound(fullCommand);
            }
+<<<<<<< HEAD
 
             if(fullCommand.contains("Drop")){
             System.out.println("hii!");
@@ -115,6 +116,12 @@ class ItemSpecificCommand extends Command{
                 disappear(item);
             }
 
+=======
+            //disappear
+            if (fullCommand.contains("Disappear")) {
+                GameState.instance().disappear(item);
+            }
+>>>>>>> 2f0d83a4afc93fbb078ad4c720336213a0cb1170
 
             if (responseMsg != null) {
                     return responseMsg;
