@@ -61,8 +61,8 @@ class Interpreter{
         while (true) {
             
             if (GameState.instance().PLAYER.getHP() == 0) {
-                System.out.println("You have died.");
-                System.out.println("GAME OVER");
+                System.out.println("You have died");
+                System.out.println("GAME OVER!");
                 break;
             }
             
