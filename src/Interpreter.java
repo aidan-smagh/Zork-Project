@@ -7,7 +7,7 @@ class Interpreter{
 //    public static void main(String args[]) {
     public static void main(String args[]) throws Room.NoRoomException, FileNotFoundException, Dungeon.IllegalDungeonFormatException, NoItemException, NoCharacterException {
 
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the file name or file path (with .zork or .sav extension):");
         String fileName = scanner.nextLine();
@@ -23,7 +23,7 @@ class Interpreter{
                 dungeon = new Dungeon(fileName);
                 GameState.instance().initialize(dungeon);
                 System.out.println(dungeon.getEntry().describe());
-
+                
 
             } catch (Dungeon.IllegalDungeonFormatException | FileNotFoundException | Room.NoRoomException e) {
                 System.err.println("Error loading the dungeon: " + e.getMessage());
@@ -54,18 +54,25 @@ class Interpreter{
             //System.exit(1);
         }
 
-
         // Initialize the game state
 
         //Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            
+            if (GameState.instance().PLAYER.getHP() == 0) {
+                System.out.println("You have died");
+                System.out.println("GAME OVER!");
+                break;
+            }
+            
             String input = scanner.nextLine();
-
+            
+   
             if (input.equals("q")) {
                 break;
             }
-
+            
             Command command = CommandFactory.instance().parse(input);
             //direction
             //Command command = new Command(input);

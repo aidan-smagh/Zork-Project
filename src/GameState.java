@@ -72,7 +72,7 @@ public class GameState {
         try (PrintWriter pw = new PrintWriter(saveName)) {
             // Write the first line
             pw.println(dungeon.getTitle());
-            pw.println("Zork III");
+            pw.println("Zork++");
             //pw.println("Dungeon file: " + new File("files/farmer.zork").getAbsolutePath() + "\n");
             pw.print(new File(this.dungeonFileName).getAbsolutePath() + "\n");
             pw.print("Room states:\n");
@@ -255,6 +255,9 @@ public class GameState {
         GameState.instance().removeFromInventory(i);
         GameState.instance().removeItemFromRoom(i, GameState.instance().currentRoom);
         GameState.instance().getDungeon().dungeonItems.remove(i.getPrimaryName());  
+    }
+    void endGame() {
+        System.exit(0);
     }
     public class IllegalSaveFormatException extends Exception{
          public IllegalSaveFormatException(String e){
