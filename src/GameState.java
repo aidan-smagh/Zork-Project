@@ -72,7 +72,7 @@ public class GameState {
         try (PrintWriter pw = new PrintWriter(saveName)) {
             // Write the first line
             pw.println(dungeon.getTitle());
-            pw.println("Zork ++");
+            pw.println("Zork++");
             //pw.println("Dungeon file: " + new File("files/farmer.zork").getAbsolutePath() + "\n");
             pw.print(new File(this.dungeonFileName).getAbsolutePath() + "\n");
             pw.print("Room states:\n");
