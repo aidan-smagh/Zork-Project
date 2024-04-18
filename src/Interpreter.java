@@ -33,10 +33,9 @@ class Interpreter{
             // Restore the game state from the .sav file
             try {
                 GameState.instance().restore(fileName);
-                Dungeon savedDungeon = GameState.instance().getDungeon();
+                //Dungeon savedDungeon = GameState.instance().getDungeon();
                 //GameState.instance().initialize(dungeon);
-                System.out.println(GameState.instance()
-                        .getAdventurersCurrentRoom().describe());
+                System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());
                 String input = scanner.nextLine();
                 Command command = CommandFactory.instance().parse(input);
                 String result = command.execute();

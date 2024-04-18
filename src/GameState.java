@@ -89,7 +89,7 @@ public class GameState {
             // Write the ending delimiter
             pw.println("===");
             pw.println("Adventurer:");
-            pw.print("Current room: " + currentRoom.getName() + "\n");
+            pw.println("Current room: " + currentRoom.getName());
             if (inventory.isEmpty()) {
                 pw.println(" ");
             } else {
@@ -97,10 +97,10 @@ public class GameState {
                 for (int i = 0; i < inventory.size(); i++) {
                     pw.print(inventory.get(i) + ",");            
                 }
-            }
-            
-            pw.println("Score: " + playerScore);
-          //  pw.println("Health");
+                
+            }            
+            pw.print("\nScore:" + playerScore +"\n");
+            pw.println("Health:" + PLAYER.getHP());
 
         }
         catch (Exception e) {
@@ -178,15 +178,21 @@ public class GameState {
                 .getDungeon().getItem(itemName));
         }
         }
-        //help here.
-        if(nextL.startsWith("Score: ")){
-           // String Score1 = GameState.instance().playerScore;
-            String score1 = nextL.substring(7) + nextL.substring(8) + nextL.substring(9);
-           playerScore = Integer.parseInt(score1);
-           //  playerScore = Integer.parseInt(nextL.substring(7));
-           // System.out.println(playerScore);
+        
+        
+        nextL = reader.readLine(); 
+        if(nextL.contains("Score:")){  //restore score           
+            String scoreInfo[] = nextL.split(":");
+            String score = scoreInfo[1];
+            GameState.instance().setScore(Integer.parseInt(score));
         }
 
+        nextL = reader.readLine();
+         if(nextL.contains("Health:")){ //restore health
+             String healthInfo[] = nextL.split(":");
+             String health = healthInfo[1];
+             GameState.instance().PLAYER.setHP(Integer.parseInt(health));            
+         }
         
     } catch (Exception e) {
         throw new RuntimeException(e);
