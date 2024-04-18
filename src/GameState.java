@@ -98,6 +98,10 @@ public class GameState {
                     pw.print(inventory.get(i) + ",");            
                 }
             }
+            
+            pw.println("Score: " + playerScore);
+          //  pw.println("Health");
+
         }
         catch (Exception e) {
             System.err.println("Error loading the game: " + e.getMessage());
@@ -160,9 +164,11 @@ public class GameState {
                     (currentSavedRoom);
             }
         //read in the inventory 
-        String inventoryItems = reader.readLine();
-        String itemsFormatted =  inventoryItems.substring
-            (11, inventoryItems.length() - 1);
+        String nextL  = reader.readLine();
+        
+        if(nextL.startsWith("Inventory")){
+        String itemsFormatted =  nextL.substring
+            (11, nextL.length() - 1);
         //System.out.println(itemsFormatted);
         String theAnswer = itemsFormatted.replace(",", " ");
         String[] itemsByOne = itemsFormatted.split(",");
@@ -170,7 +176,17 @@ public class GameState {
             //System.out.println(itemName);
             GameState.instance().addToInventory(GameState.instance()
                 .getDungeon().getItem(itemName));
-        } 
+        }
+        }
+        //help here.
+        if(nextL.startsWith("Score: ")){
+           // String Score1 = GameState.instance().playerScore;
+            String score1 = nextL.substring(7) + nextL.substring(8) + nextL.substring(9);
+           playerScore = Integer.parseInt(score1);
+           //  playerScore = Integer.parseInt(nextL.substring(7));
+           // System.out.println(playerScore);
+        }
+
         
     } catch (Exception e) {
         throw new RuntimeException(e);
