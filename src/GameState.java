@@ -100,7 +100,8 @@ public class GameState {
             }
             
             pw.println("Score: " + playerScore);
-          //  pw.println("Health");
+            pw.println("HealthPoints: " + PLAYER.getHP());
+             
 
         }
         catch (Exception e) {
@@ -179,13 +180,20 @@ public class GameState {
         }
         }
         //help here.
-        if(nextL.startsWith("Score: ")){
+        if(nextL.startsWith("Score")){
            // String Score1 = GameState.instance().playerScore;
             String score1 = nextL.substring(7) + nextL.substring(8) + nextL.substring(9);
            playerScore = Integer.parseInt(score1);
+           GameState.instance().setScore(playerScore);
            //  playerScore = Integer.parseInt(nextL.substring(7));
            // System.out.println(playerScore);
         }
+        
+      //  String line4 = reader.readLine();
+      //  if(line4.startsWith("HealthPoints")){
+      //      int healthPoints = Interger.parseInt(line4.substring(14));
+      //      PLAYER.setHP(healthPoints);
+      //  }
 
         
     } catch (Exception e) {
