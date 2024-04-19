@@ -89,7 +89,7 @@ public class GameState {
             // Write the ending delimiter
             pw.println("===");
             pw.println("Adventurer:");
-            pw.print("Current room: " + currentRoom.getName() + "\n");
+            pw.println("Current room: " + currentRoom.getName());
             if (inventory.isEmpty()) {
                 pw.println(" ");
             } else {
@@ -97,11 +97,18 @@ public class GameState {
                 for (int i = 0; i < inventory.size(); i++) {
                     pw.print(inventory.get(i) + ",");            
                 }
+<<<<<<< HEAD
             }
             
             pw.println("Score: " + playerScore);
             pw.println("HealthPoints: " + PLAYER.getHP());
              
+=======
+                
+            }            
+            pw.print("\nScore:" + playerScore +"\n");
+            pw.println("Health:" + PLAYER.getHP());
+>>>>>>> 24f33e49481d6f2bbd84533fb9e933b4f467573e
 
         }
         catch (Exception e) {
@@ -179,6 +186,7 @@ public class GameState {
                 .getDungeon().getItem(itemName));
         }
         }
+<<<<<<< HEAD
         //help here.
         if(nextL.startsWith("Score")){
            // String Score1 = GameState.instance().playerScore;
@@ -187,6 +195,15 @@ public class GameState {
            GameState.instance().setScore(playerScore);
            //  playerScore = Integer.parseInt(nextL.substring(7));
            // System.out.println(playerScore);
+=======
+        
+        
+        nextL = reader.readLine(); 
+        if(nextL.contains("Score:")){  //restore score           
+            String scoreInfo[] = nextL.split(":");
+            String score = scoreInfo[1];
+            GameState.instance().setScore(Integer.parseInt(score));
+>>>>>>> 24f33e49481d6f2bbd84533fb9e933b4f467573e
         }
         
       //  String line4 = reader.readLine();
@@ -195,6 +212,12 @@ public class GameState {
       //      PLAYER.setHP(healthPoints);
       //  }
 
+        nextL = reader.readLine();
+         if(nextL.contains("Health:")){ //restore health
+             String healthInfo[] = nextL.split(":");
+             String health = healthInfo[1];
+             GameState.instance().PLAYER.setHP(Integer.parseInt(health));            
+         }
         
     } catch (Exception e) {
         throw new RuntimeException(e);
