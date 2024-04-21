@@ -36,16 +36,20 @@ public class Dungeon{
                 throw new IllegalDungeonFormatException("Invalid version! Required: 'Zork++'" );
             }
             scanner.nextLine(); // "==="
-            scanner.nextLine(); // 
-
-            /*while (scanner.hasNextLine()) {
+            String hydrationCheck = scanner.nextLine(); // 
+            if (hydrationCheck.equals("Characters:")) {
+            while (scanner.hasNextLine()) {
                 try {
-                    Character character = new Character(scanner); 
+                    Character character = new Character(scanner);
+                    System.out.println("added "+character.getName()+" to dungeon"); 
                     this.add(character);        //character hydration
-                } catch (Exception e4) {break;}
-            } */
-
-           //System.out.println( scanner.nextLine()); //consume 'Items:'
+                } catch (Exception e4) {
+                    scanner.nextLine();
+                    break;
+                    }
+            }   
+            }
+           //System.out.println(scanner.nextLine()); //consume 'Items:'
             while (scanner.hasNextLine()) {  
                 try {                    
                     Item item = new Item(scanner);
@@ -53,7 +57,18 @@ public class Dungeon{
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }         
     
-            System.out.println(scanner.nextLine()); //consume 'Rooms:'                      
+            hydrationCheck = scanner.nextLine(); //consume 'Rooms:'
+            if (hydrationCheck.equals("Lights:")) {
+                while (!hydrationCheck.equals("Rooms:")) {  // <- skips past Lights: section 
+                    hydrationCheck = scanner.nextLine();
+                }
+                /*  String itemName = scanner.nextLine();          //in progress- hydrating 
+                    Item item = this.getItem(itemName);           //Lightsources from Items
+                    LightSource light = new LightSource(scanner);
+                    item = light;
+                    this.add(item);  */
+            }  
+                                      
             while (scanner.hasNextLine()) {
                 try {                
                 Room room = new Room(scanner);                     
@@ -61,7 +76,7 @@ public class Dungeon{
                 } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }     
     
-            scanner.nextLine(); //consume Exits:
+            System.out.println(scanner.nextLine()); //consume Exits:
             while (scanner.hasNextLine()) {
                 try {                                        
                     Exit exit = new Exit(scanner);                  

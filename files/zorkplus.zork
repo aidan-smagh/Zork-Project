@@ -1,5 +1,5 @@
 Simple Dungeon
-Zork III
+Zork++
 ===
 Characters:
 VoidMage,100,20
@@ -15,19 +15,31 @@ read:The pages have glowing purple text.
 IceStaff,staff
 25
 raise:The staff glows brightly, chilling the surrounding air.
-light=true
-14,0.5
+channel[Transform(CryoCore)]:The ice energy concentrates, producing a crystal.
+---
+VoidEssence,essence
+5
+inspect:Swirling purple energies glow.
+---
+CryoCore,core
+7
+inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
+---
+===
+Lights:
+CryoCore
+14,1
 ---
 ===
 Rooms:
 Dark Chamber
-Contents:VoidGrimoire
-NPCs:VoidMage
+Contents: VoidGrimoire
+NPCs: VoidMage
 A dark cave with glowing purple candles and an altar.
 ---
 Ice Mountain
-Contents:IceStaff
-NPCs:IceWizard
+Contents: IceStaff
+NPCs: IceWizard
 Atop this tall mountain lies a lived-in mancave with a penguin painting.
 ---
 ===

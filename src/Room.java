@@ -20,7 +20,7 @@ public class Room{
 
 
 
-    Room (Scanner scanner) throws NoRoomException, NoItemException{
+    Room (Scanner scanner) throws NoRoomException, NoItemException, NoCharacterException {
         
         this.name = scanner.nextLine();
                 
@@ -32,19 +32,28 @@ public class Room{
         String check = scanner.next();
         HashSet<Item> roomItems = new HashSet<>();
         if (check.equals("Contents:")) {            
-            String itemNames = scanner.next(); 
+            String itemNames = scanner.next();
             String[] items = itemNames.split(",");
-            for (String itemName : items) {
+           for (String itemName : items) {
                 Item i = GameState.instance().getDungeon().getItem(itemName);
                 roomItems.add(i);                
             }
-            check = scanner.next();
-            
+            check = scanner.next();            
         } else {
-            this.desc += check;
-        
+            this.desc += check;        
         } 
-        
+        HashSet<Character> roomChars = new HashSet<>();
+        if (check.equals("NPCs:")) {
+             String NPCNames = scanner.next();
+             String[] NPCs = NPCNames.split(",");
+             for (String charName : NPCs) {
+                 Character c = GameState.instance().getDungeon().getCharacter(charName);
+                 roomChars.add(c);
+             }
+             check = scanner.next();
+         } else {
+             this.desc += check;
+         }
 
         exits = new Hashtable<String, Exit>();
 
@@ -61,6 +70,7 @@ public class Room{
             GameState.instance().getDungeon().entryRoom=this;
         } 
         GameState.instance().roomContents.put(this, roomItems);
+        GameState.instance().charsInRoom.put(this, roomChars);
     }
 
 
@@ -80,11 +90,17 @@ public class Room{
     
     String roomInfo = "";
     String itemInfo = "";
+    String charInfo = "";
     HashSet<Item> items = GameState.instance().roomContents.get(GameState.instance().currentRoom);
+    HashSet<Character> chars = GameState.instance().charsInRoom.get(GameState.instance().currentRoom);
     Iterator<Item> iterator = items.iterator();
+    Iterator<Character> charIterator = chars.iterator(); 
         roomInfo = this.name + "\n" + this.desc;
         while (iterator.hasNext()) {
             itemInfo +=  "\nThere is a " + iterator.next().getPrimaryName() + " here.";
+        }
+        while (charIterator.hasNext()) {
+                 charInfo += "\nA "+charIterator.next().getName()+" is wandering around the room.";
         }
         GameState.instance().visit(this);
         for (Exit exit : exits.values()) {
@@ -96,25 +112,34 @@ public class Room{
     String describe() {
         String roomInfo = "";
         String itemInfo = "";
+        String charInfo = "";
         HashSet<Item> items = GameState.instance().roomContents.get(GameState.instance().currentRoom);
-        Iterator<Item> iterator = items.iterator();
+        HashSet<Character> chars = GameState.instance().charsInRoom.get(GameState.instance().currentRoom);
+        Iterator<Item> itemIterator = items.iterator();
+        Iterator<Character> charIterator = chars.iterator();
       //i/Room exitss
         if (!GameState.instance().hasBeenVisited(this)) {            
             roomInfo = this.name + "\n" + this.desc;                
-            while (iterator.hasNext()) {    
-                itemInfo +=  "\nThere is a " + iterator.next().getPrimaryName() + " here.";
+            while (itemIterator.hasNext()) {    
+                itemInfo +=  "\nThere is a " + itemIterator.next().getPrimaryName() + " here.";
+            }
+            while (charIterator.hasNext()) {
+                charInfo += "\nA "+charIterator.next().getName()+" is wandering around the room.";  
             }            
         GameState.instance().visit(this);            
         } else {
             roomInfo = this.name;
-            while (iterator.hasNext()) {
-                itemInfo += "\nThere is a " + iterator.next().getPrimaryName() + " here.";
+            while (itemIterator.hasNext()) {
+                itemInfo += "\nThere is a " + itemIterator.next().getPrimaryName() + " here.";
+            }
+            while (charIterator.hasNext()) {
+                 charInfo += "\nA "+charIterator.next().getName()+" is wandering around the room.";
             }
         }
         for (Exit exit : exits.values()) {
             roomInfo += "\n" + exit.describe();
         }
-        return roomInfo+itemInfo;
+        return roomInfo+itemInfo+charInfo;
     }
 
 
