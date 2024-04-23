@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Dungeon{
 
@@ -11,6 +12,9 @@ public class Dungeon{
     private String title = null;
     Hashtable<String, Item> dungeonItems = new Hashtable<>();
     Hashtable<String, Character> dungeonCharacters = new Hashtable<>();
+    
+    ArrayList<LightSource> lightSources = new ArrayList<>();
+
     public Dungeon(Room entryRoom, String title){
         this.rooms = new Hashtable<>();
         this.entryRoom = entryRoom;
@@ -19,6 +23,7 @@ public class Dungeon{
         this.dungeonCharacters = dungeonCharacters;
         rooms.put(entryRoom.getName(), entryRoom);
     }
+
 
 //Dungeon scanner:
 //
@@ -58,16 +63,27 @@ public class Dungeon{
             }         
     
             hydrationCheck = scanner.nextLine(); //consume 'Rooms:'
+            System.out.println(hydrationCheck);
+            
             if (hydrationCheck.equals("Lights:")) {
-                while (!hydrationCheck.equals("Rooms:")) {  // <- skips past Lights: section 
-                    hydrationCheck = scanner.nextLine();
-                }
+                
+             while(scanner.hasNextLine()){
+                LightSource light = new LightSource(scanner);
+                
+                System.out.println(light);
+                this.add(light);
+             }   
+                
+            }
+                //while (!hydrationCheck.equals("Rooms:")) {  // <- skips past Lights: section 
+                  //  hydrationCheck = scanner.nextLine();
+                
                 /*  String itemName = scanner.nextLine();          //in progress- hydrating 
                     Item item = this.getItem(itemName);           //Lightsources from Items
                     LightSource light = new LightSource(scanner);
                     item = light;
                     this.add(item);  */
-            }  
+                  
                                       
             while (scanner.hasNextLine()) {
                 try {                
@@ -122,6 +138,12 @@ public class Dungeon{
     public void add(Character c) {
         this.dungeonCharacters.put(c.getName(), c);
     }
+    
+    public void addLightSource(LightSource light){
+        lightSources.add(light);
+    }
+
+    
     public Character getCharacter(String charName) throws NoCharacterException {
         for (Character c : GameState.instance().getDungeon().dungeonCharacters.values()) {
             if (c.getName().equals(charName)) {
@@ -130,6 +152,8 @@ public class Dungeon{
         } 
         throw new NoCharacterException(); //throws if character not found
     }
+
+    
     
     public class IllegalDungeonFormatException extends Exception {
         public IllegalDungeonFormatException(String e) {

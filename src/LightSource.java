@@ -1,25 +1,39 @@
-/*
 
-import java.util.*;
+
+import java.util.Scanner;
+
 public class LightSource extends Item {
-    int luminance;
-    int currentBrightness;
-    int burnRate;
+    int luminance = 0;
+    int currentBrightness = 0;
+    int burnRate = 0;
 
 //need Scanner constructor 
-LightSource(Scanner s) {
-    String line = s.nextLine();
-    String[] info = line.split(",");
+    public LightSource(Scanner s) throws NoItemException  {
+   
+    super(s);
+    
+  //  String line = s.nextLine();
+  //  String[] info = line.split(" ");
+    
+        String line = s.nextLine();
+        if(line.equals("===")){
+            throw new NoItemException();
+        }
+        String[] info = line.split(" ");
+
     this.luminance = Integer.parseInt(info[0]);
     this.currentBrightness = this.luminance;
     this.burnRate = Integer.parseInt(info[1]); 
-    s.nextLine();
-    } 
-LightSource(int luminance, int currentBrightness, int burnRate) {
-    this.luminance = luminance;
-    this.currentBrightness = this.luminance; //light starts at max brightness, aka luminance
-    this.burnRate = burnRate;     
-}
+      
+    }
+    
+   
+//LightSource(int luminance, int currentBrightness, int burnRate) {
+  // super("LightSource");
+   // this.luminance = luminance;
+   // this.currentBrightness = this.luminance; //light starts at max brightness, aka luminance
+   // this.burnRate = burnRate;     
+//}
 
     public void diminish() {                 //decreases the brightnes
         this.currentBrightness -= burnRate;  //of light at chosen rate
@@ -45,4 +59,4 @@ LightSource(int luminance, int currentBrightness, int burnRate) {
     public void setBurnRate(int r) {
         this.burnRate = r;
     }
-}  */
+}  
