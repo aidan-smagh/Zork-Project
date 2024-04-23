@@ -22,7 +22,10 @@ class Character {
         this.defense = Integer.parseInt(lineInfo[2]);
         s.nextLine();
     }
-
+    
+    public String toString() {
+        return this.name;
+    }
     public String getName() {
         return this.name;
     }

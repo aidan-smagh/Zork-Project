@@ -4,12 +4,12 @@ Zork III
 Room States:
 Dark Chamber:
 beenHere=true
-Characters: [VoidMage]
+NPCs: [VoidMage]
 ---
 Ice Mountain:
 beenHere=false
 Contents: [IceStaff]
-Characters: [IceWizard]
+NPCs: [IceWizard]
 ---
 ===
 Adventurer:

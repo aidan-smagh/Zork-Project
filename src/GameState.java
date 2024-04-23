@@ -80,11 +80,23 @@ public class GameState {
                 pw.print(room.getName() + ":\n");
                 pw.print("beenHere=true\n");
                 if (GameState.instance().getItemsInRoom(room).isEmpty()) {
-                    pw.println("---");
+                  //if no items in room, check for NPCs  
+                    if (GameState.instance().getCharsInRoom(room).isEmpty()) {
+                     pw.println("---");
+                     } else {
+                         pw.println("NPCs: " + GameState.instance().getCharsInRoom(room));
+                         pw.println("---");
+                     }
                 } else {
                     pw.println("Contents: " + GameState.instance().getItemsInRoom(room));
-                    pw.println("---");
-                }
+                                        
+                    if (GameState.instance().getCharsInRoom(room).isEmpty()) {
+                        pw.println("---");
+                    } else {
+                        pw.println("NPCs: " + GameState.instance().getCharsInRoom(room));
+                        pw.println("---");
+                    }
+                } 
             }
             // Write the ending delimiter
             pw.println("===");
@@ -151,9 +163,12 @@ public class GameState {
                     (1, itemNames.length()-1);
                 //System.out.println(exactName + "your mom");
                 //System.out.println(" ");
-                reader.readLine(); //throw away "---"
-            } else if (line2.startsWith("---")) {
-                //do nothing
+                line2 = reader.readLine(); //throw away "---"
+            }
+             if (line2.startsWith("NPCS:")) {
+                String charNames = line2.substring("NPCs: ".length());
+                String exactName = charNames.substring(1, charNames.length()-1);
+                reader.readLine();
             }
         }
         reader.readLine(); //throw away "Adventurer"
@@ -289,8 +304,8 @@ public class GameState {
          charsInRoom.get(room).remove(c);
     }
     HashSet<Character> getCharsInRoom(Room room) {
-        HashSet<Character> chars = charsInRoom.get(room);
-        return chars;
+        //HashSet<Character> chars = charsInRoom.get(room);
+        return charsInRoom.get(room);
     }
 
     void drop(Item i) { //new drop comd created AND executed, allows for multiple actions to be done with one user input, ex. some Item is hot and wounds you, and you also drop it at the same time
