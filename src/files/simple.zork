@@ -1,5 +1,5 @@
 MyHome
-Zork III
+Zork++
 ===
 Items:
 DrPepper,can,soda
@@ -17,6 +17,13 @@ magicWand,wand
 5
 break[Wound(10),Disappear]:The wand snaps in half. Strange magic fills the air; you feel suddenly ill.
 wave[Score(5),Teleport]:An angelic form briefly appears, smiles, and just as quickly fades away. 
+---
+candle
+4
+---
+===
+Lights:
+candle 14 1
 ---
 ===
 Rooms:

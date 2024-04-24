@@ -109,8 +109,9 @@ public class GameState {
                 for (int i = 0; i < inventory.size(); i++) {
                     pw.print(inventory.get(i) + ",");            
                 }
-                
-            }            
+
+            }
+                        
             pw.print("\nScore:" + playerScore +"\n");
             pw.println("Health:" + PLAYER.getHP());
 
@@ -193,14 +194,21 @@ public class GameState {
                 .getDungeon().getItem(itemName));
         }
         }
-        
+ 
         
         nextL = reader.readLine(); 
         if(nextL.contains("Score:")){  //restore score           
             String scoreInfo[] = nextL.split(":");
             String score = scoreInfo[1];
             GameState.instance().setScore(Integer.parseInt(score));
+
         }
+        
+      //  String line4 = reader.readLine();
+      //  if(line4.startsWith("HealthPoints")){
+      //      int healthPoints = Interger.parseInt(line4.substring(14));
+      //      PLAYER.setHP(healthPoints);
+      //  }
 
         nextL = reader.readLine();
          if(nextL.contains("Health:")){ //restore health

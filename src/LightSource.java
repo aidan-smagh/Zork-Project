@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 import java.io.*;
 import java.util.*;
 public class LightSource extends Item {
@@ -67,6 +68,43 @@ public class LightSource extends Item {
     this.currentBrightness = this.luminance; //light starts at max brightness, aka luminance
     this.burnRate = burnRate;     
 } */
+=======
+
+import java.util.Scanner;
+
+public class LightSource extends Item {
+    int luminance = 0;
+    int currentBrightness = 0;
+    int burnRate = 0;
+
+//need Scanner constructor 
+    public LightSource(Scanner s) throws NoItemException  {
+   
+    super(s);
+    
+  //  String line = s.nextLine();
+  //  String[] info = line.split(" ");
+    
+        String line = s.nextLine();
+        if(line.equals("===")){
+            throw new NoItemException();
+        }
+        String[] info = line.split(" ");
+
+    this.luminance = Integer.parseInt(info[0]);
+    this.currentBrightness = this.luminance;
+    this.burnRate = Integer.parseInt(info[1]); 
+      
+    }
+    
+   
+//LightSource(int luminance, int currentBrightness, int burnRate) {
+  // super("LightSource");
+   // this.luminance = luminance;
+   // this.currentBrightness = this.luminance; //light starts at max brightness, aka luminance
+   // this.burnRate = burnRate;     
+//}
+>>>>>>> f579c3c7e2f7b754f6b4775f819c1c70b022fa22
 
     public void diminish() {                 //decreases the brightnes
         this.currentBrightness -= burnRate;  //of light at chosen rate

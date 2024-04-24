@@ -28,6 +28,9 @@ CryoCore,core
 inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
 14@1
 ---
+Candle
+12,1
+---
 ===
 Rooms:
 Dark Chamber
