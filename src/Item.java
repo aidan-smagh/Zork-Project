@@ -32,7 +32,7 @@ public class Item {
         fullCommands = new ArrayList<>();
         
         //check that this line doesn't equal to ---. check for aliases       
-        while (!line.equals("---")) {
+        while (!line.contains("@")) {
             String[] parts = line.split(":");
             String part1 = parts[0];
             fullCommands.add(part1);
@@ -105,7 +105,12 @@ public class Item {
         }
     }
 
-
+    public Hashtable<String, String>  getMessages() {
+        return messages;
+    }
+    public HashSet<String> getAliases() {
+        return aliases;
+    }
     public ArrayList<String> getFullCommands(){
     return fullCommands;
     }

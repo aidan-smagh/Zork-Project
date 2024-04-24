@@ -21,14 +21,12 @@ VoidEssence,essence
 5
 inspect:Swirling purple energies glow.
 ---
+===
+Lights:
 CryoCore,core
 7
 inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
----
-===
-Lights:
-CryoCore
-14,1
+14@1
 ---
 ===
 Rooms:

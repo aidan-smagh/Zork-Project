@@ -49,7 +49,7 @@ public class Dungeon{
                     }
             }   
             }
-           //System.out.println(scanner.nextLine()); //consume 'Items:'
+           //System.out.println(scanner.nextLine()); //consume line
             while (scanner.hasNextLine()) {  
                 try {                    
                     Item item = new Item(scanner);
@@ -57,16 +57,15 @@ public class Dungeon{
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }         
     
-            hydrationCheck = scanner.nextLine(); //consume 'Rooms:'
+            hydrationCheck = scanner.nextLine(); //consume line
             if (hydrationCheck.equals("Lights:")) {
-                while (!hydrationCheck.equals("Rooms:")) {  // <- skips past Lights: section 
+            /*  while (!hydrationCheck.equals("Rooms:")) {  
                     hydrationCheck = scanner.nextLine();
+                } */
+                while (scanner.hasNextLine()) {
+                LightSource light = new LightSource(scanner);
+                this.add(light);
                 }
-                /*  String itemName = scanner.nextLine();          //in progress- hydrating 
-                    Item item = this.getItem(itemName);           //Lightsources from Items
-                    LightSource light = new LightSource(scanner);
-                    item = light;
-                    this.add(item);  */
             }  
                                       
             while (scanner.hasNextLine()) {
@@ -76,7 +75,7 @@ public class Dungeon{
                 } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }     
     
-            System.out.println(scanner.nextLine()); //consume Exits:
+            System.out.println("line before exits is "+scanner.nextLine()); //consume Exits:
             while (scanner.hasNextLine()) {
                 try {                                        
                     Exit exit = new Exit(scanner);                  
