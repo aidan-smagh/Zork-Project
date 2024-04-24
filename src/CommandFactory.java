@@ -80,7 +80,15 @@ public class CommandFactory {
     else if(commandTypes.equalsIgnoreCase("health")){
         return new HealthCommand();
     }    
-    
+    else if(commandTypes.equalsIgnoreCase("fight")) {
+        String enemyName = null;
+        if (parseParts.length > 1) {
+            enemyName = parseParts[1];
+        } else {
+            enemyName = "";
+        }
+        return new FightCommand(enemyName);
+    } 
    else{
     return new UnknownCommand(commandString);
     }
