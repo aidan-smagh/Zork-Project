@@ -77,6 +77,8 @@ public class CommandFactory {
           } else {
               enemyName = "";
           }
+          System.out.println(enemyName);  
+
           return new FightCommand(enemyName);
      }
 

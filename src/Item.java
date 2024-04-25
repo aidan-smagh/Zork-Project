@@ -105,7 +105,9 @@ public class Item {
         return weight;
     }
 
-    
+    public int getDamage(){
+        return damage;
+    }    
     public String toString() { //what to put here??
         return primaryName;
     }
