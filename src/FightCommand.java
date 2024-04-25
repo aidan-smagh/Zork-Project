@@ -13,17 +13,15 @@ class FightCommand extends Command {
         }
         System.out.println("");
         try {
+            //grab the NPC in the room
             Character i = GameState.instance().getDungeon()
                 .getCharacter(enemyName);
             Room currentRoom = GameState.instance()
                 .getAdventurersCurrentRoom();
-            //grab the character that is in the room
+            
             if (!GameState.instance().getCharsInRoom(currentRoom)
                     .contains(i)) {
                 System.out.println("The fight is on!");
-            }
-            for (Item item : GameState.instance().inventory) {
-                System.out.println("Item name is " + item.getPrimaryName());
             }
         } catch (NoCharacterException e) {
             System.out.println("There's no " + enemyName + " in here!");

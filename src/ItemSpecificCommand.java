@@ -130,6 +130,9 @@ class ItemSpecificCommand extends Command{
             if (fullCommand.contains("Drop")) {
                 GameState.instance().drop(item);
             }
+            if (fullCommand.contains("Equip")) {
+                GameState.instance().setEquippedItem(item);
+            }
             if (responseMsg != null) {
                     return responseMsg;
                 } else {
