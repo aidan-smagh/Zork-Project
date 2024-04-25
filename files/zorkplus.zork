@@ -23,6 +23,7 @@ inspect:Swirling purple energies glow.
 ---
 CryoCore,core
 7
+damage[10]
 inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
 ---
 GoldenCrown,crown
@@ -39,7 +40,7 @@ IceWizard,GoldenCrown,IceStaff
 ===
 Rooms:
 Dark Chamber
-Contents: VoidGrimoire
+Contents: VoidGrimoire,CryoCore
 NPCs: VoidMage
 A dark cave with glowing purple candles and an altar.
 ---

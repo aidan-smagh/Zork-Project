@@ -8,7 +8,7 @@ public class Item {
 
     String primaryName;
     int weight;
-
+    int damage=0;
    // String fullCommand;
     //hashtable and hashset for messages and aliases -used
     Hashtable<String, String> messages;
@@ -27,13 +27,33 @@ public class Item {
         String[] names = primaryName.split(",");
         this.primaryName = names[0];
         this.weight = Integer.parseInt(s.nextLine());
+        
         String line = s.nextLine();
       
+
+
        // this.fullCommand = "";
         fullCommands = new ArrayList<>();
         
         //check that this line doesn't equal to ---. check for aliases       
         while (!line.contains("---")) {
+           
+           
+           if(line.startsWith("damage")){
+            System.out.println(line);   
+               int startInd = line.indexOf('[') +1;
+                  int endInd = line.indexOf(']');
+                  String dValue = line.substring(startInd, endInd);
+                 this.damage = Integer.parseInt(dValue);
+                 System.out.println(dValue); 
+                 line = s.nextLine();
+             }
+
+           
+           
+           
+           
+           
             String[] parts = line.split(":");
             String part1 = parts[0];
             fullCommands.add(part1);
