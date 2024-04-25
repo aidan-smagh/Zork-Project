@@ -14,11 +14,9 @@ class Exit{
 
 
 
-    public Exit(Scanner scanner) throws Exception{
-        System.out.println("hydrating exits...");
+    public Exit(Scanner scanner) throws Exception{        
         Dungeon dungeon = GameState.instance().getDungeon();
         String temp = scanner.nextLine();
-        System.out.println("temp is "+temp);
         if(temp.equals("===")){
             throw new NoExitException();
         }

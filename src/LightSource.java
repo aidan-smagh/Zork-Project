@@ -11,15 +11,15 @@ public class LightSource extends Item {
  /*   Hashtable<String, String> messages;
     HashSet<String> aliases; */
 //need Scanner constructor 
-    
- /*   public LightSource(Item item) throws NoItemException {
-        Scanner s = new Scanner(new File(GameState.
+/*    
+    public LightSource(Item item,Scanner s) throws NoItemException {        
         Item i = GameState.instance().getDungeon().getItem(item);
         this.primaryName = i.getPrimaryName();
         this.weight = i.getWeight();
         this.messages = i.getMessages();
         this.aliases = i.getAliases();
-        this.fullCommands = i.getFullCommands(); 
+        this.fullCommands = i.getFullCommands();
+        this.blahblah = s.nextLine(); 
     
    public LightSource(Scanner s) throws NoItemException {
         super(s);

@@ -79,8 +79,14 @@ public class CommandFactory {
           }
           return new FightCommand(enemyName);
      }
-
-   
+    
+    else if (commandTypes.equalsIgnoreCase("tradeWith")) {
+        String charName="";
+        if (parseParts.length > 1) {
+            charName = parseParts[1];
+        } 
+        return new TradeCommand(charName);    
+    }
    
    
    else if (parseParts.length == 2) {

@@ -108,7 +108,7 @@ public class Room{
         for (Exit exit : exits.values()) {
                  roomInfo += "\n" + exit.describe();
              }
-         return roomInfo + itemInfo;
+         return roomInfo + itemInfo + charInfo;
     }
 
     String describe() {

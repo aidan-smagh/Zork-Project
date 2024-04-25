@@ -7,7 +7,7 @@ class LookCommand extends Command{
 
     String execute(){
         
-       Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
+       Room currentRoom = GameState.instance().currentRoom;
      //  return currentRoom.describe();
      // boolean yn = GameState.instance().hasBeenVisited(currentRoom);
      // yn = false;

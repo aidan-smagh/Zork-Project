@@ -40,12 +40,12 @@ public class Item {
            
            
            if(line.startsWith("damage")){
-            System.out.println(line);   
+            //System.out.println(line);   
                int startInd = line.indexOf('[') +1;
                   int endInd = line.indexOf(']');
                   String dValue = line.substring(startInd, endInd);
                  this.damage = Integer.parseInt(dValue);
-                 System.out.println(dValue); 
+                 //System.out.println(dValue); 
                  line = s.nextLine();
              }
 

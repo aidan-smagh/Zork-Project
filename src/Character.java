@@ -65,7 +65,7 @@ class Character {
     }
     public void addToInventory(Item item) {
          inventory.add(item);
-         System.out.println(item.getPrimaryName() + "added to "+this.name);
+         //System.out.println(item.getPrimaryName() + "added to "+this.name);
     }
     void removeFromInventory(Item item) {
          inventory.remove(item);

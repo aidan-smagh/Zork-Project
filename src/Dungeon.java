@@ -104,7 +104,6 @@ public class Dungeon{
             if (npcInvCheck.equals("Inventories:")) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                System.out.println("line is "+line);
                 if (line.equals("===")) {
                     break;
                 }
@@ -128,7 +127,7 @@ public class Dungeon{
                 } catch (Exception e2) {break;} //rooms done, break to start hydrating exits
             }     
     
-            System.out.println("line before exits is "+scanner.nextLine()); //consume Exits:
+            scanner.nextLine(); //consume Exits:
             while (scanner.hasNextLine()) {
                 try {                                        
                     Exit exit = new Exit(scanner);                  

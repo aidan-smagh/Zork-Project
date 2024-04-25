@@ -9,20 +9,20 @@ IceWizard,100,15
 ===
 Items:
 VoidGrimoire,book,grimoire
-10
+15
 read:The pages have glowing purple text.
 ---
 IceStaff,staff
 25
 raise:The staff glows brightly, chilling the surrounding air.
-channel[Transform(CryoCore)]:The ice energy concentrates, producing a crystal.
+channel[Transform(CryoCore)]:The ice energy concentrates, producing a crystal that falls to the floor.
 ---
 VoidEssence,essence
-5
+7
 inspect:Swirling purple energies glow.
 ---
 CryoCore,core
-7
+12
 damage[10]
 inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
 ---
