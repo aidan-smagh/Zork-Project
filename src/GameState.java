@@ -9,6 +9,7 @@ public class GameState {
     Item equippedItem = null;
     Room currentRoom = null;         
     HashSet<Room> visited = null;
+    int movesMade = 0; //track moves so characters randomly tp every 10 moves
     ArrayList<Item> inventory = null;
     Hashtable<Room, HashSet<Item>> roomContents = null;
     Hashtable<Room, HashSet<Character>> charsInRoom = null; //knows which chars are in which rooms
@@ -22,6 +23,7 @@ public class GameState {
         equippedItem = null;
         currentRoom = null;
         visited = new HashSet<>();
+        this.movesMade = movesMade;
         inventory = new ArrayList<>();
         roomContents = new Hashtable<>();
         charsInRoom = new Hashtable<>();
@@ -121,7 +123,7 @@ public class GameState {
             }   
             pw.println("Score:" + playerScore );
             pw.println("Health:" + PLAYER.getHP());
-
+            pw.println("Moves made: "+ movesMade);
         }
         catch (Exception e) {
             System.err.println("Error loading the game: " + e.getMessage());
@@ -251,7 +253,12 @@ public class GameState {
              String health = healthInfo[1];
              GameState.instance().PLAYER.setHP(Integer.parseInt(health));            
          }
-        
+        nextL = reader.readLine();
+        if (nextL.contains("Moves")) {
+            String[] movesInfo = nextL.split(":");
+            String moves = movesInfo[1];
+            GameState.instance().movesMade = Integer.parseInt(moves);
+        }
     } catch (Exception e) {
         e.printStackTrace();
         throw new RuntimeException(e);

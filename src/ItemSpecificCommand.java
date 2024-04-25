@@ -88,6 +88,7 @@ class ItemSpecificCommand extends Command{
             if(fullCommand.contains("Teleport")){
         //        System.out.println("teleport exists");
                 teleport();
+                GameState.instance().movesMade++;
             }
 
             if(fullCommand.contains("Score")){

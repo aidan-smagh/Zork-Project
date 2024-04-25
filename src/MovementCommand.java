@@ -12,7 +12,7 @@ class MovementCommand extends Command{
     Room currentRoom = GameState.instance().getAdventurersCurrentRoom();
         //System.out.println("C - works- " + currentRoom);
         Room nextRoom = currentRoom.leaveby(dir);
-
+        GameState.instance().movesMade++;
         if (nextRoom != null) {
         }
 

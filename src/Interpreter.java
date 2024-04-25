@@ -77,6 +77,9 @@ class Interpreter{
             //direction
             //Command command = new Command(input);
             String result = command.execute();
+            if (GameState.instance().movesMade % 10 == 0) {
+                GameState.instance().getDungeon().shuffleCharacters();
+            }
             System.out.println(result);
 
         }

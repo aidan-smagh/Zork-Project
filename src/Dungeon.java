@@ -193,9 +193,20 @@ public class Dungeon{
         }
         throw new NoCharacterException(); //throws if character not found
     }
-
-    
-    
+    public void shuffleCharacters() { //shuffles indivudual characters into unique random rooms every 10 moves
+        ArrayList<Room> dungeonRooms = new ArrayList<>(GameState.instance().getDungeon().rooms.values());
+        int randomIndex = (int)(Math.random() * dungeonRooms.size()); 
+        Room randomRoom = dungeonRooms.get(randomIndex);
+        for (Room r : dungeonRooms) {
+        ArrayList<Character> dungeonChars = new ArrayList<>(GameState.instance().charsInRoom.get(r));
+            for (Character c : dungeonChars) {
+                GameState.instance().removeCharFromRoom(c,r);
+                GameState.instance().addCharToRoom(c,randomRoom); 
+                randomIndex = (int)(Math.random() * dungeonRooms.size());
+                randomRoom = dungeonRooms.get(randomIndex);
+            }
+        }
+    }
     public class IllegalDungeonFormatException extends Exception {
         public IllegalDungeonFormatException(String e) {
             super(e);
