@@ -21,15 +21,20 @@ VoidEssence,essence
 5
 inspect:Swirling purple energies glow.
 ---
-===
-Lights:
 CryoCore,core
 7
 inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
-14@1
 ---
-Candle
-12,1
+GoldenCrown,crown
+8
+inspect:A shiny crown with 3 red jewels on the front.
+wear:You feel a chill through your bones and madness trying to consume you.
+---
+===
+Inventories:
+VoidMage,VoidEssence
+---
+IceWizard,GoldenCrown,IceStaff
 ---
 ===
 Rooms:
@@ -39,7 +44,6 @@ NPCs: VoidMage
 A dark cave with glowing purple candles and an altar.
 ---
 Ice Mountain
-Contents: IceStaff
 NPCs: IceWizard
 Atop this tall mountain lies a lived-in mancave with a penguin painting.
 ---

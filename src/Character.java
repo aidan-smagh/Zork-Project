@@ -3,15 +3,15 @@ class Character {
     String name;
     int healthPoints;
     int defense;
-
+    ArrayList<Item> inventory = null;
     Character (String name, int healthPoints, int defense) {
         this.name=name;
         this.healthPoints=healthPoints;
         this.defense=defense;
-
+        this.inventory = new ArrayList<>();
     }
 
-    public Character(Scanner s) throws NoCharacterException {
+    public Character(Scanner s) throws NoCharacterException, NoItemException {
         String line = s.nextLine();
         if (line.equals("===")) {
             throw new NoCharacterException();
@@ -20,6 +20,7 @@ class Character {
         this.name = lineInfo[0];
         this.healthPoints = Integer.parseInt(lineInfo[1]);
         this.defense = Integer.parseInt(lineInfo[2]);
+        this.inventory = new ArrayList<>();
         s.nextLine();
     }
     
@@ -53,6 +54,22 @@ class Character {
     public void killPlayer() {
         this.setHP(0);
     }
+
+    public Item getFromInventory(String itemName) throws NoItemException {        
+        for (Item i : this.inventory) {
+            if (i.goesBy(itemName)) {
+                return i;
+            }
+        }
+        throw new NoItemException();
+    }
+    public void addToInventory(Item item) {
+         inventory.add(item);
+         System.out.println(item.getPrimaryName() + "added to "+this.name);
+    }
+    void removeFromInventory(Item item) {
+         inventory.remove(item);
+    } 
 
     public String printLifeStatus(int healthPoints) {
         if (healthPoints > 75) {

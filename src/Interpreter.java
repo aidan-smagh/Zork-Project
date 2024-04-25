@@ -23,7 +23,7 @@ class Interpreter{
                 dungeon = new Dungeon(fileName);
                 GameState.instance().initialize(dungeon);
                 System.out.println(dungeon.getEntry().describe());
-                
+                dungeon.charsInDungeon.add(GameState.instance().PLAYER);                
 
             } catch (Dungeon.IllegalDungeonFormatException | FileNotFoundException | Room.NoRoomException e) {
                 System.err.println("Error loading the dungeon: " + e.getMessage());
@@ -33,6 +33,7 @@ class Interpreter{
             // Restore the game state from the .sav file
             try {
                 GameState.instance().restore(fileName);
+                GameState.instance().getDungeon().charsInDungeon.add(GameState.instance().PLAYER);
                 //Dungeon savedDungeon = GameState.instance().getDungeon();
                 //GameState.instance().initialize(dungeon);
                 System.out.println(GameState.instance().getAdventurersCurrentRoom().describe());

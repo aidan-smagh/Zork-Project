@@ -12,8 +12,8 @@ public class Dungeon{
     private String title = null;
     Hashtable<String, Item> dungeonItems = new Hashtable<>();
     Hashtable<String, Character> dungeonCharacters = new Hashtable<>();
+    HashSet<Character> charsInDungeon = new HashSet<>(); 
     
-    ArrayList<LightSource> lightSources = new ArrayList<>();
 
     public Dungeon(Room entryRoom, String title){
         this.rooms = new Hashtable<>();
@@ -21,6 +21,8 @@ public class Dungeon{
         this.title = title;
         this.dungeonItems = dungeonItems;
         this.dungeonCharacters = dungeonCharacters;
+        this.charsInDungeon = charsInDungeon;
+        //charsInDungeon.add(GameState.instance().PLAYER);
         rooms.put(entryRoom.getName(), entryRoom);
     }
 
@@ -46,7 +48,7 @@ public class Dungeon{
             while (scanner.hasNextLine()) {
                 try {
                     Character character = new Character(scanner);
-                    System.out.println("added "+character.getName()+" to dungeon"); 
+                    //System.out.println("added "+character.getName()+" to dungeon"); 
                     this.add(character);        //character hydration
                 } catch (Exception e4) {
                     scanner.nextLine();
@@ -58,22 +60,23 @@ public class Dungeon{
             while (scanner.hasNextLine()) {  
                 try {                    
                     Item item = new Item(scanner);
-                    this.add(item);                               
+                    this.add(item);  
+                                                 
                 } catch (Exception e) {break;} //items done, break to start hydrating rooms                      
             }         
     
-<<<<<<< HEAD
+/* <<<<<<< HEAD
             hydrationCheck = scanner.nextLine(); //consume line
             if (hydrationCheck.equals("Lights:")) {
             /*  while (!hydrationCheck.equals("Rooms:")) {  
                     hydrationCheck = scanner.nextLine();
-                } */
+                } 
                 while (scanner.hasNextLine()) {
                 LightSource light = new LightSource(scanner);
                 this.add(light);
                 }
             }  
-=======
+
             hydrationCheck = scanner.nextLine(); //consume 'Rooms:'
             System.out.println(hydrationCheck);
             
@@ -86,7 +89,7 @@ public class Dungeon{
                 this.add(light);
              }   
                 
-            }
+            } 
                 //while (!hydrationCheck.equals("Rooms:")) {  // <- skips past Lights: section 
                   //  hydrationCheck = scanner.nextLine();
                 
@@ -96,8 +99,28 @@ public class Dungeon{
                     item = light;
                     this.add(item);  */
                   
->>>>>>> f579c3c7e2f7b754f6b4775f819c1c70b022fa22
-                                      
+            String npcInvCheck = scanner.nextLine(); //necessary line, consume Rooms(to-be Inventories:)
+            
+            if (npcInvCheck.equals("Inventories:")) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                System.out.println("line is "+line);
+                if (line.equals("===")) {
+                    break;
+                }
+                String[] invInfo = line.split(",");
+                //System.out.println(invInfo[1]);
+                Character c = GameState.instance().getDungeon().getCharacter(invInfo[0]);
+               
+                for (int i=1; i<invInfo.length; i++) {
+                    //System.out.println(invInfo[i]);
+                    c.addToInventory(this.getItem(invInfo[i]));
+                }
+                line = scanner.nextLine();
+            }
+                scanner.nextLine();
+            }
+            //System.out.println("line before rooms is "+scanner.nextLine());
             while (scanner.hasNextLine()) {
                 try {                
                 Room room = new Room(scanner);                     
@@ -110,7 +133,9 @@ public class Dungeon{
                 try {                                        
                     Exit exit = new Exit(scanner);                  
                     exit.getSrc().addExit(exit.getDir(), exit.getDest());
-                    } catch (Exception e3) {break;}
+                    } catch (Exception e3) {
+                        
+                        break;}
             }                                
         }    
     }
@@ -144,17 +169,16 @@ public class Dungeon{
             if (item.goesBy(itemName)) {
                 return item;
             }
-        }
+        }         
         throw new NoItemException(); //throws if item not found   
     }
 
     public void add(Character c) {
         this.dungeonCharacters.put(c.getName(), c);
+        this.charsInDungeon.add(c);
     }
     
-    public void addLightSource(LightSource light){
-        lightSources.add(light);
-    }
+   
 
     
     public Character getCharacter(String charName) throws NoCharacterException {
@@ -162,7 +186,12 @@ public class Dungeon{
             if (c.getName().equals(charName)) {
                 return c;
             }
-        } 
+        }
+        for (Character c : GameState.instance().getDungeon().charsInDungeon) {
+            if (c.getName().equals(charName)) {
+                return c; 
+            }
+        }
         throw new NoCharacterException(); //throws if character not found
     }
 

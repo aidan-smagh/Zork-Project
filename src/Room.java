@@ -71,6 +71,7 @@ public class Room{
         } 
         GameState.instance().roomContents.put(this, roomItems);
         GameState.instance().charsInRoom.put(this, roomChars);
+        //System.out.println(this.name+" room made!"); keep test print
     }
 
 
@@ -100,7 +101,8 @@ public class Room{
             itemInfo +=  "\nThere is a " + iterator.next().getPrimaryName() + " here.";
         }
         while (charIterator.hasNext()) {
-                 charInfo += "\nA "+charIterator.next().getName()+" is wandering around the room.";
+            Character c = charIterator.next();
+            charInfo += "\nA "+c.getName()+" is wandering around the room. They are carrying: "+c.inventory;
         }
         GameState.instance().visit(this);
         for (Exit exit : exits.values()) {
@@ -124,7 +126,8 @@ public class Room{
                 itemInfo +=  "\nThere is a " + itemIterator.next().getPrimaryName() + " here.";
             }
             while (charIterator.hasNext()) {
-                charInfo += "\nA "+charIterator.next().getName()+" is wandering around the room.";  
+                Character c = charIterator.next();
+                charInfo += "\nA "+c.getName()+" is wandering around the room. They are carrying: "+c.inventory;  
             }            
         GameState.instance().visit(this);            
         } else {

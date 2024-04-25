@@ -1,10 +1,10 @@
+/*
 
-<<<<<<< HEAD
 import java.io.*;
 import java.util.*;
 public class LightSource extends Item {
-  /*  String primaryName;
-    int weight; */
+    String primaryName;
+    int weight; 
     int luminance;
     int currentBrightness;
     int burnRate;
@@ -19,7 +19,7 @@ public class LightSource extends Item {
         this.weight = i.getWeight();
         this.messages = i.getMessages();
         this.aliases = i.getAliases();
-        this.fullCommands = i.getFullCommands(); */
+        this.fullCommands = i.getFullCommands(); 
     
    public LightSource(Scanner s) throws NoItemException {
         super(s);
@@ -30,7 +30,7 @@ public class LightSource extends Item {
             throw new NoItemException();
         }
         String[] names = primaryName.split(",");
-        this.primaryName = names[0]; */
+        this.primaryName = names[0]; 
         //while (s.hasNextLine() {
         String lightInfo = s.nextLine();
         System.out.println("light info is "+lightInfo);
@@ -67,7 +67,7 @@ public class LightSource extends Item {
     this.luminance = luminance;
     this.currentBrightness = this.luminance; //light starts at max brightness, aka luminance
     this.burnRate = burnRate;     
-} */
+} 
 =======
 
 import java.util.Scanner;
@@ -130,4 +130,4 @@ public class LightSource extends Item {
     public void setBurnRate(int r) {
         this.burnRate = r;
     }
-}  
+} */ 
