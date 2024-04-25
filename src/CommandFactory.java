@@ -69,6 +69,15 @@ public class CommandFactory {
         }
         return new DropCommand(item);
    }
+   else if (commandTypes.equals("equip")) {
+        String equippedItem;
+        if (parseParts.length > 1) {
+            equippedItem = parseParts[1];
+        } else {
+            equippedItem = "";
+        }
+        return new EquipCommand(equippedItem);
+   }
    else if (parseParts.length == 2) {
             return new ItemSpecificCommand(parseParts[0], parseParts[1]);
         }
@@ -88,9 +97,9 @@ public class CommandFactory {
             enemyName = "";
         }
         return new FightCommand(enemyName);
-    } 
-   else{
-    return new UnknownCommand(commandString);
+   }
+   else {
+       return new UnknownCommand(commandString);
     }
     
     }
