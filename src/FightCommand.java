@@ -45,7 +45,7 @@ class FightCommand extends Command {
             System.out.println(selectedItem);
             try {
                Item selectedWeapon = GameState.instance().getItemFromInventoryNamed(selectedItem);
-               //System.out.println(selectedWeapon);
+               System.out.println(selectedWeapon);
                int hitCount = 0;
                System.out.println("How many times will you hit the "+enemy.getName()+"?");
                 hitCount = Integer.parseInt(scanner.nextLine());
