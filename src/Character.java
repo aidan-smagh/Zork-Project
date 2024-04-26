@@ -72,14 +72,17 @@ class Character {
     } 
 
     public String printLifeStatus(int healthPoints) {
+        //System.out.println("life status called");
         if (healthPoints > 75) {
-            return "High HP! No worries!";
+            return this.name+" has high HP!!";
         } else if (healthPoints > 50) {
-            return "A little hurt, but still kciking.";
+            return "The "+this.name+" is a little hurt, but still kicking.";
         } else if (healthPoints > 25) {
-            return "Nearing dangerous levels of hurt.";
+            return "They're nearing dangerous levels of hurt.";
+        } else if (healthPoints >0) {
+            return this.name+" has critically low health!!!";
         } else {
-            return "Critically low health!!!";
+            return "";
         }
     }
 }
