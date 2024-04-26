@@ -17,6 +17,7 @@ class FightCommand extends Command {
         try {
             Character enemy = GameState.instance().getDungeon()
                 .getCharacter(enemyName);
+            //System.out.println(enemy.getName());
             Room currentRoom = GameState.instance()
                 .getAdventurersCurrentRoom();
             //grab the character that is in the room
@@ -33,14 +34,18 @@ class FightCommand extends Command {
                 }
 
               //  Item selectedWeapon = GameState.instance().getItemFromInventoryNamed("Sword");
-
+            if (GameState.instance().getInventory().isEmpty()) {
+                System.out.println("You have no weapons to fight with!");
+                System.out.println("'Look' for any nearby weapons FAST!");
+                return "";
+            }
             System.out.println("Which item would you like to use? ");
             String selectedItem = scanner.nextLine();
             
             System.out.println(selectedItem);
             try {
                Item selectedWeapon = GameState.instance().getItemFromInventoryNamed(selectedItem);
-               System.out.println(selectedWeapon);
+               //System.out.println(selectedWeapon);
                int hitCount = 0;
                System.out.println("How many times will you hit the "+enemy.getName()+"?");
                 hitCount = Integer.parseInt(scanner.nextLine());
@@ -48,12 +53,14 @@ class FightCommand extends Command {
                     
                     hit(enemy, selectedWeapon);
                     if (enemy.getHP() <= 0) {
-                    GameState.instance().removeCharFromRoom(enemy, currentRoom);
+                    GameState.instance()
+                        .removeCharFromRoom(enemy, currentRoom);
                         break;
                     }
                 }
                 String enemyStatus = enemy.printLifeStatus(enemy.getHP());
                 System.out.println(enemyStatus);
+                System.out.println("The fight has ended");
             } catch (NoItemException e) {
              System.out.println("There's no "+selectedItem+" in your inventory!");
             }
@@ -77,7 +84,7 @@ class FightCommand extends Command {
 
 
        // return "enemy name not found";
-        return "This fight has ended.";
+        return "";
     }
 
     void hit (Character c, Item i){
@@ -96,7 +103,7 @@ class FightCommand extends Command {
             if (!c.inventory.isEmpty()) {
                 System.out.println("Their loot drops to the floor! Take a look around.");
                 for (Item item : c.inventory) {    
-                    c.removeFromInventory(item);
+                    //c.removeFromInventory(item);
                     GameState.instance().addItemToRoom(item, currentRoom);
                 }
             } else {
@@ -106,16 +113,3 @@ class FightCommand extends Command {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

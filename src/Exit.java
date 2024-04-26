@@ -23,8 +23,11 @@ class Exit{
         this.src = dungeon.getRoom(temp);        
         this.dir = scanner.nextLine();        
         this.dest = dungeon.getRoom(scanner.nextLine()); 
-                 
-        scanner.nextLine(); 
+        
+        System.out.println(this.src);
+        System.out.println(this.dir);
+        System.out.println(this.dest);
+        scanner.nextLine();        
     }
 
 
