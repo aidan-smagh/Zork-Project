@@ -50,6 +50,9 @@ class FightCommand extends Command {
             try {
                Item selectedWeapon = GameState.instance()
                     .getItemFromInventoryNamed(selectedItem);
+               if (selectedWeapon.getDamage() == 0) {
+                    return "That item would be useless here. Either find a new weapon or choose a different one next time.";
+               }
                int hitCount = 0;
                System.out.println("How many times will you hit the "+enemy.getName()+"?");
                hitCount = Integer.parseInt(scanner.nextLine());
