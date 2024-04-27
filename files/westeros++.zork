@@ -1,7 +1,43 @@
 Westeros
 Zork++
 ===
+Characters:
+VoidMage,100,20
+---
+IceWizard,100,15
+---
+FlameSorcerer,100,20
+---
+===
 Items:
+FlameBrandSword,sword
+30
+examine:A sword enchanted with flames, dealing burning damage to foes.
+inspect[Score(10),Wound(-5)]:Sword hurts your hand.
+---
+VoidGrimoire,book,grimoire
+15
+read:The pages have glowing purple text.
+---
+IceStaff,staff
+25
+raise:The staff glows brightly, chilling the surrounding air.
+channel[Transform(CryoCore)]:The ice energy concentrates, producing a crystal that falls to the floor.
+---
+VoidEssence,essence
+7
+inspect:Swirling purple energies glow.
+---
+CryoCore,core
+12
+damage[10]
+inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
+---
+GoldenCrown,crown
+8
+inspect:A shiny crown with 3 red jewels on the front.
+wear:You feel a chill through your bones and madness trying to consume you.
+---
 dragonglass,glass
 4
 break[Wound(1)]:Ouch! The glass cuts your hand.
@@ -58,9 +94,18 @@ sit[Win]:Hail to the Queen!
 sitOn[Win]:Hail to the Queen!
 ---
 ===
+Inventories:
+VoidMage,VoidEssence
+---
+IceWizard,GoldenCrown,IceStaff
+---
+FlameSorcerer,FlameBrandSword
+---
+===
 Rooms:
 Winterfell
 Contents: dagger
+NPCs: VoidMage
 You stand within a huge castle complex spanning several acres, consisting of
 two massive walls and a village located just outside. Banners featuring the
 head of a direwolf are flapping in the chilly breeze.
@@ -76,6 +121,7 @@ a few tunnels cut through it that are secured by heavy iron bars and massive
 chains that must be unlocked.
 ---
 The Dreadfort
+NPCs: IceWizard
 You enter a strong fortress, with high walls and triangular merlons that look
 like sharp stone teeth. It has thick stone walls and massive towers. Its great
 hall is dim and smoky, with rows of torches grasped by skeletal human hands
@@ -83,6 +129,7 @@ jutting from the walls. Long tables stand before a dais with a high table. The
 hall has a vaulted ceiling and wooden rafters.
 ---
 Dragonstone
+NPCs: FlameSorcerer
 This is a volcanic island at the mouth of Blackwater Bay, created by a still
 active volcano. The island is damp and dreary. A small fortress is located on
 the face of the volcano. Outside its walls sits a small fishing village on the
