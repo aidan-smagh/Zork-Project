@@ -294,7 +294,8 @@ public class GameState {
         //loop so we can use this as a getter for a specific item
         String itemName = name;
         for (Item item : inventory) {
-            if (item.aliases.contains(itemName)) {
+            if (item.aliases.contains(itemName) || item.getPrimaryName().
+                    equalsIgnoreCase(itemName)) {
                 return item;
             }             
         }  

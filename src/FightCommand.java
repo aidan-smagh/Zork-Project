@@ -10,10 +10,12 @@ class FightCommand extends Command {
         
     }
     String execute() {
+        Scanner scanner = new Scanner(System.in);
         if (this.enemyName.isEmpty()) {
             return "Fight what?";
         }
         System.out.println("");
+        //System.out.println("The fight is on!");
         try {
             Character enemy = GameState.instance().getDungeon()
                 .getCharacter(enemyName);
@@ -25,13 +27,13 @@ class FightCommand extends Command {
             HashSet<Character> charsInRoom = GameState.instance().getCharsInRoom(currentRoom);
         
             if(charsInRoom.contains(enemy)){
-            Scanner scanner = new Scanner(System.in);
+            //Scanner scanner = new Scanner(System.in);
 
-            System.out.println("The fight is on!");
            
-                for (Item item : GameState.instance().getInventory()) {
-                    System.out.println("- " + item.getPrimaryName());
-                }
+                //for (Item item : GameState.instance().getInventory()) {
+                    //System.out.println("- " + item.getPrimaryName());
+                //}
+            }
 
               //  Item selectedWeapon = GameState.instance().getItemFromInventoryNamed("Sword");
             if (GameState.instance().getInventory().isEmpty()) {
@@ -39,18 +41,20 @@ class FightCommand extends Command {
                 System.out.println("'Look' for any nearby weapons FAST!");
                 return "";
             }
+            System.out.println("The fight is on!"); 
             System.out.println("Which item would you like to use? ");
+            for (Item item : GameState.instance().getInventory()) {
+                System.out.println("- " + item.getPrimaryName());
+            }
             String selectedItem = scanner.nextLine();
-            
-            System.out.println(selectedItem);
             try {
-               Item selectedWeapon = GameState.instance().getItemFromInventoryNamed(selectedItem);
-               System.out.println(selectedWeapon);
+               Item selectedWeapon = GameState.instance()
+                    .getItemFromInventoryNamed(selectedItem);
                int hitCount = 0;
                System.out.println("How many times will you hit the "+enemy.getName()+"?");
-                hitCount = Integer.parseInt(scanner.nextLine());
-                for (int i=0; i<hitCount; i++) {
-                    
+               hitCount = Integer.parseInt(scanner.nextLine());
+               for (int i=0; i<hitCount; i++) {
+                         
                     hit(enemy, selectedWeapon);
                     if (enemy.getHP() <= 0) {
                     GameState.instance()
@@ -64,9 +68,10 @@ class FightCommand extends Command {
             } catch (NoItemException e) {
              System.out.println("There's no "+selectedItem+" in your inventory!");
             }
+            
 
            // hit(enemy);
-            }
+            
 
            /*
             if (!GameState.instance().getCharsInRoom(currentRoom)
@@ -77,17 +82,19 @@ class FightCommand extends Command {
                 System.out.println("Item name is " + item.getPrimaryName());
             }
             */
-
+        
         } catch (NoCharacterException e) {
             System.out.println("There's no " + enemyName + " in here!");
         }
 
 
        // return "enemy name not found";
-        return "";
+        return "What is your next action?";
     }
 
-    void hit (Character c, Item i){
+
+
+    private void hit (Character c, Item i){
    // void hit(Character c){
 //        for(Item item : GameState.instance().getInventory()){
   //      System.out.println(item.getPrimaryName());
@@ -99,6 +106,7 @@ class FightCommand extends Command {
         //System.out.println(c.getName()+"'s health is now "+c.getHP()+".");
         Room currentRoom = GameState.instance().currentRoom; 
         if (c.getHP() <= 0 ) {
+            System.out.println("");
             System.out.println(c.getName()+" slain!");
             if (!c.inventory.isEmpty()) {
                 System.out.println("Their loot drops to the floor! Take a look around.");

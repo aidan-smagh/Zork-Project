@@ -12,6 +12,7 @@ FlameSorcerer,100,20
 Items:
 FlameBrandSword,sword
 30
+damage[50]
 examine:A sword enchanted with flames, dealing burning damage to foes.
 inspect[Score(10),Wound(-5)]:Sword hurts your hand.
 ---
@@ -45,13 +46,15 @@ wield:There's no one here to wield it against.
 throw[Drop,Teleport]:You huck the dragonglass down to the ground, at which point it shatters and leaves you feeling disoriented.
 examine:It's a rough-hewn obsidian sliver, sharp as a needle.
 ---
-BastardSword,sword
+BastardSword,Bsword
 25
+damage[50]
 examine:This blade is forged from Valyrian steel, with a wolf's head pommel.
 swing:The sword is too heavy for a loser like you to swing.
 ---
-dagger
+dagger,knife
 12
+damage[10]
 examine:This sharp assassin's weapon has a dragonbone hilt.
 throw[Disappear]:The dagger clumsily hits the wall, and breaks to pieces.
 ---
@@ -105,13 +108,13 @@ FlameSorcerer,FlameBrandSword
 Rooms:
 Winterfell
 Contents: dagger
-NPCs: VoidMage
 You stand within a huge castle complex spanning several acres, consisting of
 two massive walls and a village located just outside. Banners featuring the
 head of a direwolf are flapping in the chilly breeze.
 ---
 The Wall
 Contents: BastardSword,dragonglass
+NPCs: VoidMage
 This gargantuan structure stretches for 300 miles to the west and east and is
 approximately 700 feet tall. It is made of solid ice and stone, and can be
 seen for miles round. It appears grey or blue depending on the weather and
