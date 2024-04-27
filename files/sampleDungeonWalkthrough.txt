@@ -1,0 +1,3 @@
+To win the dungeon you must navigate yourself to the throne, and sit on it.
+When you load the dungeon, the correct sequence to reach the throne is 
+(s,s,s,s,s, "sit throne"
