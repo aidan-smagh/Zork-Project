@@ -1,0 +1,9 @@
+Combat -- There are NPCs in the rooms that will move to a random room. You
+have the choice to wage war against these vermin even though they will never
+attack you first. The NPCs have inventories and you will be able to pick up 
+whatever they drop upon their deaths. You will be prompted to select an item
+to use in your battles, but make sure that is an item that does damage. 
+
+You can test the combat feature in zorkplus.zork (in this same directory) 
+by going to a room with items and making sure one of the ones in your
+inventory
