@@ -5,5 +5,15 @@ whatever they drop upon their deaths. You will be prompted to select an item
 to use in your battles, but make sure that is an item that does damage. 
 
 You can test the combat feature in zorkplus.zork (in this same directory) 
-by going to a room with items and making sure one of the ones in your
-inventory
+by going to a room with items and adding them to your inventory. Once you
+have an item you think will deal damage (knives, swords, etc), set off to
+find your first NPC victim. Once you have found someone by cycling through
+the rooms, type "fight 'NPCname'". Then you will be prompted with which
+item you want to use in your fight, if your weaponc can deal damage the
+fight will progress, otherwise you will be given a helpful message. Assuming
+your weapon does damage, you will be asked how many times you want to attack
+. Eventually the NPC will fall and the items in their inventory will drop, 
+allowing you to pick them up if you have inventory space. That NPC will
+cease to exist and you are free to continue maneuvering through the dungeon.
+---------------------------------------------------------------------------
+

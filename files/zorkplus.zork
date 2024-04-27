@@ -29,7 +29,8 @@ inspect[Score(10),Wound(-5)]:Frigid power radiates softly.
 GoldenCrown,crown
 8
 inspect:A shiny crown with 3 red jewels on the front.
-wear:You feel a chill through your bones and madness trying to consume you.
+wear[Win]:You feel a chill through your bones and madness trying to consume you. 
+
 ---
 ===
 Inventories:
@@ -39,14 +40,14 @@ IceWizard,GoldenCrown,IceStaff
 ---
 ===
 Rooms:
+Ice Mountain
+NPCs: IceWizard
+Atop this tall mountain lies a lived-in mancave with a penguin painting.
+---
 Dark Chamber
 Contents: VoidGrimoire,CryoCore
 NPCs: VoidMage
 A dark cave with glowing purple candles and an altar.
----
-Ice Mountain
-NPCs: IceWizard
-Atop this tall mountain lies a lived-in mancave with a penguin painting.
 ---
 ===
 Exits:
