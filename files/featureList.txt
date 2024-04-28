@@ -16,4 +16,15 @@ your weapon does damage, you will be asked how many times you want to attack
 allowing you to pick them up if you have inventory space. That NPC will
 cease to exist and you are free to continue maneuvering through the dungeon.
 ---------------------------------------------------------------------------
+NPCs -- Some rooms will have NPCs within them that are able to teleport
+randomly to new rooms. You will be able to battle these NPCs as well as 
+trade with them. 
 
+You can test the trade feature with the NPCs by typing "tradeWith 'NPCname'"
+You will then be prompted for what you want to give up and also what you 
+want in return. Upon completion of the trade, the new item will be in your
+inventory, which you can see by typing "i" and the old item will be in the
+inventory of the NPC the trade was conducted with. Also, as you move through
+the dungeon the NPCs will not be in the same position every time, they may
+be in a room you had visited earlier.
+---------------------------------------------------------------------------
