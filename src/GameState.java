@@ -123,7 +123,7 @@ public class GameState {
             }   
             pw.println("Score:" + playerScore );
             pw.println("Health:" + PLAYER.getHP());
-            pw.println("Moves made: "+ movesMade);
+            pw.println("Moves made:"+ movesMade);
         }
         catch (Exception e) {
             System.err.println("Error loading the game: " + e.getMessage());
@@ -144,6 +144,7 @@ public class GameState {
         // Step 3: Read the second line to get 
         //the full path to the dungeon file
         String dungeonFilePath = reader.readLine();
+        
         Dungeon savedDungeon = new Dungeon(dungeonFilePath);
         GameState.instance().initialize(savedDungeon);
         //System.out.println(savedDungeon.getTitle());
@@ -153,8 +154,11 @@ public class GameState {
         while (!line.equals("===")) {
              
             //get rid of the colon at the end
+           if (line.equals("---")) {
+                break;
+            } 
             String roomName = line.substring(0, line.length() - 1);
-            System.out.println("roomName is "+roomName);
+            //System.out.println("roomName is "+roomName);
             Room room = savedDungeon.getRoom(roomName);
 
             reader.readLine(); //throw away "beenHere = true"
@@ -175,11 +179,13 @@ public class GameState {
                 line = reader.readLine();
             }
             line = reader.readLine();
-            line = reader.readLine();
-            System.out.println("line is "+line);
+            //line = reader.readLine();
+            //System.out.println("line is "+line);
         }
+        //reader.readLine();
         reader.readLine(); //throw away "Character states:"
         String currentRoomLine = reader.readLine();
+        //System.out.println(currentRoomLine +" is the currentRoom line");
         String currentRoomFitted = currentRoomLine.substring
             (14, currentRoomLine.length());
         //System.out.println("Current room: " +currentRoomFitted);
@@ -201,6 +207,7 @@ public class GameState {
                 String[] itemInfo = nextL.split(":");
                 String[] items = itemInfo[1].split(",");
                 System.out.println(items[0]);
+                
                 for (String item : items) {
                     Item i = GameState.instance().getDungeon().getItem(item);
                     GameState.instance().inventory.add(i);
@@ -211,9 +218,9 @@ public class GameState {
         while (!nextL.contains("Score")) {
             if(nextL.contains("inventory")){
                 String[] inventoryInfo =  nextL.split(":");
-                System.out.println(inventoryInfo[0]+ " and "+ inventoryInfo[1]);
+                //System.out.println(inventoryInfo[0]+ " and "+ inventoryInfo[1]);
                 String charName = inventoryInfo[0].substring(0, inventoryInfo[0].length()-12);
-                System.out.println("charname is "+charName);    
+                //System.out.println("charname is "+charName);    
                 for (Character c : GameState.instance().getDungeon().charsInDungeon) {
                     System.out.println(c.getName());
                 }
