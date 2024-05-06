@@ -1,3 +1,10 @@
-To win the dungeon you must navigate yourself to the throne, and sit on it.
-When you load the dungeon, the correct sequence to reach the throne is 
-(s,s,s,s,s, "sit throne"
+Upon entering the dungeon, the player should head north to The Wall in order to
+pick up the BastardSword (to have something to fight with). There is a VoidMage
+in this room, and from here you can either "tradeWith" or "fight" him. If you
+fight him, know that the sword 25 damage and the VoidMage has 100 health, it'll
+take a minimum of 4 hits to kill him. If you tradeWith him, all he has to offer
+is VoidEssence - which isn't necessary to win. From The Wall, you should head
+south 6 times to "sitOn" the IronThrone, activating the dungeon's win
+condition. There are 2 other NPCs wandering the dungeon that you can fight or
+trade with if you see them - they shuffle into randoms rooms every 10 "moves"
+(moveCommands) the player makes. 
